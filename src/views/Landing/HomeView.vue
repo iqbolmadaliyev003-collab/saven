@@ -13,6 +13,7 @@ import first_page from "../../components/Landing/first_page.vue";
         <Howitworks />
         <NegaSaven />
     </div>
+
 </template>
 
 <style lang="scss" scoped></style>
