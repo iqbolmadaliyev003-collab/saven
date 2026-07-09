@@ -1,14 +1,12 @@
 <script setup>
-import { Howitworks, Statsbar } from "@/components/Landing/";
-
-
+import { NegaSaven } from "../../components/Landing/NegaSaven.vue";
 </script>
 
 <template>
-    <div>
-        <Howitworks />
-        <Statsbar />
-    </div>
+  <div>
+    <NegaSaven />
+    
+  </div>
 </template>
 
 <style lang="scss" scoped></style>
