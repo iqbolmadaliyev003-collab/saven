@@ -11,7 +11,6 @@ import ArizaQoldiring from "../../components/Landing/ArizaQoldiring.vue";
 <template>
   <div>
     <first_page />
-
     <Statsbar />
     <Howitworks />
     <NegaSaven />

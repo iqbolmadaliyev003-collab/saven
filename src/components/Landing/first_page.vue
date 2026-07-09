@@ -2,12 +2,12 @@
   <div class="bg-white min-h-screen">
     <!-- Header -->
     <header class="border-b border-gray-100">
-      <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex items-center justify-between h-16">
           <!-- Logo -->
-          <div class="flex-shrink-0">
+          <div>
             <span
-              class="text-2xl font-bold bg-gradient-to-r from-lime-400 to-lime-500 bg-clip-text text-transparent"
+              class="flex justify-center w-14 text-2xl font-bold text-[#89EA5C] bg-[#E4FBCC] px-4 rounded-2xl"
               >saven</span
             >
           </div>
@@ -43,11 +43,12 @@
                 RU
               </button>
             </div>
-            <button
+            <RouterLink
+              to="ariza"
               class="bg-lime-400 hover:bg-lime-500 text-gray-900 font-semibold px-6 py-2 rounded-full text-sm transition-colors"
             >
               Ariza qoldirish
-            </button>
+            </RouterLink>
           </div>
 
           <!-- Mobile menu button -->
@@ -71,10 +72,8 @@
     </header>
 
     <!-- Hero Section -->
-    <main class="max-w-7xl mx-auto">
-      <div
-        class="sm:px-6 lg:px-8 py-12 lg:py-20 grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center bg-[#dfffd3]"
-      >
+    <main class="max-w-7xl mx-auto px-6 sm:px-12 lg:px-8 py-12 lg:py-20">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
         <!-- Left Content -->
         <div class="space-y-6 lg:space-y-8">
           <div>
@@ -97,15 +96,16 @@
 
           <!-- CTA Buttons -->
           <div class="flex flex-col sm:flex-row gap-4">
-            <button
+            <RouterLink
+            to="ariza"
               class="bg-lime-400 hover:bg-lime-500 text-gray-900 font-semibold px-8 py-3 rounded-full transition-colors"
             >
               Ariza qoldirish
-            </button>
+            </RouterLink>
             <button
               class="text-lime-600 hover:text-lime-700 font-semibold flex items-center gap-2"
             >
-              Qanday ishlagadi
+              Qanday ishlaydi
               <span>→</span>
             </button>
           </div>

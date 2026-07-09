@@ -36,7 +36,7 @@
       </div>
 
       <!-- O'ng taraf: forma -->
-      <div class="bg-white rounded-2xl shadow-xl p-5 sm:p-7">
+      <div class="bg-white rounded-2xl shadow-xl p-5 sm:p-7 ">
         <!-- Stepper -->
         <div class="flex items-center mb-6 overflow-x-auto">
           <template v-for="(step, i) in steps" :key="step.label">
@@ -173,6 +173,32 @@
       → Ariza to'g'ridan-to'g'ri Admin panel «Arizalar» bo'limiga tushadi
     </p>
   </section>
+  <footer class="bg-white text-[#667085]">
+    <div
+      class="max-w-7xl mx-auto flex flex-col md:flex-row items-center md:items-start justify-between gap-8 px-6 py-10"
+    >
+      <div
+        class="flex flex-col items-center md:items-start gap-4 text-center md:text-left"
+      >
+        <span
+          class="flex justify-center w-14 text-2xl font-bold text-[#89EA5C] bg-[#E4FBCC] px-4 rounded-2xl"
+        >
+          saven
+        </span>
+        <p class="">© 2026 Saven. Barcha huquqlar himoyalangan.</p>
+      </div>
+
+      <div
+        class="flex flex-col items-center md:items-end gap-4 text-center md:text-right"
+      >
+        <div class="flex flex-col sm:flex-row gap-2 sm:gap-8">
+          <p>Oferta</p>
+          <p>Maxfiylik siyosati</p>
+        </div>
+        <a href="#" class="text-[#3F9A1F]">@saven_biznes</a>
+      </div>
+    </div>
+  </footer>
 </template>
 
 <script setup>
