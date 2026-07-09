@@ -1,5 +1,5 @@
 <template>
-  <section class="w-full bg-gray-50/60 py-8 px-4 sm:py-10">
+  <section class="w-full bg-white py-8 px-4 sm:py-10">
     <div class="max-w-3xl mx-auto text-center">
       <h2 class="text-lg sm:text-xl font-bold text-gray-900 mb-5">
         Kimlar uchun?
