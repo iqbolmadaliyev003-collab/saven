@@ -7,7 +7,7 @@
           <!-- Logo -->
           <div>
             <span
-              class="flex justify-center w-14 text-2xl font-bold text-[#89EA5C] bg-[#E4FBCC] px-4 rounded-2xl">saven</span>
+              class="flex justify-center items-center w-14 h-9 text-xl font-bold text-[#89EA5C] bg-[#E4FBCC] px-4 rounded-2xl">saven</span>
           </div>
 
           <!-- Desktop Navigation -->
@@ -18,7 +18,7 @@
           </nav>
 
           <!-- Right section -->
-          <div class="flex items-center gap-4">
+          <div class="flex items-center gap-2 sm:gap-4">
             <div class="hidden sm:flex items-center gap-2">
               <button class="text-gray-600 hover:text-gray-900 text-sm font-medium">
                 UZ
@@ -28,84 +28,96 @@
               </button>
             </div>
             <RouterLink to="ariza"
-              class="bg-lime-400 hover:bg-lime-500 text-gray-900 font-semibold px-6 py-2 rounded-full text-sm transition-colors">
+              class="bg-lime-400 hover:bg-lime-500 text-gray-900 font-semibold px-4 sm:px-6 py-2 rounded-full text-xs sm:text-sm transition-colors whitespace-nowrap">
               Ariza qoldirish
             </RouterLink>
-          </div>
 
-          <!-- Mobile menu button -->
-          <button class="md:hidden text-gray-600">
-            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-            </svg>
-          </button>
+            <!-- Mobile menu button -->
+            <button class="md:hidden text-gray-600 p-1" @click="mobileMenuOpen = !mobileMenuOpen" aria-label="Menyu">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+              </svg>
+            </button>
+          </div>
         </div>
+
+        <!-- Mobile Navigation -->
+        <nav v-if="mobileMenuOpen" class="md:hidden pb-4 flex flex-col gap-3">
+          <a href="#Howitworks" class="text-gray-700 hover:text-gray-900 text-sm font-medium">Qanday ishlaydi</a>
+          <a href="#Afzalliklar" class="text-gray-700 hover:text-gray-900 text-sm font-medium">Afzalliklar</a>
+          <a href="#KopSoraladiganSavollar" class="text-gray-700 hover:text-gray-900 text-sm font-medium">FAQ</a>
+          <div class="flex items-center gap-2 pt-2">
+            <button class="text-gray-600 hover:text-gray-900 text-sm font-medium">UZ</button>
+            <button class="text-gray-400 hover:text-gray-600 text-sm">RU</button>
+          </div>
+        </nav>
       </div>
     </header>
 
     <!-- Hero Section -->
-    <main class="  bg-[#F7FFF3] px-32 w-full sm:px-12 lg:px-8 py-12 lg:py-20">
-      <div class="grid w-7xl mx-auto grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+    <main class="bg-[#F7FFF3] px-4 sm:px-6 lg:px-8 py-10 sm:py-14 lg:py-20">
+      <div class="grid max-w-7xl mx-auto grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-12 items-center">
         <!-- Left Content -->
-        <div class="space-y-6 lg:space-y-8">
-          <div class="flex flex-col gap-4">
-            <p class="text-lime-500 text-ms font-bold tracking-wide uppercase mb-4">
+        <div class="space-y-6 lg:space-y-8 text-center lg:text-left order-2 lg:order-1">
+          <div>
+            <p class="text-lime-500 text-sm font-semibold tracking-wide uppercase mb-3 sm:mb-4">
               Bizneslar uchun
             </p>
-            <h1 class="text-4xl sm:text-5xl lg:text-5xl font-bold text-gray-900 leading-tight">
+            <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 leading-tight">
               Do'koningizga yangi mijozlar oqimini ulang
             </h1>
           </div>
 
-          <p class="text-gray-600 text-base sm:text-lg mt-2 leading-relaxed">
+          <p class="text-gray-600 text-base sm:text-lg leading-relaxed max-w-xl mx-auto lg:mx-0">
             Saven a'zolari — chegirma qidirayotgan minglab faol xaridorlar.
-            Ariza qoldiring, 24 soat ichida hamkorlilkni boshlayizmiz.
+            Ariza qoldiring, 24 soat ichida hamkorlikni boshlayimiz.
           </p>
 
           <!-- CTA Buttons -->
-          <div class="flex flex-col  sm:flex-row gap-12">
+          <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
             <RouterLink to="ariza"
-              class="bg-lime-400 hover:bg-lime-500 text-gray-900 font-semibold px-8 py-3 rounded-full transition-colors">
+              class="bg-lime-400 hover:bg-lime-500 text-gray-900 font-semibold px-8 py-3 rounded-full transition-colors text-center">
               Ariza qoldirish
             </RouterLink>
-            <a href="#Howitworks" class="text-lime-600 hover:text-lime-700 font-semibold flex items-center gap-2">
+            <a href="#Howitworks"
+              class="text-lime-600 hover:text-lime-700 font-semibold flex items-center justify-center gap-2">
               Qanday ishlaydi
               <span>→</span>
             </a>
           </div>
 
           <!-- Stats -->
-          <div class="flex flex-col sm:flex-row gap-6 pt-4">
-            <div class="flex items-center gap-2">
-              <svg class="w-5 h-5 text-lime-500" fill="currentColor" viewBox="0 0 20 20">
+          <div class="flex flex-col sm:flex-row flex-wrap gap-3 sm:gap-6 pt-4 justify-center lg:justify-start">
+            <div class="flex items-center gap-2 justify-center lg:justify-start">
+              <svg class="w-5 h-5 text-lime-500 shrink-0" fill="currentColor" viewBox="0 0 20 20">
                 <path fill-rule="evenodd"
                   d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
                   clip-rule="evenodd" />
               </svg>
               <span class="text-gray-700 text-sm">400+ hamkor</span>
             </div>
-            <div class="flex items-center gap-2">
-              <svg class="w-5 h-5 text-lime-500" fill="currentColor" viewBox="0 0 20 20">
+            <div class="flex items-center gap-2 justify-center lg:justify-start">
+              <svg class="w-5 h-5 text-lime-500 shrink-0" fill="currentColor" viewBox="0 0 20 20">
                 <path fill-rule="evenodd"
                   d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
                   clip-rule="evenodd" />
               </svg>
               <span class="text-gray-700 text-sm">50 000+ faol a'zo</span>
             </div>
-            <div class="flex items-center gap-2">
-              <svg class="w-5 h-5 text-lime-500" fill="currentColor" viewBox="0 0 20 20">
+            <div class="flex items-center gap-2 justify-center lg:justify-start">
+              <svg class="w-5 h-5 text-lime-500 shrink-0" fill="currentColor" viewBox="0 0 20 20">
                 <path fill-rule="evenodd"
                   d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
                   clip-rule="evenodd" />
               </svg>
-              <span class="text-gray-700 text-sm">Ulianish bepul</span>
+              <span class="text-gray-700 text-sm">Ulanish bepul</span>
             </div>
           </div>
         </div>
 
         <!-- Right Side - Phone Mockup -->
-        <div class="flex justify-center lg:justify-end">
-          <div class="relative w-full max-w-xs">
+        <div class="flex justify-center order-1 lg:order-2">
+          <div class="relative w-full max-w-[280px] sm:max-w-xs">
             <!-- Phone Frame -->
             <div class="bg-black rounded-3xl p-2 shadow-2xl">
               <div class="bg-white rounded-3xl overflow-hidden">
@@ -126,10 +138,10 @@
                   </div>
 
                   <!-- Service Status -->
-                  <div class="flex gap-2 mb-3">
+                  <div class="flex flex-wrap gap-2 mb-3">
                     <span class="bg-lime-400 text-gray-900 text-xs font-semibold px-3 py-1 rounded-full">Yaqin
                       atrof</span>
-                    <span class="text-gray-600 text-xs">Yupesi nortingi</span>
+                    <span class="text-gray-600 text-xs self-center">Yuqori reyting</span>
                   </div>
 
                   <p class="text-gray-700 text-xs font-medium">
@@ -142,14 +154,14 @@
                     <div class="bg-white rounded-xl p-3 shadow-sm">
                       <div class="flex gap-3">
                         <div
-                          class="w-12 h-12 bg-lime-400 rounded-xl flex items-center justify-center font-bold text-gray-900">
+                          class="w-12 h-12 shrink-0 bg-lime-400 rounded-xl flex items-center justify-center font-bold text-gray-900">
                           F
                         </div>
-                        <div class="flex-1">
-                          <h3 class="font-semibold text-gray-900 text-sm">
+                        <div class="flex-1 min-w-0">
+                          <h3 class="font-semibold text-gray-900 text-sm truncate">
                             Fresh Cut Barber
                           </h3>
-                          <p class="text-gray-600 text-xs">
+                          <p class="text-gray-600 text-xs truncate">
                             Chilanzor • 0.4 km
                           </p>
                           <div class="flex items-center gap-1 mt-1">
@@ -164,14 +176,14 @@
                     <div class="bg-white rounded-xl p-3 shadow-sm">
                       <div class="flex gap-3">
                         <div
-                          class="w-12 h-12 bg-purple-500 rounded-xl flex items-center justify-center font-bold text-white">
+                          class="w-12 h-12 shrink-0 bg-purple-500 rounded-xl flex items-center justify-center font-bold text-white">
                           P
                         </div>
-                        <div class="flex-1">
-                          <h3 class="font-semibold text-gray-900 text-sm">
+                        <div class="flex-1 min-w-0">
+                          <h3 class="font-semibold text-gray-900 text-sm truncate">
                             Premium Style
                           </h3>
-                          <p class="text-gray-600 text-xs">
+                          <p class="text-gray-600 text-xs truncate">
                             Buyuk bazaar • 1.2 km
                           </p>
                           <div class="flex items-center gap-1 mt-1">
@@ -186,14 +198,14 @@
                     <div class="bg-white rounded-xl p-3 shadow-sm">
                       <div class="flex gap-3">
                         <div
-                          class="w-12 h-12 bg-orange-400 rounded-xl flex items-center justify-center font-bold text-gray-900">
+                          class="w-12 h-12 shrink-0 bg-orange-400 rounded-xl flex items-center justify-center font-bold text-gray-900">
                           B
                         </div>
-                        <div class="flex-1">
-                          <h3 class="font-semibold text-gray-900 text-sm">
+                        <div class="flex-1 min-w-0">
+                          <h3 class="font-semibold text-gray-900 text-sm truncate">
                             Barbershop №7
                           </h3>
-                          <p class="text-gray-600 text-xs">Mirabad • 1.8 km</p>
+                          <p class="text-gray-600 text-xs truncate">Mirabad • 1.8 km</p>
                           <div class="flex items-center gap-1 mt-1">
                             <span class="text-xs font-semibold text-gray-900">4.6</span>
                             <span class="text-gray-500 text-xs">• 2 soat avval</span>
@@ -249,18 +261,18 @@
 export default {
   name: "SavenLanding",
   data() {
-    return {};
+    return {
+      mobileMenuOpen: false,
+    };
   },
 };
 </script>
 
 <style scoped>
-/* Optimize for fast rendering */
 * {
   box-sizing: border-box;
 }
 
-/* Smooth transitions without affecting performance */
 button {
   transition: background-color 150ms ease-in-out;
 }
