@@ -1,27 +1,48 @@
 <template>
   <section class="w-full bg-[#123524] py-10 px-4 sm:py-14">
     <div class="max-w-5xl mx-auto">
+      <!-- Til tanlash -->
+      <div class="flex justify-end gap-2 mb-6">
+        <button
+          @click="setLang('uz')"
+          :class="[
+            'px-3 py-1 rounded-full text-xs font-medium transition-colors',
+            lang === 'uz' ? 'bg-emerald-500 text-white' : 'bg-white/10 text-white/60 hover:text-white',
+          ]"
+        >
+          UZ
+        </button>
+        <button
+          @click="setLang('ru')"
+          :class="[
+            'px-3 py-1 rounded-full text-xs font-medium transition-colors',
+            lang === 'ru' ? 'bg-emerald-500 text-white' : 'bg-white/10 text-white/60 hover:text-white',
+          ]"
+        >
+          RU
+        </button>
+      </div>
+
       <!-- Asosiy kontent: promo + forma yoki muvaffaqiyat -->
       <div v-if="!submitted" class="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-14 items-center">
         <!-- Chap taraf: matn -->
         <div class="text-white">
-          <h2 class="text-2xl sm:text-3xl font-bold mb-4">Ariza qoldiring</h2>
+          <h2 class="text-2xl sm:text-3xl font-bold mb-4">{{ t("applyForm.title") }}</h2>
           <p class="text-sm sm:text-base text-white/70 leading-relaxed mb-8 max-w-md">
-            Formani to'ldiring — operatorlarimiz 24 soat ichida bog'lanadi va
-            hamkorlik shartlarini kelishib olamiz.
+            {{ t("applyForm.subtitle") }}
           </p>
 
           <div class="flex flex-col gap-3 text-sm sm:text-base">
-            <a href="tel:+998712000000"
+            <a :href="`tel:${t('applyForm.contacts.phone')}`"
               class="flex items-center gap-3 text-white/90 hover:text-white transition-colors">
-              <span class="text-white/50">📞</span> +998 71 200 00 00
+              <span class="text-white/50">📞</span> {{ t("applyForm.contacts.phone") }}
             </a>
             <a href="#" class="flex items-center gap-3 text-white/90 hover:text-white transition-colors">
-              <span class="text-white/50">✈️</span> @saven_biznes
+              <span class="text-white/50">✈️</span> {{ t("applyForm.contacts.telegram") }}
             </a>
-            <a href="mailto:biznes@saven.uz"
+            <a :href="`mailto:${t('applyForm.contacts.email')}`"
               class="flex items-center gap-3 text-white/90 hover:text-white transition-colors">
-              <span class="text-white/50">✉️</span> biznes@saven.uz
+              <span class="text-white/50">✉️</span> {{ t("applyForm.contacts.email") }}
             </a>
           </div>
         </div>
@@ -30,7 +51,7 @@
         <div class="bg-white rounded-2xl shadow-xl p-5 sm:p-7">
           <!-- Stepper -->
           <div class="flex items-center mb-6 overflow-x-auto pb-2">
-            <template v-for="(step, i) in steps" :key="step.label">
+            <template v-for="(step, i) in stepLabels" :key="step">
               <div class="flex flex-col items-center shrink-0">
                 <div
                   class="w-7 h-7 sm:w-8 sm:h-8 rounded-full flex items-center justify-center text-xs sm:text-sm font-semibold shrink-0 transition-all"
@@ -46,16 +67,16 @@
                   'text-gray-900 font-medium': i + 1 === currentStep,
                   'text-gray-400': i + 1 !== currentStep,
                 }">
-                  {{ step.label }}
+                  {{ step }}
                 </span>
               </div>
-              <div v-if="i < steps.length - 1" class="flex-1 h-px mx-1.5 sm:mx-2 mb-4"
+              <div v-if="i < stepLabels.length - 1" class="flex-1 h-px mx-1.5 sm:mx-2 mb-4"
                 :class="i + 1 < currentStep ? 'bg-emerald-300' : 'bg-gray-200'" />
             </template>
           </div>
 
           <p class="text-xs text-gray-400 mb-5">
-            * bilan belgilangan maydonlar majburiy
+            {{ t("applyForm.requiredNote") }}
           </p>
 
           <!-- Maydonlar -->
@@ -63,86 +84,108 @@
             <!-- 1-BOSQICH: Biznes -->
             <div v-if="currentStep === 1">
               <div>
-                <label class="block text-xs sm:text-sm font-medium text-gray-700 mb-1.5">Biznes nomi *</label>
+                <label class="block text-xs sm:text-sm font-medium text-gray-700 mb-1.5">
+                  {{ t("applyForm.step1Fields.businessName") }}
+                </label>
                 <input v-model="form.name" type="text" placeholder="Masalan: Baraka Restoran"
                   class="w-full rounded-lg text-slate-800 border border-gray-200 px-3.5 py-2.5 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-emerald-500/40 focus:border-emerald-500" />
               </div>
 
               <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-4">
                 <div>
-                  <label class="block text-xs sm:text-sm font-medium text-gray-700 mb-1.5">Kategoriya *</label>
+                  <label class="block text-xs sm:text-sm font-medium text-gray-700 mb-1.5">
+                    {{ t("applyForm.step1Fields.category") }}
+                  </label>
                   <select v-model="form.category"
                     class="w-full rounded-lg border border-gray-200 px-3.5 py-2.5 text-sm text-gray-700 focus:outline-none focus:ring-2 focus:ring-emerald-500/40 focus:border-emerald-500">
-                    <option value="">Tanlang</option>
-                    <option v-for="cat in categoryOptions" :key="cat" :value="cat">
+                    <option value="">{{ t("applyForm.step1Fields.categoryPlaceholder") }}</option>
+                    <option v-for="cat in t('applyForm.step1Fields.categoryOptions')" :key="cat" :value="cat">
                       {{ cat }}
                     </option>
                   </select>
                 </div>
                 <div>
-                  <label class="block text-xs sm:text-sm font-medium text-gray-700 mb-1.5">Biznes turi *</label>
+                  <label class="block text-xs sm:text-sm font-medium text-gray-700 mb-1.5">
+                    {{ t("applyForm.step1Fields.businessType") }}
+                  </label>
                   <select v-model="form.type"
                     class="w-full rounded-lg border border-gray-200 px-3.5 py-2.5 text-sm text-gray-700 focus:outline-none focus:ring-2 focus:ring-emerald-500/40 focus:border-emerald-500">
-                    <option value="">Tanlang</option>
-                    <option v-for="t in typeOptions" :key="t" :value="t">
-                      {{ t }}
+                    <option value="">{{ t("applyForm.step1Fields.businessTypePlaceholder") }}</option>
+                    <option v-for="tp in t('applyForm.step1Fields.businessTypeOptions')" :key="tp" :value="tp">
+                      {{ tp }}
                     </option>
                   </select>
                 </div>
               </div>
 
               <div class="mt-4">
-                <label class="block text-xs sm:text-sm font-medium text-gray-700 mb-1.5">Mas'ul shaxs FIO *</label>
+                <label class="block text-xs sm:text-sm font-medium text-gray-700 mb-1.5">
+                  {{ t("applyForm.step1Fields.responsiblePerson") }}
+                </label>
                 <input v-model="form.contact" type="text" placeholder="To'liq ism sharif"
                   class="w-full rounded-lg border text-slate-800 border-gray-200 px-3.5 py-2.5 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-emerald-500/40 focus:border-emerald-500" />
               </div>
 
               <div class="mt-4">
-                <label class="block text-xs sm:text-sm font-medium text-gray-700 mb-1.5">Biznes haqida qisqacha</label>
+                <label class="block text-xs sm:text-sm font-medium text-gray-700 mb-1.5">
+                  {{ t("applyForm.step1Fields.aboutBusiness") }}
+                </label>
                 <input v-model="form.about" type="text" placeholder="Faoliyatingiz haqida 1-2 jumla..."
                   class="w-full rounded-lg text-slate-800 border border-gray-200 px-3.5 py-2.5 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-emerald-500/40 focus:border-emerald-500" />
               </div>
             </div>
 
-            <!-- 2-BOSQICH: Kontakt (1-rasm) -->
+            <!-- 2-BOSQICH: Kontakt -->
             <div v-if="currentStep === 2">
               <div>
-                <label class="block text-xs sm:text-sm font-medium text-gray-700 mb-1.5">Telefon raqami *</label>
+                <label class="block text-xs sm:text-sm font-medium text-gray-700 mb-1.5">
+                  {{ t("applyForm.step2Fields.phone") }}
+                </label>
                 <input v-model="form.phone" type="tel" placeholder="+998 90 000 00 00"
                   class="w-full rounded-lg text-slate-800 border border-gray-200 px-3.5 py-2.5 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-emerald-500/40 focus:border-emerald-500" />
               </div>
 
               <div class="mt-4">
-                <label class="block text-xs sm:text-sm font-medium text-gray-700 mb-1.5">Email manzili</label>
+                <label class="block text-xs sm:text-sm font-medium text-gray-700 mb-1.5">
+                  {{ t("applyForm.step2Fields.email") }}
+                </label>
                 <input v-model="form.email" type="email" placeholder="info@biznes.uz"
                   class="w-full rounded-lg border text-slate-800 border-gray-200 px-3.5 py-2.5 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-emerald-500/40 focus:border-emerald-500" />
               </div>
 
               <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-4">
                 <div>
-                  <label class="block text-xs sm:text-sm font-medium text-gray-700 mb-1.5">Instagram</label>
+                  <label class="block text-xs sm:text-sm font-medium text-gray-700 mb-1.5">
+                    {{ t("applyForm.step2Fields.instagram") }}
+                  </label>
                   <input v-model="form.instagram" type="text" placeholder="@biznes.uz"
-                    class="w-full rounded-lg  text-slate-800 border-gray-200 px-3.5 py-2.5 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-emerald-500/40 focus:border-emerald-500" />
+                    class="w-full rounded-lg text-slate-800 border-gray-200 px-3.5 py-2.5 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-emerald-500/40 focus:border-emerald-500" />
                 </div>
                 <div>
-                  <label class="block text-xs sm:text-sm font-medium text-gray-700 mb-1.5">Telegram kanali</label>
+                  <label class="block text-xs sm:text-sm font-medium text-gray-700 mb-1.5">
+                    {{ t("applyForm.step2Fields.telegramChannel") }}
+                  </label>
                   <input v-model="form.telegram" type="text" placeholder="t.me/biznes.uz"
                     class="w-full rounded-lg border text-slate-800 border-gray-200 px-3.5 py-2.5 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-emerald-500/40 focus:border-emerald-500" />
                 </div>
               </div>
 
               <div class="mt-4">
-                <label class="block text-xs sm:text-sm font-medium text-gray-700 mb-1.5">Veb-sayt</label>
+                <label class="block text-xs sm:text-sm font-medium text-gray-700 mb-1.5">
+                  {{ t("applyForm.step2Fields.website") }}
+                </label>
                 <input v-model="form.website" type="text" placeholder="www.biznes.uz"
                   class="w-full rounded-lg border border-gray-200 text-slate-800 px-3.5 py-2.5 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-emerald-500/40 focus:border-emerald-500" />
               </div>
             </div>
 
-            <!-- 3-BOSQICH: Joylashuv (2-rasm) -->
+            <!-- 3-BOSQICH: Joylashuv -->
             <div v-if="currentStep === 3">
               <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
-                  <label class="block text-xs sm:text-sm font-medium text-gray-700 mb-1.5">Viloyat *</label>
+                  <label class="block text-xs sm:text-sm font-medium text-gray-700 mb-1.5">
+                    {{ t("applyForm.step3Fields.region") }}
+                  </label>
                   <select v-model="form.viloyat"
                     class="w-full rounded-lg border border-gray-200 px-3.5 py-2.5 text-sm text-gray-700 focus:outline-none focus:ring-2 focus:ring-emerald-500/40 focus:border-emerald-500">
                     <option value="">Tanlang</option>
@@ -152,26 +195,32 @@
                   </select>
                 </div>
                 <div>
-                  <label class="block text-xs sm:text-sm font-medium text-gray-700 mb-1.5">Shahar / Tuman *</label>
+                  <label class="block text-xs sm:text-sm font-medium text-gray-700 mb-1.5">
+                    {{ t("applyForm.step3Fields.cityDistrict") }}
+                  </label>
                   <select v-model="form.tuman"
                     class="w-full rounded-lg border border-gray-200 px-3.5 py-2.5 text-sm text-gray-700 focus:outline-none focus:ring-2 focus:ring-emerald-500/40 focus:border-emerald-500">
                     <option value="">Tanlang</option>
-                    <option v-for="t in tumanOptions" :key="t" :value="t">
-                      {{ t }}
+                    <option v-for="tm in tumanOptions" :key="tm" :value="tm">
+                      {{ tm }}
                     </option>
                   </select>
                 </div>
               </div>
 
               <div class="mt-4">
-                <label class="block text-xs sm:text-sm font-medium text-gray-700 mb-1.5">To'liq manzil *</label>
-                <input v-model="form.address" type="text" placeholder="Ko'cha, uy, mo'ljal..."
+                <label class="block text-xs sm:text-sm font-medium text-gray-700 mb-1.5">
+                  {{ t("applyForm.step3Fields.fullAddress") }}
+                </label>
+                <input v-model="form.address" type="text" :placeholder="t('applyForm.step3Fields.fullAddressPlaceholder')"
                   class="w-full rounded-lg border text-slate-800 border-gray-200 px-3.5 py-2.5 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-emerald-500/40 focus:border-emerald-500" />
               </div>
 
               <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-4">
                 <div>
-                  <label class="block text-xs sm:text-sm font-medium text-gray-700 mb-1.5">Ish kunlari</label>
+                  <label class="block text-xs sm:text-sm font-medium text-gray-700 mb-1.5">
+                    {{ t("applyForm.step3Fields.workingDays") }}
+                  </label>
                   <select v-model="form.ish_kunlari"
                     class="w-full rounded-lg border border-gray-200 px-3.5 py-2.5 text-sm text-gray-700 focus:outline-none focus:ring-2 focus:ring-emerald-500/40 focus:border-emerald-500">
                     <option value="">Tanlang</option>
@@ -181,7 +230,9 @@
                   </select>
                 </div>
                 <div>
-                  <label class="block text-xs sm:text-sm font-medium text-gray-700 mb-1.5">Ish vaqti</label>
+                  <label class="block text-xs sm:text-sm font-medium text-gray-700 mb-1.5">
+                    {{ t("applyForm.step3Fields.workingHours") }}
+                  </label>
                   <select v-model="form.ish_vaqti"
                     class="w-full rounded-lg border border-gray-200 px-3.5 py-2.5 text-sm text-gray-700 focus:outline-none focus:ring-2 focus:ring-emerald-500/40 focus:border-emerald-500">
                     <option value="">Tanlang</option>
@@ -193,14 +244,16 @@
               </div>
 
               <div class="mt-4 bg-emerald-50 border border-emerald-100 text-emerald-700 text-xs p-3 rounded-lg">
-                Aniq lokatsiyani operator siz bilan birga belgilaydi
+                {{ t("applyForm.step3Fields.locationNote") }}
               </div>
             </div>
 
-            <!-- 4-BOSQICH: Chegirma (3-rasm) -->
+            <!-- 4-BOSQICH: Chegirma -->
             <div v-if="currentStep === 4">
               <div>
-                <label class="block text-xs sm:text-sm font-medium text-gray-700 mb-2">Chegirma foizi *</label>
+                <label class="block text-xs sm:text-sm font-medium text-gray-700 mb-2">
+                  {{ t("applyForm.step4Fields.discountPercent") }}
+                </label>
                 <div class="flex flex-wrap gap-2">
                   <button v-for="opt in discountOptions" :key="opt.val" type="button" @click="form.discount = opt.val"
                     :class="[
@@ -213,19 +266,22 @@
                   </button>
                 </div>
                 <p class="text-xs text-gray-500 mt-1">
-                  Tavsiya: kategoriyangizda o'rtacha 10-20% eng samarali
+                  {{ t("applyForm.step4Fields.discountRecommendation") }}
                 </p>
               </div>
 
               <div class="mt-4">
-                <label class="block text-xs sm:text-sm font-medium text-gray-700 mb-1.5">Min. xarid summasi
-                  (so'm)</label>
+                <label class="block text-xs sm:text-sm font-medium text-gray-700 mb-1.5">
+                  {{ t("applyForm.step4Fields.minPurchaseAmount") }}
+                </label>
                 <input v-model.number="form.min_sum" type="number" placeholder="50 000"
                   class="w-full rounded-lg border border-gray-200 text-slate-800 px-3.5 py-2.5 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-emerald-500/40 focus:border-emerald-500" />
               </div>
 
               <div class="mt-4">
-                <label class="block text-xs sm:text-sm font-medium text-gray-700 mb-1.5">Qo‘shimcha turi</label>
+                <label class="block text-xs sm:text-sm font-medium text-gray-700 mb-1.5">
+                  {{ t("applyForm.step4Fields.additionalType") }}
+                </label>
                 <select v-model="form.additional_type"
                   class="w-full rounded-lg border border-gray-200 px-3.5 py-2.5 text-sm text-gray-700 focus:outline-none focus:ring-2 focus:ring-emerald-500/40 focus:border-emerald-500">
                   <option value="">Tanlang</option>
@@ -236,8 +292,7 @@
               </div>
 
               <div class="mt-4 bg-emerald-50 border border-emerald-100 text-emerald-700 text-xs p-3 rounded-lg">
-                Yuborilgach arizangiz operatorga tushadi — 24 soat ichida
-                shartnoma va QR o‘rnatish bo‘yicha bog‘lanamiz
+                {{ t("applyForm.submitNote") }}
               </div>
             </div>
           </div>
@@ -246,19 +301,19 @@
           <div class="flex items-center justify-between mt-6">
             <button v-if="currentStep > 1" type="button" @click="prevStep"
               class="flex items-center gap-1 text-sm text-gray-500 hover:text-emerald-600 transition-colors">
-              ← Orqaga
+              ← {{ t("applyForm.back") }}
             </button>
-            <span class="text-xs text-gray-400">{{ currentStep }}/{{ steps.length }} qadam</span>
+            <span class="text-xs text-gray-400">{{ currentStep }}/{{ stepLabels.length }} {{ t("applyForm.step") }} </span>
             <button type="button" @click="nextStep"
               class="inline-flex items-center gap-2 rounded-full bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold px-5 py-2.5 transition-colors">
-              {{ currentStep < steps.length ? "Keyingi" : "Ariza yuborish" }}
+              {{ currentStep < stepLabels.length ? t("applyForm.nextButton") : t("applyForm.done") }}
               <span aria-hidden="true">→</span>
             </button>
           </div>
         </div>
       </div>
 
-      <!-- Muvaffaqiyat ekrani (4-rasm) -->
+      <!-- Muvaffaqiyat ekrani -->
       <div v-else class="max-w-md mx-auto">
         <div class="bg-white rounded-2xl shadow-xl p-8 text-center">
           <div class="mx-auto w-14 h-14 bg-emerald-500 rounded-full flex items-center justify-center mb-4">
@@ -266,8 +321,7 @@
           </div>
           <h3 class="text-xl text-slate-800 font-semibold mb-2">Arizangiz qabul qilindi!</h3>
           <p class="text-sm text-gray-600 mb-4">
-            Operatorlarimiz 24 soat ichida siz bilan bog‘lanadi va hamkorlik
-            shartlarini kelishib olamiz.
+            {{ t("applyForm.subtitle") }}
           </p>
 
           <div class="flex items-center justify-center text-slate-800 gap-2 text-sm mb-5">
@@ -277,8 +331,8 @@
           </div>
 
           <p class="text-xs text-gray-500 mb-6">
-            Savollar bo‘lsa:
-            <a href="#" class="text-emerald-600">@saven_biznes</a>
+            Savollar bo'lsa:
+            <a href="#" class="text-emerald-600">{{ t("applyForm.contacts.telegram") }}</a>
           </p>
 
           <button @click="resetForm"
@@ -290,7 +344,7 @@
     </div>
 
     <p class="text-center text-white/50 text-xs sm:text-sm mt-8">
-      → Ariza to‘g‘ridan-to‘g‘ri Admin panel «Arizalar» bo‘limiga tushadi
+      {{ t("applyForm.adminNote") }}
     </p>
   </section>
 
@@ -299,32 +353,36 @@
       class="max-w-7xl mx-auto flex flex-col md:flex-row items-center md:items-start justify-between gap-8 px-6 py-10">
       <div class="flex flex-col items-center md:items-start gap-4 text-center md:text-left">
         <span
-          class="flex justify-center w-14 text-2xl font-bold text-[#89EA5C] bg-[#E4FBCC] px-4 rounded-2xl">saven</span>
-        <p>© 2026 Saven. Barcha huquqlar himoyalangan.</p>
+          class="flex justify-center w-14 text-2xl font-bold text-[#89EA5C] bg-[#E4FBCC] px-4 rounded-2xl">{{ t("applyForm.brandName") }}</span>
+        <p>{{ t("footer.copyright") }}</p>
       </div>
       <div class="flex flex-col items-center md:items-end gap-4 text-center md:text-right">
         <div class="flex flex-col sm:flex-row gap-2 sm:gap-8">
-          <p>Oferta</p>
-          <p>Maxfiylik siyosati</p>
+          <p>{{ t("footer.offer") }}</p>
+          <p>{{ t("footer.privacyPolicy") }}</p>
         </div>
-        <a href="#" class="text-[#3F9A1F]">@saven_biznes</a>
+        <a href="#" class="text-[#3F9A1F]">{{ t("footer.telegram") }}</a>
       </div>
     </div>
   </footer>
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { ref, computed } from "vue";
+import { useLanguage } from "../../i18n/useLanguage";
 
-const steps = [
-  { label: "Biznes" },
-  { label: "Kontakt" },
-  { label: "Joylashuv" },
-  { label: "Chegirma" },
-];
+const { t, lang, setLang } = useLanguage();
 
 const currentStep = ref(1);
 const submitted = ref(false);
+
+// Stepper labellari tilga qarab o'zgaradi
+const stepLabels = computed(() => [
+  t("applyForm.steps.step1"),
+  t("applyForm.steps.step2"),
+  t("applyForm.steps.step3"),
+  t("applyForm.steps.step4"),
+]);
 
 const form = ref({
   // 1-bosqich
@@ -351,8 +409,8 @@ const form = ref({
   additional_type: "Barcha mahsulotlar",
 });
 
-const categoryOptions = ["Restoran", "Kafe", "Salon", "Do'kon"];
-const typeOptions = ["YaTT", "MChJ"];
+// translations.json'da bu ro'yxatlar uchun to'liq variant yo'q (faqat default qiymat bor),
+// shuning uchun hozircha o'zbekcha holida qoldirildi
 const viloyatOptions = [
   "Toshkent shahri",
   "Toshkent viloyati",
@@ -373,16 +431,15 @@ const additionalTypeOptions = [
   "Tanlangan toifalar",
 ];
 
-const discountOptions = [
-  { val: 5, label: "5%" },
-  { val: 10, label: "10%" },
-  { val: 15, label: "15%" },
-  { val: 20, label: "20%" },
-  { val: 25, label: "25%+" },
-];
+// Chegirma foizlari (qiymat o'zgarmaydi, faqat label tilga mos)
+const discountOptions = computed(() => {
+  const vals = [5, 10, 15, 20, 25];
+  const labels = t("applyForm.step4Fields.discountOptions");
+  return vals.map((val, i) => ({ val, label: labels?.[i] ?? `${val}%` }));
+});
 
 function nextStep() {
-  if (currentStep.value < steps.length) {
+  if (currentStep.value < stepLabels.value.length) {
     currentStep.value++;
   } else {
     submitApplication();

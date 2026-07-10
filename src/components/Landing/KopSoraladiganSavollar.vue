@@ -1,15 +1,15 @@
 <template>
-  <section class="w-full bg-white py-10 px-4 sm:py-14">
+  <section id="KopSoraladiganSavollar" class="w-full bg-white py-10 px-4 sm:py-14">
     <div class="max-w-2xl mx-auto">
       <h2
         class="text-center text-lg sm:text-2xl font-bold text-gray-900 mb-6 sm:mb-8"
       >
-        Ko'p so'raladigan savollar
+        {{ t("faq.title") }}
       </h2>
 
       <div class="flex flex-col gap-3">
         <div
-          v-for="(item, index) in faqs"
+          v-for="(item, index) in t('faq.items')"
           :key="index"
           class="rounded-xl border border-gray-200 bg-white shadow-sm overflow-hidden"
         >
@@ -49,30 +49,9 @@
 
 <script setup>
 import { ref } from "vue";
+import { useLanguage } from "../../i18n/useLanguage";
 
-const faqs = [
-  {
-    question: "Ulanish qancha turadi?",
-    answer:
-      "Ulanish va Biznes panelidan foydalanish mutlaqo bepul. Siz faqat mijozga beriladigan chegirma foizini belgilaysiz.",
-  },
-  {
-    question: "Chegirma foizini kim belgilaydi?",
-    answer:
-      "Siz o'zingiz. Tajribamizdan kelib chiqib, kategoriyangiz uchun eng samarali foizni tavsiya qilamiz (odatda 10–30%).",
-  },
-  {
-    question: "QR-kod qanday ishlaydi?",
-    answer:
-      "Mijoz ilovadagi shaxsiy QR-kodini kassirga ko'rsatadi. Kassir skaner qilib chegirmani qo'llaydi — jarayon 5 soniya.",
-  },
-  {
-    question: "Natijani qanday kuzataman?",
-    answer:
-      "Biznes panelida tashriflar soni, o'rtacha chek va qaytgan mijozlar statistikasi real vaqtda ko'rinadi.",
-  },
-];
-
+const { t } = useLanguage();
 const openIndex = ref(0);
 
 function toggle(index) {
