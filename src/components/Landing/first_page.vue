@@ -2,7 +2,7 @@
   <div class="bg-white min-h-screen">
     <!-- Header -->
     <header class="border-b border-gray-100">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex items-center justify-between h-16">
           <!-- Logo -->
           <div>
@@ -44,8 +44,8 @@
     </header>
 
     <!-- Hero Section -->
-    <main class="max-w-7xl mx-auto px-6 sm:px-12 lg:px-8 py-12 lg:py-20">
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+    <main class="  bg-[#F7FFF3] px-32 w-full sm:px-12 lg:px-8 py-12 lg:py-20">
+      <div class="grid w-7xl mx-auto grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
         <!-- Left Content -->
         <div class="space-y-6 lg:space-y-8">
           <div>
