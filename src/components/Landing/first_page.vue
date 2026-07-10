@@ -2,13 +2,13 @@
   <Transition name="lang-fade" mode="out-in">
     <div class="bg-white min-h-screen" :key="lang">
       <!-- Header -->
-      <header class="border-b border-gray-100 sticky top-0 bg-white z-50">
+      <header class="rounded-b-2xl sticky top-0 bg-white/40 backdrop-blur-md z-50">
         <div class="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
           <div class="flex items-center justify-between h-16">
             <!-- Logo -->
             <div>
               <span
-                class="flex justify-center items-center w-14 h-9 text-xl font-bold text-[#89EA5C] bg-[#E4FBCC] px-4 rounded-2xl"
+                class="flex justify-center items-center w-10 text-xl font-bold text-[#89EA5C] px-4 rounded-3xl"
                 >{{ t("applyForm.brandName") }}</span
               >
             </div>

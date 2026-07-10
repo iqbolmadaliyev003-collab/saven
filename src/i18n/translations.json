@@ -131,15 +131,15 @@
         },
         {
           "question": "Chegirma foizini kim belgilaydi?",
-          "answer": ""
+          "answer": "Siz o'zingiz. Tajribamizdan kelib chiqib, kategoriyangiz uchun eng samarali foizni tavsiya qilamiz (odatda 10–30%)."
         },
         {
           "question": "QR-kod qanday ishlaydi?",
-          "answer": ""
+          "answer": "Mijoz ilovadagi shaxsiy QR-kodini kassirga ko'rsatadi. Kassir skaner qilib chegirmani qo'llaydi — jarayon 5 soniya."
         },
         {
           "question": "Natijani qanday kuzataman?",
-          "answer": ""
+          "answer": "Biznes panelda tashriflar soni, o'rtacha chek va qaytgan mijozlar statistikasi real vaqtda ko'rinadi."
         }
       ]
     },
