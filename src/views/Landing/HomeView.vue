@@ -12,10 +12,10 @@ import ArizaQoldiring from "../../components/Landing/ArizaQoldiring.vue";
   <div>
     <first_page />
     <Statsbar />
-    <Howitworks />
-    <NegaSaven />
+    <Howitworks id="Howitworks" />
+    <NegaSaven id="Afzalliklar" />
     <KimlarUchun />
-    <KopSoraladiganSavollar />
+    <KopSoraladiganSavollar id="KopSoraladiganSavollar" />
     <ArizaQoldiring />
   </div>
 </template>
