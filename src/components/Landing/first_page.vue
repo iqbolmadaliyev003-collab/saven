@@ -2,7 +2,7 @@
   <Transition name="lang-fade" mode="out-in">
     <div class="bg-white min-h-screen" :key="lang">
       <!-- Header -->
-      <header class="border-b border-gray-100">
+      <header class="border-b border-gray-100 sticky top-0 bg-white z-50">
         <div class="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
           <div class="flex items-center justify-between h-16">
             <!-- Logo -->
@@ -17,16 +17,19 @@
             <nav class="hidden md:flex items-center gap-8">
               <a
                 href="#Howitworks"
+                @click.prevent="scrollToSection('Howitworks')"
                 class="text-gray-700 hover:text-gray-900 text-sm font-medium"
                 >{{ t("nav.howItWorks") }}</a
               >
               <a
                 href="#Afzalliklar"
+                @click.prevent="scrollToSection('Afzalliklar')"
                 class="text-gray-700 hover:text-gray-900 text-sm font-medium"
                 >{{ t("nav.benefits") }}</a
               >
               <a
                 href="#KopSoraladiganSavollar"
+                @click.prevent="scrollToSection('KopSoraladiganSavollar')"
                 class="text-gray-700 hover:text-gray-900 text-sm font-medium"
                 >{{ t("nav.faq") }}</a
               >
@@ -40,19 +43,29 @@
               >
                 <span
                   class="absolute top-1 bottom-1 left-1 w-[34px] bg-white rounded-full shadow-sm transition-transform duration-300 ease-out"
-                  :class="lang === 'ru' ? 'translate-x-[34px]' : 'translate-x-0'"
+                  :class="
+                    lang === 'ru' ? 'translate-x-[34px]' : 'translate-x-0'
+                  "
                 ></span>
                 <button
                   @click="setLang('uz')"
                   class="relative z-10 flex-1 text-xs font-semibold py-1 rounded-full transition-colors duration-300"
-                  :class="lang === 'uz' ? 'text-gray-900' : 'text-gray-400 hover:text-gray-600'"
+                  :class="
+                    lang === 'uz'
+                      ? 'text-gray-900'
+                      : 'text-gray-400 hover:text-gray-600'
+                  "
                 >
                   UZ
                 </button>
                 <button
                   @click="setLang('ru')"
                   class="relative z-10 flex-1 text-xs font-semibold py-1 rounded-full transition-colors duration-300"
-                  :class="lang === 'ru' ? 'text-gray-900' : 'text-gray-400 hover:text-gray-600'"
+                  :class="
+                    lang === 'ru'
+                      ? 'text-gray-900'
+                      : 'text-gray-400 hover:text-gray-600'
+                  "
                 >
                   RU
                 </button>
@@ -96,16 +109,19 @@
             >
               <a
                 href="#Howitworks"
+                @click.prevent="scrollToSection('Howitworks')"
                 class="text-gray-700 hover:text-gray-900 text-sm font-medium"
                 >{{ t("nav.howItWorks") }}</a
               >
               <a
                 href="#Afzalliklar"
+                @click.prevent="scrollToSection('Afzalliklar')"
                 class="text-gray-700 hover:text-gray-900 text-sm font-medium"
                 >{{ t("nav.benefits") }}</a
               >
               <a
                 href="#KopSoraladiganSavollar"
+                @click.prevent="scrollToSection('KopSoraladiganSavollar')"
                 class="text-gray-700 hover:text-gray-900 text-sm font-medium"
                 >{{ t("nav.faq") }}</a
               >
@@ -114,7 +130,9 @@
               >
                 <span
                   class="absolute top-1 bottom-1 left-1 w-[34px] bg-white rounded-full shadow-sm transition-transform duration-300 ease-out"
-                  :class="lang === 'ru' ? 'translate-x-[34px]' : 'translate-x-0'"
+                  :class="
+                    lang === 'ru' ? 'translate-x-[34px]' : 'translate-x-0'
+                  "
                 ></span>
                 <button
                   @click="setLang('uz')"
@@ -161,7 +179,14 @@
             <p
               class="text-gray-600 text-base sm:text-lg leading-relaxed max-w-xl mx-auto lg:mx-0 min-h-[3em]"
             >
-              {{ typedDescription }}<span v-if="typedDescription && typedDescription.length < t('hero.description').length" class="typing-cursor">|</span>
+              {{ typedDescription }}<span
+                v-if="
+                  typedDescription &&
+                  typedDescription.length < t('hero.description').length
+                "
+                class="typing-cursor"
+                >|</span
+              >
             </p>
 
             <!-- CTA Buttons -->
@@ -175,6 +200,7 @@
                 {{ t("hero.applyButton") }}
               </RouterLink>
               <button
+                @click="scrollToSection('Howitworks')"
                 class="text-lime-600 hover:text-lime-700 font-semibold flex items-center justify-center gap-2"
               >
                 {{ t("hero.howItWorksButton") }}
@@ -295,7 +321,7 @@
                         v-for="(business, idx) in t('phoneMock.businesses')"
                         :key="idx"
                         class="bg-white rounded-xl p-3 shadow-sm card-pop"
-                        :style="{ animationDelay: (idx * 120 + 300) + 'ms' }"
+                        :style="{ animationDelay: idx * 120 + 300 + 'ms' }"
                       >
                         <div class="flex gap-3">
                           <div
@@ -320,9 +346,10 @@
                               {{ business.location }} • {{ business.distance }}
                             </p>
                             <div class="flex items-center gap-1 mt-1">
-                              <span class="text-xs font-semibold text-gray-900">{{
-                                business.rating
-                              }}</span>
+                              <span
+                                class="text-xs font-semibold text-gray-900"
+                                >{{ business.rating }}</span
+                              >
                               <span class="text-gray-500 text-xs"
                                 >• {{ business.time }}</span
                               >
@@ -404,22 +431,18 @@
       </main>
 
       <!-- Stats Bar -->
-
       <StatsBar />
 
-      <NegaSaven />
+      <NegaSaven id="Afzalliklar" />
 
       <!-- How It Works -->
-      <HowItworks />
+      <HowItworks id="Howitworks" />
 
       <!-- Categories -->
       <KimlarUchun />
 
-      <!-- Benefits -->
-      <NegaSaven />
-
       <!-- FAQ -->
-      <KopSoraladiganSavollar />
+      <KopSoraladiganSavollar id="KopSoraladiganSavollar" />
 
       <ArizaQoldiring />
 
@@ -462,7 +485,25 @@ import ArizaQoldiring from "../../components/Landing/ArizaQoldiring.vue";
 const { t, lang, setLang } = useLanguage();
 const mobileMenuOpen = ref(false);
 
-/* ===== Typewriter effekti: sarlavha va tavsif "yozilayotganday" chiqadi ===== */
+/* ===== Silliq skroll qilish funksiyasi ===== */
+const scrollToSection = (id) => {
+  const element = document.getElementById(id);
+  if (element) {
+    // Header qotib turgani (sticky) sababli biroz joy tashlab skroll qilish
+    const headerOffset = 70; 
+    const elementPosition = element.getBoundingClientRect().top + window.scrollY;
+    const offsetPosition = elementPosition - headerOffset;
+
+    window.scrollTo({
+      top: offsetPosition,
+      behavior: "smooth"
+    });
+  }
+  // Mobil menyu ochiq bo'lsa yopib yuborish
+  mobileMenuOpen.value = false;
+};
+
+/* ===== Typewriter effekti ===== */
 const typedTitle = ref("");
 const typedDescription = ref("");
 
@@ -478,9 +519,12 @@ function typeText(fullText, targetRef, speed = 18) {
 
 function runTypewriter() {
   typeText(t("hero.title"), typedTitle, 20);
-  setTimeout(() => {
-    typeText(t("hero.description"), typedDescription, 8);
-  }, t("hero.title").length * 20 + 150);
+  setTimeout(
+    () => {
+      typeText(t("hero.description"), typedDescription, 8);
+    },
+    t("hero.title").length * 20 + 150,
+  );
 }
 
 onMounted(runTypewriter);
@@ -511,7 +555,9 @@ a {
 /* Til almashtirilganda butun kontent uchun yumshoq fade+slide animatsiyasi */
 .lang-fade-enter-active,
 .lang-fade-leave-active {
-  transition: opacity 0.28s ease, transform 0.28s ease;
+  transition:
+    opacity 0.28s ease,
+    transform 0.28s ease;
 }
 .lang-fade-enter-from {
   opacity: 0;
@@ -525,7 +571,9 @@ a {
 /* Mobil menyu ochilish/yopilish animatsiyasi */
 .mobile-nav-enter-active,
 .mobile-nav-leave-active {
-  transition: opacity 0.2s ease, transform 0.2s ease;
+  transition:
+    opacity 0.2s ease,
+    transform 0.2s ease;
 }
 .mobile-nav-enter-from,
 .mobile-nav-leave-to {
@@ -541,15 +589,23 @@ a {
   animation: blink-cursor 0.9s steps(1) infinite;
 }
 @keyframes blink-cursor {
-  0%, 50% { opacity: 1; }
-  51%, 100% { opacity: 0; }
+  0%,
+  50% {
+    opacity: 1;
+  }
+  51%,
+  100% {
+    opacity: 0;
+  }
 }
 
 /* Telefon mockup: pastdan chiqib kelish */
 .phone-enter {
   opacity: 0;
   transform: translateY(40px) scale(0.96);
-  transition: opacity 0.6s ease, transform 0.6s ease;
+  transition:
+    opacity 0.6s ease,
+    transform 0.6s ease;
 }
 .phone-enter-active {
   opacity: 1;
@@ -561,8 +617,13 @@ a {
   animation: float-phone 4.5s ease-in-out infinite;
 }
 @keyframes float-phone {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-8px); }
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
 }
 
 /* Telefon ichidagi biznes kartalari: ketma-ket paydo bo'lishi */
