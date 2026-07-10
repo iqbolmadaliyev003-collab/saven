@@ -2,7 +2,7 @@
   <div class="bg-white min-h-screen">
     <!-- Header -->
     <header class="border-b border-gray-100">
-      <div class="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-[1400px] mx-auto px-4 py-2 sm:px-6 lg:px-8">
         <div class="flex items-center justify-between h-16">
           <!-- Logo -->
           <div>
@@ -48,8 +48,8 @@
       <div class="grid w-7xl mx-auto grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
         <!-- Left Content -->
         <div class="space-y-6 lg:space-y-8">
-          <div>
-            <p class="text-lime-500 text-sm font-semibold tracking-wide uppercase mb-4">
+          <div class="flex flex-col gap-4">
+            <p class="text-lime-500 text-ms font-bold tracking-wide uppercase mb-4">
               Bizneslar uchun
             </p>
             <h1 class="text-4xl sm:text-5xl lg:text-5xl font-bold text-gray-900 leading-tight">
@@ -57,21 +57,21 @@
             </h1>
           </div>
 
-          <p class="text-gray-600 text-base sm:text-lg leading-relaxed">
+          <p class="text-gray-600 text-base sm:text-lg mt-2 leading-relaxed">
             Saven a'zolari — chegirma qidirayotgan minglab faol xaridorlar.
             Ariza qoldiring, 24 soat ichida hamkorlilkni boshlayizmiz.
           </p>
 
           <!-- CTA Buttons -->
-          <div class="flex flex-col sm:flex-row gap-4">
+          <div class="flex flex-col  sm:flex-row gap-12">
             <RouterLink to="ariza"
               class="bg-lime-400 hover:bg-lime-500 text-gray-900 font-semibold px-8 py-3 rounded-full transition-colors">
               Ariza qoldirish
             </RouterLink>
-            <button class="text-lime-600 hover:text-lime-700 font-semibold flex items-center gap-2">
+            <a href="#Howitworks" class="text-lime-600 hover:text-lime-700 font-semibold flex items-center gap-2">
               Qanday ishlaydi
               <span>→</span>
-            </button>
+            </a>
           </div>
 
           <!-- Stats -->
@@ -105,7 +105,7 @@
 
         <!-- Right Side - Phone Mockup -->
         <div class="flex justify-center lg:justify-end">
-          <div class="relative w-full max-w-sm">
+          <div class="relative w-full max-w-xs">
             <!-- Phone Frame -->
             <div class="bg-black rounded-3xl p-2 shadow-2xl">
               <div class="bg-white rounded-3xl overflow-hidden">
