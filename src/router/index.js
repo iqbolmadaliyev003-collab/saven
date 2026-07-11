@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory } from "vue-router";
 import Home from "../views/Landing/HomeView.vue";
-import applications from "../views/Landing/applications.vue";
+import applications from "../components/Landing/ArizaQoldiring.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),

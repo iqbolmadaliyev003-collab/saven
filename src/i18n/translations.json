@@ -1,0 +1,432 @@
+{
+  "uz": {
+    "nav": {
+      "howItWorks": "Qanday ishlaydi",
+      "benefits": "Afzalliklar",
+      "faq": "Ko'p so'raladigan savollar",
+      "applyButton": "Ariza qoldirish"
+    },
+    "hero": {
+      "badge": "Bizneslar uchun",
+      "title": "Do'koningizga yangi mijozlar oqimini ulang",
+      "description": "Saven a'zolari — chegirma qidirayotgan minglab faol xaridorlar. Ariza qoldiring, 24 soat ichida hamkorlikni boshlaymiz.",
+      "applyButton": "Ariza qoldirish",
+      "howItWorksButton": "Qanday ishlaydi",
+      "stats": {
+        "partners": "400+ hamkor",
+        "members": "50 000+ faol a'zo",
+        "free": "Ulanish bepul"
+      }
+    },
+    "phoneMock": {
+      "time": "9:41",
+      "category": "Barber",
+      "filterNearby": "Yaqin atrof",
+      "filterTopRated": "Yuqori reyting",
+      "resultsCount": "24 ta biznes topildi",
+      "businesses": [
+        {
+          "name": "Fresh Cut Barber",
+          "location": "Chilonzor",
+          "distance": "0.4 km",
+          "rating": "4.9",
+          "time": "1 soat avval"
+        },
+        {
+          "name": "Premium Style",
+          "location": "Buyuk bozor",
+          "distance": "1.2 km",
+          "rating": "4.8",
+          "time": "1 soat avval"
+        },
+        {
+          "name": "Barbershop №7",
+          "location": "Mirabad",
+          "distance": "1.8 km",
+          "rating": "4.6",
+          "time": "2 soat avval"
+        }
+      ],
+      "navBar": {
+        "main": "Asosiy",
+        "catalog": "Katalog",
+        "chat": "Chat",
+        "profile": "Profil"
+      }
+    },
+    "statsBar": {
+      "partners": { "value": "400+", "label": "hamkor biznes" },
+      "members": { "value": "50K+", "label": "faol a'zo" },
+      "growth": { "value": "+27%", "label": "mijozlar oqimi o'sishi" },
+      "connectionTime": { "value": "24 soat", "label": "ulanish vaqti" }
+    },
+    "howItWorks": {
+      "title": "Qanday ishlaydi?",
+      "subtitle": "3 oddiy qadam — ishingiz tez va shaffof ishlaydi",
+      "steps": [
+        {
+          "number": "1",
+          "title": "Ariza qoldirasiz",
+          "description": "Formani to'ldiring — atigi 2 daqiqa vaqt oladi. Operatorlarimiz 24 soat ichida siz bilan bog'lanadi."
+        },
+        {
+          "number": "2",
+          "title": "Chegirma va QR ulanadi",
+          "description": "Chegirma foizini birga belgilaymiz, kassaga QR-kod o'rnatamiz va xodimlaringizni o'rgatamiz."
+        },
+        {
+          "number": "3",
+          "title": "Mijozlar kela boshlaydi",
+          "description": "Saven a'zolari sizni ilovada ko'radi. Natijani Biznes panelda real vaqtda kuzatib borasiz."
+        }
+      ]
+    },
+    "benefits": {
+      "title": "Nega Saven?",
+      "subtitle": "Biznesingiz uchun to'g'ridan-to'g'ri natija beradigan hamkorlik",
+      "items": [
+        {
+          "icon": "👥",
+          "title": "Yangi mijozlar oqimi",
+          "description": "50 000+ faol a'zo yangi joylarni aynan Saven orqali tanlaydi — endi ular sizni ham ko'radi."
+        },
+        {
+          "icon": "📣",
+          "title": "0 so'mlik marketing",
+          "description": "Reklama byudjeti shart emas: chegirmangiz — eng kuchli reklamangiz. Faqat kelgan mijozga chegirma berasiz."
+        },
+        {
+          "icon": "📊",
+          "title": "Biznes panel statistikasi",
+          "description": "Tashriflar, o'rtacha chek, qaytgan mijozlar — barchasi real vaqtda, alohida kabinetingizda."
+        },
+        {
+          "icon": "🏢",
+          "title": "Filiallar boshqaruvi",
+          "description": "Bir kabinetdan barcha filial va kassirlarni boshqaring — har biriga alohida QR-kod."
+        }
+      ]
+    },
+    "categories": {
+      "title": "Kimlar uchun?",
+      "list": [
+        { "icon": "🍽️", "name": "Restoran" },
+        { "icon": "☕", "name": "Kafe" },
+        { "icon": "💈", "name": "Barber" },
+        { "icon": "💇", "name": "Salon" },
+        { "icon": "🏋️", "name": "Fitness" },
+        { "icon": "🛒", "name": "Supermarket" },
+        { "icon": "⚕️", "name": "Tibbiyot" },
+        { "icon": "🎓", "name": "Ta'lim" },
+        { "icon": "🚕", "name": "Taxi" },
+        { "icon": "✈️", "name": "Sayohat" }
+      ]
+    },
+    "faq": {
+      "title": "Ko'p so'raladigan savollar",
+      "items": [
+        {
+          "question": "Ulanish qancha turadi?",
+          "answer": "Ulanish va Biznes panelidan foydalanish mutlaqo bepul. Siz faqat mijozga beriladigan chegirma foizini belgilaysiz."
+        },
+        {
+          "question": "Chegirma foizini kim belgilaydi?",
+          "answer": "Siz o'zingiz. Tajribamizdan kelib chiqib, kategoriyangiz uchun eng samarali foizni tavsiya qilamiz (odatda 10–30%)."
+        },
+        {
+          "question": "QR-kod qanday ishlaydi?",
+          "answer": "Mijoz ilovadagi shaxsiy QR-kodini kassirga ko'rsatadi. Kassir skaner qilib chegirmani qo'llaydi — jarayon 5 soniya."
+        },
+        {
+          "question": "Natijani qanday kuzataman?",
+          "answer": "Biznes panelda tashriflar soni, o'rtacha chek va qaytgan mijozlar statistikasi real vaqtda ko'rinadi."
+        }
+      ]
+    },
+    "applyForm": {
+      "title": "Ariza qoldiring",
+      "subtitle": "Formani to'ldiring — operatorlarimiz 24 soat ichida bog'lanadi va hamkorlik shartlarini kelishib olamiz.",
+      "contacts": {
+        "phone": "+998 71 200 00 00",
+        "telegram": "@saven_biznes",
+        "email": "biznes@saven.uz"
+      },
+      "steps": {
+        "step1": "Biznes",
+        "step2": "Kontakt",
+        "step3": "Joylashuv",
+        "step4": "Chegirma"
+      },
+      "requiredNote": "* bilan belgilangan maydonlar majburiy",
+      "step1Fields": {
+        "businessName": "Biznes nomi *",
+        "category": "Kategoriya *",
+        "categoryPlaceholder": "Tanlang",
+        "categoryOptions": ["Restoran", "Kafe", "Salon", "Do'kon"],
+        "businessType": "Biznes turi *",
+        "businessTypePlaceholder": "Tanlang",
+        "businessTypeOptions": ["YaTT", "MChJ"],
+        "responsiblePerson": "Mas'ul shaxs FIO *",
+        "aboutBusiness": "Biznes haqida qisqacha"
+      },
+      "stepIndicator1": "1/4 qadam",
+      "nextButton": "Keyingi",
+      "done": "Ariza yuborish",
+      "step": "qadam",
+      "back":"ortga",
+      "adminNote": "→ Ariza to'g'ridan-to'g'ri Admin panel «Arizalar» bo'limiga tushadi",
+      "brandName": "saven",
+      "step2Fields": {
+        "phone": "Telefon raqami *",
+        "email": "Email manzili",
+        "instagram": "Instagram",
+        "telegramChannel": "Telegram kanali",
+        "website": "Veb-sayt"
+      },
+      "step3Fields": {
+        "region": "Viloyat *",
+        "regionDefault": "Toshkent shahri",
+        "cityDistrict": "Shahar / Tuman *",
+        "cityDistrictDefault": "Chilonzor tumani",
+        "fullAddress": "To'liq manzil *",
+        "fullAddressPlaceholder": "Ko'cha, uy, mo'ljal...",
+        "workingDays": "Ish kunlari",
+        "workingDaysDefault": "Dushanba - Juma",
+        "workingHours": "Ish vaqti",
+        "workingHoursDefault": "09:00 - 18:00",
+        "locationNote": "Aniq lokatsiyani operator siz bilan birga belgilaydi"
+      },
+      "step4Fields": {
+        "discountPercent": "Chegirma foizi *",
+        "discountOptions": ["5%", "10%", "15%", "20%", "25%+"],
+        "discountRecommendation": "Tavsiya: kategoriyangizda o'rtacha 10-20% eng samarali",
+        "minPurchaseAmount": "Min. xarid summasi (so'm)",
+        "minPurchaseDefault": "50000",
+        "additionalType": "Qo'shimcha turi",
+        "additionalTypeDefault": "Barcha mahsulotlar"
+      },
+      "submitNote": "Yuborilgach arizangiz operatorga tushadi — 24 soat ichida shartnoma va QR o'rnatish bo'yicha bog'lanamiz"
+    },
+    "footer": {
+      "copyright": "© 2026 Saven. Barcha huquqlar himoyalangan.",
+      "offer": "Oferta",
+      "privacyPolicy": "Maxfiylik siyosati",
+      "telegram": "@saven_biznes"
+    }
+  },
+  "ru": {
+    "nav": {
+      "howItWorks": "Как это работает",
+      "benefits": "Преимущества",
+      "faq": "Частые вопросы",
+      "applyButton": "Оставить заявку"
+    },
+    "hero": {
+      "badge": "Для бизнеса",
+      "title": "Подключите к своему магазину поток новых клиентов",
+      "description": "Участники Saven — тысячи активных покупателей, ищущих скидки. Оставьте заявку, и мы начнём сотрудничество в течение 24 часов.",
+      "applyButton": "Оставить заявку",
+      "howItWorksButton": "Как это работает",
+      "stats": {
+        "partners": "400+ партнёров",
+        "members": "50 000+ активных участников",
+        "free": "Подключение бесплатно"
+      }
+    },
+    "phoneMock": {
+      "time": "9:41",
+      "category": "Барбершоп",
+      "filterNearby": "Рядом",
+      "filterTopRated": "Высокий рейтинг",
+      "resultsCount": "Найдено 24 заведения",
+      "businesses": [
+        {
+          "name": "Fresh Cut Barber",
+          "location": "Чиланзар",
+          "distance": "0.4 км",
+          "rating": "4.9",
+          "time": "1 час назад"
+        },
+        {
+          "name": "Premium Style",
+          "location": "Большой базар",
+          "distance": "1.2 км",
+          "rating": "4.8",
+          "time": "1 час назад"
+        },
+        {
+          "name": "Barbershop №7",
+          "location": "Мирабад",
+          "distance": "1.8 км",
+          "rating": "4.6",
+          "time": "2 часа назад"
+        }
+      ],
+      "navBar": {
+        "main": "Главная",
+        "catalog": "Каталог",
+        "chat": "Чат",
+        "profile": "Профиль"
+      }
+    },
+    "statsBar": {
+      "partners": { "value": "400+", "label": "бизнес-партнёров" },
+      "members": { "value": "50K+", "label": "активных участников" },
+      "growth": { "value": "+27%", "label": "рост потока клиентов" },
+      "connectionTime": { "value": "24 часа", "label": "время подключения" }
+    },
+    "howItWorks": {
+      "title": "Как это работает?",
+      "subtitle": "3 простых шага — работаем быстро и прозрачно",
+      "steps": [
+        {
+          "number": "1",
+          "title": "Вы оставляете заявку",
+          "description": "Заполните форму — это займёт всего 2 минуты. Наши операторы свяжутся с вами в течение 24 часов."
+        },
+        {
+          "number": "2",
+          "title": "Подключаем скидку и QR",
+          "description": "Вместе определяем процент скидки, устанавливаем QR-код на кассе и обучаем ваших сотрудников."
+        },
+        {
+          "number": "3",
+          "title": "Начинают приходить клиенты",
+          "description": "Участники Saven видят вас в приложении. Результаты отслеживаете в режиме реального времени в Бизнес-панели."
+        }
+      ]
+    },
+    "benefits": {
+      "title": "Почему Saven?",
+      "subtitle": "Сотрудничество, которое приносит прямую пользу вашему бизнесу",
+      "items": [
+        {
+          "icon": "👥",
+          "title": "Поток новых клиентов",
+          "description": "50 000+ активных участников выбирают новые места именно через Saven — теперь они увидят и вас."
+        },
+        {
+          "icon": "📣",
+          "title": "Маркетинг за 0 сумов",
+          "description": "Рекламный бюджет не нужен: ваша скидка — это и есть ваша самая мощная реклама. Вы даёте скидку только пришедшему клиенту."
+        },
+        {
+          "icon": "📊",
+          "title": "Статистика в Бизнес-панели",
+          "description": "Посещения, средний чек, вернувшиеся клиенты — всё в реальном времени, в вашем личном кабинете."
+        },
+        {
+          "icon": "🏢",
+          "title": "Управление филиалами",
+          "description": "Управляйте всеми филиалами и кассирами из одного кабинета — для каждого свой QR-код."
+        }
+      ]
+    },
+    "categories": {
+      "title": "Для кого?",
+      "list": [
+        { "icon": "🍽️", "name": "Ресторан" },
+        { "icon": "☕", "name": "Кафе" },
+        { "icon": "💈", "name": "Барбершоп" },
+        { "icon": "💇", "name": "Салон" },
+        { "icon": "🏋️", "name": "Фитнес" },
+        { "icon": "🛒", "name": "Супермаркет" },
+        { "icon": "⚕️", "name": "Медицина" },
+        { "icon": "🎓", "name": "Образование" },
+        { "icon": "🚕", "name": "Такси" },
+        { "icon": "✈️", "name": "Путешествия" }
+      ]
+    },
+    "faq": {
+      "title": "Частые вопросы",
+      "items": [
+        {
+          "question": "Сколько стоит подключение?",
+          "answer": "Подключение и использование Бизнес-панели абсолютно бесплатны. Вы определяете только процент скидки, предоставляемой клиенту."
+        },
+        {
+          "question": "Кто определяет процент скидки?",
+          "answer": ""
+        },
+        {
+          "question": "Как работает QR-код?",
+          "answer": ""
+        },
+        {
+          "question": "Как я отслеживаю результаты?",
+          "answer": ""
+        }
+      ]
+    },
+    "applyForm": {
+      "title": "Оставьте заявку",
+      "subtitle": "Заполните форму — наши операторы свяжутся с вами в течение 24 часов и согласуют условия сотрудничества.",
+      "contacts": {
+        "phone": "+998 71 200 00 00",
+        "telegram": "@saven_biznes",
+        "email": "biznes@saven.uz"
+      },
+      "steps": {
+        "step1": "Бизнес",
+        "step2": "Контакты",
+        "step3": "Локация",
+        "step4": "Скидка"
+      },
+      "requiredNote": "* поля, отмеченные звёздочкой, обязательны",
+      "step1Fields": {
+        "businessName": "Название бизнеса *",
+        "category": "Категория *",
+        "categoryPlaceholder": "Выберите",
+        "categoryOptions": ["Ресторан", "Кафе", "Салон", "Магазин"],
+        "businessType": "Тип бизнеса *",
+        "businessTypePlaceholder": "Выберите",
+        "businessTypeOptions": ["ИП", "ООО"],
+        "responsiblePerson": "ФИО ответственного лица *",
+        "aboutBusiness": "Краткая информация о бизнесе"
+      },
+      "stepIndicator1": "Шаг 1/4",
+      "nextButton": "Далее",
+      "done": "Подача заявки",
+      "step": "шаг",
+      "back":"Назад",
+      "adminNote": "→ Заявка сразу попадает в раздел «Заявки» Админ-панели",
+      "brandName": "saven",
+      "step2Fields": {
+        "phone": "Номер телефона *",
+        "email": "Адрес электронной почты",
+        "instagram": "Instagram",
+        "telegramChannel": "Telegram-канал",
+        "website": "Веб-сайт"
+      },
+      "step3Fields": {
+        "region": "Область *",
+        "regionDefault": "город Ташкент",
+        "cityDistrict": "Город / Район *",
+        "cityDistrictDefault": "Чиланзарский район",
+        "fullAddress": "Полный адрес *",
+        "fullAddressPlaceholder": "Улица, дом, ориентир...",
+        "workingDays": "Рабочие дни",
+        "workingDaysDefault": "Понедельник - Пятница",
+        "workingHours": "Рабочее время",
+        "workingHoursDefault": "09:00 - 18:00",
+        "locationNote": "Точную локацию оператор определит вместе с вами"
+      },
+      "step4Fields": {
+        "discountPercent": "Процент скидки *",
+        "discountOptions": ["5%", "10%", "15%", "20%", "25%+"],
+        "discountRecommendation": "Рекомендация: в вашей категории в среднем наиболее эффективны 10-20%",
+        "minPurchaseAmount": "Мин. сумма покупки (сум)",
+        "minPurchaseDefault": "50000",
+        "additionalType": "Дополнительный тип",
+        "additionalTypeDefault": "Все товары"
+      },
+      "submitNote": "После отправки ваша заявка попадёт к оператору — в течение 24 часов свяжемся с вами по договору и установке QR"
+    },
+    "footer": {
+      "copyright": "© 2026 Saven. Все права защищены.",
+      "offer": "Оферта",
+      "privacyPolicy": "Политика конфиденциальности",
+      "telegram": "@saven_biznes"
+    }
+  }
+}
