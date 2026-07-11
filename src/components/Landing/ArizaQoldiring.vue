@@ -1,17 +1,17 @@
 <template>
   <!-- Asosiy sektsiya kirishda paydo bo'lish effekti bilan -->
   <section ref="sectionRef" :class="[
-    'w-full bg-[#123524] py-8 px-4 h-screen transition-all duration-1000 ease-out transform',
+    'w-full bg-[#123524] py-2 px-4 h-screen transition-all duration-1000 ease-out transform',
     isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
   ]">
     <div class="max-w-5xl mx-auto">
       <!-- Til tanlash -->
       <div class="mb-2 flex justify-between w-96 sm:w-full items-center">
-        <RouterLink to="/"
+        <a href="/"
           class="inline-flex items-center gap-2 rounded-full bg-emerald-600/20 hover:bg-emerald-700 text-white text-sm font-semibold px-5 py-2.5 transition-colors">
           ← {{ t("applyForm.back") }}
-        </RouterLink>
-        <div class="flex justify-end gap-2 ">
+      </a>
+        <div class="flex justify-end gap-2">
 
           <button @click="setLang('uz')" :class="[
             'px-3 py-1 rounded-full text-xs font-medium transition-all duration-300 transform active:scale-95',
@@ -35,7 +35,7 @@
           'text-white transition-all duration-700 delay-200 transform',
           isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-10'
         ]">
-          <h2 class="text-2xl sm:text-3xl font-bold mb-4">{{ t("applyForm.title") }}</h2>
+          <h2 class="text-2xl sm:text-3xl font-bold mb-4">{{ t("applyForm.title1") }}</h2>
           <p class="text-sm sm:text-base text-white/70 leading-relaxed mb-8 max-w-md">
             {{ t("applyForm.subtitle") }}
           </p>
@@ -314,7 +314,7 @@
           </div>
 
           <!-- Pastki navigatsiya -->
-          <div class="flex items-center justify-between mt-6">
+          <div class="flex items-center justify-between">
             <button v-if="currentStep > 1" type="button" @click="prevStep"
               class="flex items-center gap-1 text-sm text-gray-500 hover:text-emerald-600 transition-all duration-200 transform hover:-translate-x-1">
               ← {{ t("applyForm.back") }}
@@ -322,7 +322,7 @@
             <span class="text-xs text-gray-400">{{ currentStep }}/{{ stepLabels.length }} {{ t("applyForm.step") }}
             </span>
             <button type="button" @click="nextStep"
-              class="inline-flex items-center gap-2 rounded-full bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold px-5 py-2.5 transition-all duration-300 transform active:scale-95 shadow-md hover:shadow-lg">
+              class="inline-flex items-center gap-2 rounded-full bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold px-5 py-1 transition-all duration-300 transform active:scale-95 shadow-md hover:shadow-lg">
               {{ currentStep < stepLabels.length ? t("applyForm.nextButton") : t("applyForm.done") }}
               <span aria-hidden="true" class="transition-transform duration-300 group-hover:translate-x-1">→</span>
             </button>
@@ -337,33 +337,29 @@
             class="mx-auto w-14 h-14 bg-emerald-500 rounded-full flex items-center justify-center mb-4 animate-scale-up">
             <span class="text-white text-3xl">✓</span>
           </div>
-          <h3 class="text-xl text-slate-800 font-semibold mb-2">Arizangiz qabul qilindi!</h3>
+          <h3 class="text-xl text-slate-800 font-semibold mb-2">{{ t("applyForm.title2") }}</h3>
           <p class="text-sm text-gray-600 mb-4">
             {{ t("applyForm.subtitle") }}
           </p>
 
           <div class="flex items-center justify-center text-slate-800 gap-2 text-sm mb-5">
-            <span>Ariza raqami:
+            <span>{{ t("applyForm.num") }}
               <span class="font-mono font-semibold">#ZA-2481</span></span>
-            <span class="bg-amber-100 text-amber-600 text-xs px-2.5 py-0.5 rounded-full animate-pulse">Kutilmoqda</span>
+            <span class="bg-amber-100 text-amber-600 text-xs px-2.5 py-0.5 rounded-full animate-pulse">{{ t("applyForm.status") }}</span>
           </div>
 
           <p class="text-xs text-gray-500 mb-6">
-            Savollar bo'lsa:
+            {{ t("applyForm.contact") }}
             <a href="#" class="text-emerald-600 hover:underline">{{ t("applyForm.contacts.telegram") }}</a>
           </p>
 
           <button @click="resetForm"
             class="w-full border border-gray-200 hover:bg-gray-50 text-gray-700 text-sm font-medium py-2.5 rounded-lg transition-all duration-300 transform active:scale-95">
-            Bosh sahifaga qaytish
+            {{ t("applyForm.back") }}
           </button>
         </div>
       </div>
     </div>
-
-    <p class="text-center text-white/50 text-xs sm:text-sm mt-8">
-      {{ t("applyForm.adminNote") }}
-    </p>
   </section>
 
 

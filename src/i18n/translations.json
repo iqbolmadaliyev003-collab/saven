@@ -144,8 +144,15 @@
       ]
     },
     "applyForm": {
-      "title": "Ariza qoldiring",
+      "title1": "Ariza qoldiring",
       "subtitle": "Formani to'ldiring — operatorlarimiz 24 soat ichida bog'lanadi va hamkorlik shartlarini kelishib olamiz.",
+
+      "title2": "Arizangiz qabul qilindi!",
+      "status": "Kutilmoqda",
+      "num":"Ariza raqami: ",
+
+      "contact": "Savollar bo'lsa: @saven_biznes",
+
       "contacts": {
         "phone": "+998 71 200 00 00",
         "telegram": "@saven_biznes",
@@ -174,7 +181,6 @@
       "done": "Ariza yuborish",
       "step": "qadam",
       "back": "ortga",
-      "adminNote": "→ Ariza to'g'ridan-to'g'ri Admin panel «Arizalar» bo'limiga tushadi",
       "brandName": "saven",
       "step2Fields": {
         "phone": "Telefon raqami *",
@@ -359,8 +365,14 @@
       ]
     },
     "applyForm": {
-      "title": "Оставьте заявку",
+      "title1": "Оставьте заявку",
       "subtitle": "Заполните форму — наши операторы свяжутся с вами в течение 24 часов и согласуют условия сотрудничества.",
+
+      "title2": "Ваша заявка принята!",
+      "status": "В ожидании",
+      "num":"Номер заявки: ",
+      "contact": "По вопросам обращайтесь: ",
+
       "contacts": {
         "phone": "+998 71 200 00 00",
         "telegram": "@saven_biznes",
@@ -389,7 +401,6 @@
       "done": "Подача заявки",
       "step": "шаг",
       "back": "Назад",
-      "adminNote": "→ Заявка сразу попадает в раздел «Заявки» Админ-панели",
       "brandName": "saven",
       "step2Fields": {
         "phone": "Номер телефона *",
