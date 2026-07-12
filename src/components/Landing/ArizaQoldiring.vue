@@ -1,66 +1,107 @@
 <template>
   <!-- Asosiy sektsiya kirishda paydo bo'lish effekti bilan -->
-  <section ref="sectionRef" :class="[
-    'w-full bg-[#123524] min-h-screen transition-all duration-1000 ease-out transform',
-    isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-  ]">
+  <section
+    ref="sectionRef"
+    :class="[
+      'w-full bg-[#123524] min-h-screen transition-all duration-1000 ease-out transform',
+      isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8',
+    ]"
+  >
     <div class="max-w-5xl mx-auto px-4 py-2 flex flex-col">
       <!-- Til tanlash va Back buton -->
-      <div class="mb-2 flex justify-between w-full sm:w-96 items-center flex-shrink-0">
-        <a href="/"
-          class="inline-flex items-center gap-2 rounded-full bg-emerald-600/20 hover:bg-emerald-700 text-white text-sm font-semibold px-5 py-2.5 transition-colors">
+      <div
+        class="mb-2 flex justify-between w-full sm:w-96 items-center flex-shrink-0"
+      >
+        <a
+          href="/"
+          class="inline-flex items-center gap-2 rounded-full bg-emerald-600/20 hover:bg-emerald-700 text-white text-sm font-semibold px-5 py-2.5 transition-colors"
+        >
           ← {{ t("applyForm.back") }}
         </a>
         <div class="flex justify-end gap-2">
-          <button @click="setLang('uz')" :class="[
-            'px-3 py-1 rounded-full text-xs font-medium transition-all duration-300 transform active:scale-95',
-            lang === 'uz' ? 'bg-emerald-500 text-white scale-105 shadow-md' : 'bg-white/10 text-white/60 hover:text-white',
-          ]">
+          <button
+            @click="setLang('uz')"
+            :class="[
+              'px-3 py-1 rounded-full text-xs font-medium transition-all duration-300 transform active:scale-95',
+              lang === 'uz'
+                ? 'bg-emerald-500 text-white scale-105 shadow-md'
+                : 'bg-white/10 text-white/60 hover:text-white',
+            ]"
+          >
             UZ
           </button>
-          <button @click="setLang('ru')" :class="[
-            'px-3 py-1 rounded-full text-xs font-medium transition-all duration-300 transform active:scale-95',
-            lang === 'ru' ? 'bg-emerald-500 text-white scale-105 shadow-md' : 'bg-white/10 text-white/60 hover:text-white',
-          ]">
+          <button
+            @click="setLang('ru')"
+            :class="[
+              'px-3 py-1 rounded-full text-xs font-medium transition-all duration-300 transform active:scale-95',
+              lang === 'ru'
+                ? 'bg-emerald-500 text-white scale-105 shadow-md'
+                : 'bg-white/10 text-white/60 hover:text-white',
+            ]"
+          >
             RU
           </button>
         </div>
       </div>
 
       <!-- Asosiy kontent: promo + forma yoki muvaffaqiyat -->
-      <div v-if="!submitted" class="flex-1 grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-12 items-center overflow-hidden">
-        <!-- Chap taraf: matn (Scroll bo'lganda chapdan kirib keladi) -->
-        <div :class="[
-          'text-white transition-all duration-700 delay-200 transform flex-shrink-0',
-          isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-10'
-        ]">
-          <h2 class="text-2xl sm:text-3xl font-bold mb-4">{{ t("applyForm.title1") }}</h2>
-          <p class="text-sm sm:text-base text-white/70 leading-relaxed mb-8 max-w-md">
+      <div
+        v-if="!submitted"
+        class="flex-1 grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-12 items-center overflow-hidden"
+      >
+        <!-- Chap taraf: matn -->
+        <div
+          :class="[
+            'text-white transition-all duration-700 delay-200 transform flex-shrink-0',
+            isVisible
+              ? 'opacity-100 translate-x-0'
+              : 'opacity-0 -translate-x-10',
+          ]"
+        >
+          <h2 class="text-2xl sm:text-3xl font-bold mb-4">
+            {{ t("applyForm.title1") }}
+          </h2>
+          <p
+            class="text-sm sm:text-base text-white/70 leading-relaxed mb-8 max-w-md"
+          >
             {{ t("applyForm.subtitle") }}
           </p>
 
           <div class="flex flex-col gap-3 text-sm sm:text-base">
-            <a :href="`tel:${t('applyForm.contacts.phone')}`"
-              class="flex items-center gap-3 text-white/90 hover:text-white hover:translate-x-1 transition-all duration-300">
-              <span class="text-white/50">📞</span> {{ t("applyForm.contacts.phone") }}
+            <a
+              :href="`tel:${t('applyForm.contacts.phone')}`"
+              class="flex items-center gap-3 text-white/90 hover:text-white hover:translate-x-1 transition-all duration-300"
+            >
+              <span class="text-white/50">📞</span>
+              {{ t("applyForm.contacts.phone") }}
             </a>
-            <a href="#"
-              class="flex items-center gap-3 text-white/90 hover:text-white hover:translate-x-1 transition-all duration-300">
-              <span class="text-white/50">✈️</span> {{ t("applyForm.contacts.telegram") }}
+            <a
+              href="#"
+              class="flex items-center gap-3 text-white/90 hover:text-white hover:translate-x-1 transition-all duration-300"
+            >
+              <span class="text-white/50">✈️</span>
+              {{ t("applyForm.contacts.telegram") }}
             </a>
-            <a :href="`mailto:${t('applyForm.contacts.email')}`"
-              class="flex items-center gap-3 text-white/90 hover:text-white hover:translate-x-1 transition-all duration-300">
-              <span class="text-white/50">✉️</span> {{ t("applyForm.contacts.email") }}
+            <a
+              :href="`mailto:${t('applyForm.contacts.email')}`"
+              class="flex items-center gap-3 text-white/90 hover:text-white hover:translate-x-1 transition-all duration-300"
+            >
+              <span class="text-white/50">✉️</span>
+              {{ t("applyForm.contacts.email") }}
             </a>
           </div>
         </div>
 
-        <!-- O'ng taraf: ko'p bosqichli forma (Scroll bo'lganda o'ngdan kirib keladi) -->
-        <div :class="[
-          'bg-white rounded-2xl shadow-xl p-5 sm:p-7 transition-all duration-700 delay-400 transform flex flex-col h-full overflow-hidden',
-          isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-10'
-        ]">
-          <!-- Stepper - scrollsiz -->
+        <!-- O'ng taraf: ko'p bosqichli forma -->
+        <div
+          :class="[
+            'bg-white rounded-2xl shadow-xl p-5 sm:p-7 transition-all duration-700 delay-400 transform flex flex-col h-full overflow-hidden',
+            isVisible
+              ? 'opacity-100 translate-x-0'
+              : 'opacity-0 translate-x-10',
+          ]"
+        >
+          <!-- Stepper -->
           <div class="flex items-center mb-6 flex-shrink-0 overflow-hidden">
             <div class="flex items-center w-full">
               <template v-for="(step, i) in stepLabels" :key="step">
@@ -68,22 +109,34 @@
                   <div
                     class="w-7 h-7 sm:w-8 sm:h-8 rounded-full flex items-center justify-center text-xs sm:text-sm font-semibold shrink-0 transition-all duration-500"
                     :class="{
-                      'bg-emerald-500 text-white scale-105': i + 1 < currentStep,
-                      'bg-emerald-600 text-white ring-4 ring-emerald-100 scale-110': i + 1 === currentStep,
+                      'bg-emerald-500 text-white scale-105':
+                        i + 1 < currentStep,
+                      'bg-emerald-600 text-white ring-4 ring-emerald-100 scale-110':
+                        i + 1 === currentStep,
                       'bg-gray-100 text-gray-400': i + 1 > currentStep,
-                    }">
+                    }"
+                  >
                     <span v-if="i + 1 < currentStep">✓</span>
                     <span v-else>{{ i + 1 }}</span>
                   </div>
-                  <span class="mt-1.5 text-[10px] sm:text-xs whitespace-nowrap transition-all duration-300" :class="{
-                    'text-gray-900 font-medium scale-105': i + 1 === currentStep,
-                    'text-gray-400': i + 1 !== currentStep,
-                  }">
+                  <span
+                    class="mt-1.5 text-[10px] sm:text-xs whitespace-nowrap transition-all duration-300"
+                    :class="{
+                      'text-gray-900 font-medium scale-105':
+                        i + 1 === currentStep,
+                      'text-gray-400': i + 1 !== currentStep,
+                    }"
+                  >
                     {{ step }}
                   </span>
                 </div>
-                <div v-if="i < stepLabels.length - 1" class="flex-1 h-px mx-1.5 sm:mx-2 mb-4 transition-all duration-500 shrink-0"
-                  :class="i + 1 < currentStep ? 'bg-emerald-300' : 'bg-gray-200'" />
+                <div
+                  v-if="i < stepLabels.length - 1"
+                  class="flex-1 h-px mx-1.5 sm:mx-2 mb-4 transition-all duration-500 shrink-0"
+                  :class="
+                    i + 1 < currentStep ? 'bg-emerald-300' : 'bg-gray-200'
+                  "
+                />
               </template>
             </div>
           </div>
@@ -92,128 +145,220 @@
             {{ t("applyForm.requiredNote") }}
           </p>
 
-          <!-- Maydonlar uchun bosqichma-bosqich chiroyli Fade/Slide animatsiya -->
+          <!-- Maydonlar -->
           <div class="relative overflow-hidden flex-1 min-h-0">
             <Transition name="fade-slide" mode="out-in">
               <!-- 1-BOSQICH: Biznes -->
-              <div v-if="currentStep === 1" key="step1" class="flex flex-col gap-4 h-full overflow-y-auto pr-2">
+              <div
+                v-if="currentStep === 1"
+                key="step1"
+                class="flex flex-col gap-4 h-full overflow-y-auto pr-2"
+              >
                 <div>
-                  <label class="block text-xs sm:text-sm font-medium text-gray-700 mb-1.5">
+                  <label
+                    class="block text-xs sm:text-sm font-medium text-gray-700 mb-1.5"
+                  >
                     {{ t("applyForm.step1Fields.businessName") }}
                   </label>
-                  <input v-model="form.name" type="text" placeholder="Masalan: Baraka Restoran"
-                    class="w-full rounded-lg text-slate-800 border border-gray-200 px-3.5 py-2.5 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-emerald-500/40 focus:border-emerald-500 transition-all" />
+                  <input
+                    v-model="form.name"
+                    type="text"
+                    placeholder="Masalan: Baraka Restoran"
+                    class="w-full rounded-lg text-slate-800 border border-gray-200 px-3.5 py-2.5 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-emerald-500/40 focus:border-emerald-500 transition-all"
+                  />
                 </div>
 
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
-                    <label class="block text-xs sm:text-sm font-medium text-gray-700 mb-1.5">
+                    <label
+                      class="block text-xs sm:text-sm font-medium text-gray-700 mb-1.5"
+                    >
                       {{ t("applyForm.step1Fields.category") }}
                     </label>
-                    <select v-model="form.category"
-                      class="w-full rounded-lg border border-gray-200 px-3.5 py-2.5 text-sm text-gray-700 focus:outline-none focus:ring-2 focus:ring-emerald-500/40 focus:border-emerald-500 transition-all">
-                      <option value="">{{ t("applyForm.step1Fields.categoryPlaceholder") }}</option>
-                      <option v-for="cat in t('applyForm.step1Fields.categoryOptions')" :key="cat" :value="cat">
-                        {{ cat }}
+                    <select
+                      v-model="form.category"
+                      class="w-full rounded-lg border border-gray-200 px-3.5 py-2.5 text-sm text-gray-700 focus:outline-none focus:ring-2 focus:ring-emerald-500/40 focus:border-emerald-500 transition-all"
+                    >
+                      <option value="">
+                        {{ t("applyForm.step1Fields.categoryPlaceholder") }}
+                      </option>
+                      <option
+                        v-for="cat in categories"
+                        :key="cat.id"
+                        :value="cat.id"
+                      >
+                        {{ cat.name }}
                       </option>
                     </select>
                   </div>
                   <div>
-                    <label class="block text-xs sm:text-sm font-medium text-gray-700 mb-1.5">
+                    <label
+                      class="block text-xs sm:text-sm font-medium text-gray-700 mb-1.5"
+                    >
                       {{ t("applyForm.step1Fields.businessType") }}
                     </label>
-                    <select v-model="form.type"
-                      class="w-full rounded-lg border border-gray-200 px-3.5 py-2.5 text-sm text-gray-700 focus:outline-none focus:ring-2 focus:ring-emerald-500/40 focus:border-emerald-500 transition-all">
-                      <option value="">{{ t("applyForm.step1Fields.businessTypePlaceholder") }}</option>
-                      <option v-for="tp in t('applyForm.step1Fields.businessTypeOptions')" :key="tp" :value="tp">
-                        {{ tp }}
+                    <select
+                      v-model="form.type"
+                      class="w-full rounded-lg border border-gray-200 px-3.5 py-2.5 text-sm text-gray-700 focus:outline-none focus:ring-2 focus:ring-emerald-500/40 focus:border-emerald-500 transition-all"
+                    >
+                      <option value="">
+                        {{ t("applyForm.step1Fields.businessTypePlaceholder") }}
+                      </option>
+                      <option
+                        v-for="tp in businessTypeOptions"
+                        :key="tp.value"
+                        :value="tp.value"
+                      >
+                        {{ tp.label }}
                       </option>
                     </select>
                   </div>
                 </div>
 
                 <div>
-                  <label class="block text-xs sm:text-sm font-medium text-gray-700 mb-1.5">
+                  <label
+                    class="block text-xs sm:text-sm font-medium text-gray-700 mb-1.5"
+                  >
                     {{ t("applyForm.step1Fields.responsiblePerson") }}
                   </label>
-                  <input v-model="form.contact" type="text" placeholder="To'liq ism sharif"
-                    class="w-full rounded-lg border text-slate-800 border-gray-200 px-3.5 py-2.5 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-emerald-500/40 focus:border-emerald-500 transition-all" />
+                  <input
+                    v-model="form.contact"
+                    type="text"
+                    placeholder="To'liq ism sharif"
+                    class="w-full rounded-lg border text-slate-800 border-gray-200 px-3.5 py-2.5 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-emerald-500/40 focus:border-emerald-500 transition-all"
+                  />
                 </div>
 
                 <div>
-                  <label class="block text-xs sm:text-sm font-medium text-gray-700 mb-1.5">
+                  <label
+                    class="block text-xs sm:text-sm font-medium text-gray-700 mb-1.5"
+                  >
                     {{ t("applyForm.step1Fields.aboutBusiness") }}
                   </label>
-                  <input v-model="form.about" type="text" placeholder="Faoliyatingiz haqida 1-2 jumla..."
-                    class="w-full rounded-lg text-slate-800 border border-gray-200 px-3.5 py-2.5 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-emerald-500/40 focus:border-emerald-500 transition-all" />
+                  <input
+                    v-model="form.about"
+                    type="text"
+                    placeholder="Faoliyatingiz haqida 1-2 jumla..."
+                    class="w-full rounded-lg text-slate-800 border border-gray-200 px-3.5 py-2.5 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-emerald-500/40 focus:border-emerald-500 transition-all"
+                  />
                 </div>
               </div>
 
               <!-- 2-BOSQICH: Kontakt -->
-              <div v-else-if="currentStep === 2" key="step2" class="flex flex-col gap-4 h-full overflow-y-auto pr-2">
+              <div
+                v-else-if="currentStep === 2"
+                key="step2"
+                class="flex flex-col gap-4 h-full overflow-y-auto pr-2"
+              >
                 <div>
-                  <label class="block text-xs sm:text-sm font-medium text-gray-700 mb-1.5">
+                  <label
+                    class="block text-xs sm:text-sm font-medium text-gray-700 mb-1.5"
+                  >
                     {{ t("applyForm.step2Fields.phone") }}
                   </label>
-                  <input v-model="form.phone" type="tel" placeholder="+998 90 000 00 00"
-                    class="w-full rounded-lg text-slate-800 border border-gray-200 px-3.5 py-2.5 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-emerald-500/40 focus:border-emerald-500 transition-all" />
+                  <input
+                    v-model="form.phone"
+                    type="tel"
+                    placeholder="+998 90 000 00 00"
+                    class="w-full rounded-lg text-slate-800 border border-gray-200 px-3.5 py-2.5 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-emerald-500/40 focus:border-emerald-500 transition-all"
+                  />
                 </div>
 
                 <div>
-                  <label class="block text-xs sm:text-sm font-medium text-gray-700 mb-1.5">
+                  <label
+                    class="block text-xs sm:text-sm font-medium text-gray-700 mb-1.5"
+                  >
                     {{ t("applyForm.step2Fields.email") }}
                   </label>
-                  <input v-model="form.email" type="email" placeholder="info@biznes.uz"
-                    class="w-full rounded-lg border text-slate-800 border-gray-200 px-3.5 py-2.5 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-emerald-500/40 focus:border-emerald-500 transition-all" />
+                  <input
+                    v-model="form.email"
+                    type="email"
+                    placeholder="info@biznes.uz"
+                    class="w-full rounded-lg border text-slate-800 border-gray-200 px-3.5 py-2.5 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-emerald-500/40 focus:border-emerald-500 transition-all"
+                  />
                 </div>
 
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
-                    <label class="block text-xs sm:text-sm font-medium text-gray-700 mb-1.5">
+                    <label
+                      class="block text-xs sm:text-sm font-medium text-gray-700 mb-1.5"
+                    >
                       {{ t("applyForm.step2Fields.instagram") }}
                     </label>
-                    <input v-model="form.instagram" type="text" placeholder="@biznes.uz"
-                      class="w-full rounded-lg text-slate-800 border border-gray-200 px-3.5 py-2.5 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-emerald-500/40 focus:border-emerald-500 transition-all" />
+                    <input
+                      v-model="form.instagram"
+                      type="text"
+                      placeholder="@biznes.uz"
+                      class="w-full rounded-lg text-slate-800 border border-gray-200 px-3.5 py-2.5 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-emerald-500/40 focus:border-emerald-500 transition-all"
+                    />
                   </div>
                   <div>
-                    <label class="block text-xs sm:text-sm font-medium text-gray-700 mb-1.5">
+                    <label
+                      class="block text-xs sm:text-sm font-medium text-gray-700 mb-1.5"
+                    >
                       {{ t("applyForm.step2Fields.telegramChannel") }}
                     </label>
-                    <input v-model="form.telegram" type="text" placeholder="t.me/biznes.uz"
-                      class="w-full rounded-lg border text-slate-800 border-gray-200 px-3.5 py-2.5 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-emerald-500/40 focus:border-emerald-500 transition-all" />
+                    <input
+                      v-model="form.telegram"
+                      type="text"
+                      placeholder="t.me/biznes.uz"
+                      class="w-full rounded-lg border text-slate-800 border-gray-200 px-3.5 py-2.5 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-emerald-500/40 focus:border-emerald-500 transition-all"
+                    />
                   </div>
                 </div>
 
                 <div>
-                  <label class="block text-xs sm:text-sm font-medium text-gray-700 mb-1.5">
+                  <label
+                    class="block text-xs sm:text-sm font-medium text-gray-700 mb-1.5"
+                  >
                     {{ t("applyForm.step2Fields.website") }}
                   </label>
-                  <input v-model="form.website" type="text" placeholder="www.biznes.uz"
-                    class="w-full rounded-lg border border-gray-200 text-slate-800 px-3.5 py-2.5 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-emerald-500/40 focus:border-emerald-500 transition-all" />
+                  <input
+                    v-model="form.website"
+                    type="text"
+                    placeholder="www.biznes.uz"
+                    class="w-full rounded-lg border border-gray-200 text-slate-800 px-3.5 py-2.5 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-emerald-500/40 focus:border-emerald-500 transition-all"
+                  />
                 </div>
               </div>
 
               <!-- 3-BOSQICH: Joylashuv -->
-              <div v-else-if="currentStep === 3" key="step3" class="flex flex-col gap-4 h-full overflow-y-auto pr-2">
+              <div
+                v-else-if="currentStep === 3"
+                key="step3"
+                class="flex flex-col gap-4 h-full overflow-y-auto pr-2"
+              >
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
-                    <label class="block text-xs sm:text-sm font-medium text-gray-700 mb-1.5">
+                    <label
+                      class="block text-xs sm:text-sm font-medium text-gray-700 mb-1.5"
+                    >
                       {{ t("applyForm.step3Fields.region") }}
                     </label>
-                    <select v-model="form.viloyat"
-                      class="w-full rounded-lg border border-gray-200 px-3.5 py-2.5 text-sm text-gray-700 focus:outline-none focus:ring-2 focus:ring-emerald-500/40 focus:border-emerald-500 transition-all">
+                    <select
+                      v-model="form.viloyat"
+                      class="w-full rounded-lg border border-gray-200 px-3.5 py-2.5 text-sm text-gray-700 focus:outline-none focus:ring-2 focus:ring-emerald-500/40 focus:border-emerald-500 transition-all"
+                    >
                       <option value="">Tanlang</option>
-                      <option v-for="v in viloyatOptions" :key="v" :value="v">
-                        {{ v }}
+                      <option
+                        v-for="v in viloyatOptions"
+                        :key="v.value"
+                        :value="v.value"
+                      >
+                        {{ v.label }}
                       </option>
                     </select>
                   </div>
                   <div>
-                    <label class="block text-xs sm:text-sm font-medium text-gray-700 mb-1.5">
+                    <label
+                      class="block text-xs sm:text-sm font-medium text-gray-700 mb-1.5"
+                    >
                       {{ t("applyForm.step3Fields.cityDistrict") }}
                     </label>
-                    <select v-model="form.tuman"
-                      class="w-full rounded-lg border border-gray-200 px-3.5 py-2.5 text-sm text-gray-700 focus:outline-none focus:ring-2 focus:ring-emerald-500/40 focus:border-emerald-500 transition-all">
+                    <select
+                      v-model="form.tuman"
+                      class="w-full rounded-lg border border-gray-200 px-3.5 py-2.5 text-sm text-gray-700 focus:outline-none focus:ring-2 focus:ring-emerald-500/40 focus:border-emerald-500 transition-all"
+                    >
                       <option value="">Tanlang</option>
                       <option v-for="tm in tumanOptions" :key="tm" :value="tm">
                         {{ tm }}
@@ -223,33 +368,52 @@
                 </div>
 
                 <div>
-                  <label class="block text-xs sm:text-sm font-medium text-gray-700 mb-1.5">
+                  <label
+                    class="block text-xs sm:text-sm font-medium text-gray-700 mb-1.5"
+                  >
                     {{ t("applyForm.step3Fields.fullAddress") }}
                   </label>
-                  <input v-model="form.address" type="text"
-                    :placeholder="t('applyForm.step3Fields.fullAddressPlaceholder')"
-                    class="w-full rounded-lg border text-slate-800 border-gray-200 px-3.5 py-2.5 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-emerald-500/40 focus:border-emerald-500 transition-all" />
+                  <input
+                    v-model="form.address"
+                    type="text"
+                    :placeholder="
+                      t('applyForm.step3Fields.fullAddressPlaceholder')
+                    "
+                    class="w-full rounded-lg border text-slate-800 border-gray-200 px-3.5 py-2.5 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-emerald-500/40 focus:border-emerald-500 transition-all"
+                  />
                 </div>
 
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
-                    <label class="block text-xs sm:text-sm font-medium text-gray-700 mb-1.5">
+                    <label
+                      class="block text-xs sm:text-sm font-medium text-gray-700 mb-1.5"
+                    >
                       {{ t("applyForm.step3Fields.workingDays") }}
                     </label>
-                    <select v-model="form.ish_kunlari"
-                      class="w-full rounded-lg border border-gray-200 px-3.5 py-2.5 text-sm text-gray-700 focus:outline-none focus:ring-2 focus:ring-emerald-500/40 focus:border-emerald-500 transition-all">
+                    <select
+                      v-model="form.ish_kunlari"
+                      class="w-full rounded-lg border border-gray-200 px-3.5 py-2.5 text-sm text-gray-700 focus:outline-none focus:ring-2 focus:ring-emerald-500/40 focus:border-emerald-500 transition-all"
+                    >
                       <option value="">Tanlang</option>
-                      <option v-for="k in ishKunlariOptions" :key="k" :value="k">
-                        {{ k }}
+                      <option
+                        v-for="k in ishKunlariOptions"
+                        :key="k.value"
+                        :value="k.value"
+                      >
+                        {{ k.label }}
                       </option>
                     </select>
                   </div>
                   <div>
-                    <label class="block text-xs sm:text-sm font-medium text-gray-700 mb-1.5">
+                    <label
+                      class="block text-xs sm:text-sm font-medium text-gray-700 mb-1.5"
+                    >
                       {{ t("applyForm.step3Fields.workingHours") }}
                     </label>
-                    <select v-model="form.ish_vaqti"
-                      class="w-full rounded-lg border border-gray-200 px-3.5 py-2.5 text-sm text-gray-700 focus:outline-none focus:ring-2 focus:ring-emerald-500/40 focus:border-emerald-500 transition-all">
+                    <select
+                      v-model="form.ish_vaqti"
+                      class="w-full rounded-lg border border-gray-200 px-3.5 py-2.5 text-sm text-gray-700 focus:outline-none focus:ring-2 focus:ring-emerald-500/40 focus:border-emerald-500 transition-all"
+                    >
                       <option value="">Tanlang</option>
                       <option v-for="v in ishVaqtiOptions" :key="v" :value="v">
                         {{ v }}
@@ -259,25 +423,37 @@
                 </div>
 
                 <div
-                  class="bg-emerald-50 border border-emerald-100 text-emerald-700 text-xs p-3 rounded-lg animate-pulse shrink-0">
+                  class="bg-emerald-50 border border-emerald-100 text-emerald-700 text-xs p-3 rounded-lg animate-pulse shrink-0"
+                >
                   {{ t("applyForm.step3Fields.locationNote") }}
                 </div>
               </div>
 
               <!-- 4-BOSQICH: Chegirma -->
-              <div v-else-if="currentStep === 4" key="step4" class="flex flex-col gap-4 h-full overflow-y-auto pr-2">
+              <div
+                v-else-if="currentStep === 4"
+                key="step4"
+                class="flex flex-col gap-4 h-full overflow-y-auto pr-2"
+              >
                 <div>
-                  <label class="block text-xs sm:text-sm font-medium text-gray-700 mb-2">
+                  <label
+                    class="block text-xs sm:text-sm font-medium text-gray-700 mb-2"
+                  >
                     {{ t("applyForm.step4Fields.discountPercent") }}
                   </label>
                   <div class="flex flex-wrap gap-2">
-                    <button v-for="opt in discountOptions" :key="opt.val" type="button" @click="form.discount = opt.val"
+                    <button
+                      v-for="opt in discountOptions"
+                      :key="opt.val"
+                      type="button"
+                      @click="form.discount = opt.val"
                       :class="[
                         'px-4 py-1.5 text-sm font-medium rounded-full transition-all duration-300 border transform active:scale-95 shrink-0',
                         form.discount === opt.val
                           ? 'bg-emerald-600 text-white border-emerald-600 scale-105 shadow-sm'
                           : 'bg-white text-gray-700 border-gray-200 hover:border-gray-300',
-                      ]">
+                      ]"
+                    >
                       {{ opt.label }}
                     </button>
                   </div>
@@ -287,76 +463,143 @@
                 </div>
 
                 <div>
-                  <label class="block text-xs sm:text-sm font-medium text-gray-700 mb-1.5">
+                  <label
+                    class="block text-xs sm:text-sm font-medium text-gray-700 mb-1.5"
+                  >
                     {{ t("applyForm.step4Fields.minPurchaseAmount") }}
                   </label>
-                  <input v-model.number="form.min_sum" type="number" placeholder="50 000"
-                    class="w-full rounded-lg border border-gray-200 text-slate-800 px-3.5 py-2.5 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-emerald-500/40 focus:border-emerald-500 transition-all" />
+                  <input
+                    v-model.number="form.min_sum"
+                    type="number"
+                    placeholder="50 000"
+                    class="w-full rounded-lg border border-gray-200 text-slate-800 px-3.5 py-2.5 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-emerald-500/40 focus:border-emerald-500 transition-all"
+                  />
                 </div>
 
                 <div>
-                  <label class="block text-xs sm:text-sm font-medium text-gray-700 mb-1.5">
+                  <label
+                    class="block text-xs sm:text-sm font-medium text-gray-700 mb-1.5"
+                  >
                     {{ t("applyForm.step4Fields.additionalType") }}
                   </label>
-                  <select v-model="form.additional_type"
-                    class="w-full rounded-lg border border-gray-200 px-3.5 py-2.5 text-sm text-gray-700 focus:outline-none focus:ring-2 focus:ring-emerald-500/40 focus:border-emerald-500 transition-all">
+                  <select
+                    v-model="form.additional_type"
+                    class="w-full rounded-lg border border-gray-200 px-3.5 py-2.5 text-sm text-gray-700 focus:outline-none focus:ring-2 focus:ring-emerald-500/40 focus:border-emerald-500 transition-all"
+                  >
                     <option value="">Tanlang</option>
-                    <option v-for="a in additionalTypeOptions" :key="a" :value="a">
-                      {{ a }}
+                    <option
+                      v-for="a in additionalTypeOptions"
+                      :key="a.value"
+                      :value="a.value"
+                    >
+                      {{ a.label }}
                     </option>
                   </select>
                 </div>
 
-                <div class="bg-emerald-50 border border-emerald-100 text-emerald-700 text-xs p-3 rounded-lg shrink-0">
+                <div
+                  class="bg-emerald-50 border border-emerald-100 text-emerald-700 text-xs p-3 rounded-lg shrink-0"
+                >
                   {{ t("applyForm.submitNote") }}
                 </div>
               </div>
             </Transition>
           </div>
 
+          <!-- Xatolik xabari -->
+          <p
+            v-if="errorMessage"
+            class="text-xs text-red-500 mt-3 flex-shrink-0"
+          >
+            {{ errorMessage }}
+          </p>
+
           <!-- Pastki navigatsiya -->
-          <div class="flex items-center justify-between mt-6 flex-shrink-0 pt-4 border-t border-gray-100">
-            <button v-if="currentStep > 1" type="button" @click="prevStep"
-              class="flex items-center gap-1 text-sm text-gray-500 hover:text-emerald-600 transition-all duration-200 transform hover:-translate-x-1">
+          <div
+            class="flex items-center justify-between mt-6 flex-shrink-0 pt-4 border-t border-gray-100"
+          >
+            <button
+              v-if="currentStep > 1"
+              type="button"
+              @click="prevStep"
+              :disabled="isSubmitting"
+              class="flex items-center gap-1 text-sm text-gray-500 hover:text-emerald-600 transition-all duration-200 transform hover:-translate-x-1 disabled:opacity-50"
+            >
               ← {{ t("applyForm.back") }}
             </button>
-            <span class="text-xs text-gray-400">{{ currentStep }}/{{ stepLabels.length }} {{ t("applyForm.step") }}
+            <span v-else />
+            <span class="text-xs text-gray-400"
+              >{{ currentStep }}/{{ stepLabels.length }}
+              {{ t("applyForm.step") }}
             </span>
-            <button type="button" @click="nextStep"
-              class="inline-flex items-center gap-2 rounded-full bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold px-5 py-1 transition-all duration-300 transform active:scale-95 shadow-md hover:shadow-lg">
-              {{ currentStep < stepLabels.length ? t("applyForm.nextButton") : t("applyForm.done") }}
-              <span aria-hidden="true" class="transition-transform duration-300">→</span>
+            <button
+              type="button"
+              @click="nextStep"
+              :disabled="isSubmitting"
+              class="inline-flex items-center gap-2 rounded-full bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold px-5 py-1 transition-all duration-300 transform active:scale-95 shadow-md hover:shadow-lg disabled:opacity-60 disabled:cursor-not-allowed"
+            >
+              {{
+                isSubmitting
+                  ? "..."
+                  : currentStep < stepLabels.length
+                    ? t("applyForm.nextButton")
+                    : t("applyForm.done")
+              }}
+              <span aria-hidden="true" class="transition-transform duration-300"
+                >→</span
+              >
             </button>
           </div>
         </div>
       </div>
 
-      <!-- Muvaffaqiyat ekrani (Muvaffaqiyatli topshirilganda chiroyli Bounce/Scale effekti bilan chiqadi) -->
-      <div v-else class="flex items-center justify-center min-h-96 overflow-hidden">
+      <!-- Muvaffaqiyat ekrani -->
+      <div
+        v-else
+        class="flex items-center justify-center min-h-96 overflow-hidden"
+      >
         <div class="animate-bounce-in">
-          <div class="bg-white rounded-2xl shadow-xl p-8 text-center w-full max-w-sm">
+          <div
+            class="bg-white rounded-2xl shadow-xl p-8 text-center w-full max-w-sm"
+          >
             <div
-              class="mx-auto w-14 h-14 bg-emerald-500 rounded-full flex items-center justify-center mb-4 animate-scale-up">
+              class="mx-auto w-14 h-14 bg-emerald-500 rounded-full flex items-center justify-center mb-4 animate-scale-up"
+            >
               <span class="text-white text-3xl">✓</span>
             </div>
-            <h3 class="text-xl text-slate-800 font-semibold mb-2">{{ t("applyForm.title2") }}</h3>
+            <h3 class="text-xl text-slate-800 font-semibold mb-2">
+              {{ t("applyForm.title2") }}
+            </h3>
             <p class="text-sm text-gray-600 mb-4">
               {{ t("applyForm.subtitle") }}
             </p>
 
-            <div class="flex items-center justify-center text-slate-800 gap-2 text-sm mb-5">
-              <span>{{ t("applyForm.num") }}
-                <span class="font-mono font-semibold">#ZA-2481</span></span>
-              <span class="bg-amber-100 text-amber-600 text-xs px-2.5 py-0.5 rounded-full animate-pulse">{{ t("applyForm.status") }}</span>
+            <div
+              class="flex items-center justify-center text-slate-800 gap-2 text-sm mb-5"
+            >
+              <span
+                >{{ t("applyForm.num") }}
+                <span class="font-mono font-semibold"
+                  >#{{ applicationNumber }}</span
+                ></span
+              >
+              <span
+                class="bg-amber-100 text-amber-600 text-xs px-2.5 py-0.5 rounded-full animate-pulse"
+                >{{ t("applyForm.status") }}</span
+              >
             </div>
 
             <p class="text-xs text-gray-500 mb-6">
               {{ t("applyForm.contact") }}
-              <a href="#" class="text-emerald-600 hover:underline">{{ t("applyForm.contacts.telegram") }}</a>
+              <a href="#" class="text-emerald-600 hover:underline">{{
+                t("applyForm.contacts.telegram")
+              }}</a>
             </p>
 
-            <button @click="resetForm"
-              class="w-full border border-gray-200 hover:bg-gray-50 text-gray-700 text-sm font-medium py-2.5 rounded-lg transition-all duration-300 transform active:scale-95">
+            <button
+              @click="resetForm"
+              class="w-full border border-gray-200 hover:bg-gray-50 text-gray-700 text-sm font-medium py-2.5 rounded-lg transition-all duration-300 transform active:scale-95"
+            >
               {{ t("applyForm.back") }}
             </button>
           </div>
@@ -372,30 +615,75 @@ import { useLanguage } from "../../i18n/useLanguage";
 
 const { t, lang, setLang } = useLanguage();
 
+// ---------------- API sozlamalari ----------------
+
+const API_BASE = import.meta.env.VITE_API_BASE_URL || "/api/v1";
+
+function authHeaders(json = true, includeAuth = true) {
+  const token = localStorage.getItem("access_token");
+  const headers = {};
+  if (json) headers["Content-Type"] = "application/json";
+  if (includeAuth && token) headers["Authorization"] = `Bearer ${token}`;
+  return headers;
+}
+
+async function apiRequest(path, method = "GET", body = null, includeAuth = true) {
+  const res = await fetch(`${API_BASE}${path}`, {
+    method,
+    headers: authHeaders(true, includeAuth),
+    body: body ? JSON.stringify(body) : undefined,
+  });
+
+  if (res.status === 401) {
+    localStorage.removeItem("access_token");
+  }
+
+  if (!res.ok) {
+    let errData = {};
+    try {
+      errData = await res.json();
+    } catch (e) {}
+    const msg =
+      errData.detail ||
+      Object.values(errData).flat().join(" ") ||
+      `Xatolik yuz berdi (${res.status})`;
+    throw new Error(msg);
+  }
+  if (res.status === 204) return null;
+  return res.json();
+}
+
+// ---------------- Holat (state) ----------------
+
 const currentStep = ref(1);
 const submitted = ref(false);
+const applicationId = ref(null);
+const applicationNumber = ref("");
+const isSubmitting = ref(false);
+const errorMessage = ref("");
 
-// Scroll animatsiyasi uchun holat (State)
 const sectionRef = ref(null);
 const isVisible = ref(false);
-
 let observer = null;
 
-onMounted(() => {
-  // Intersection Observer scroll bo'lganda elementni aniqlaydi
+onMounted(async () => {
   observer = new IntersectionObserver(
     ([entry]) => {
       if (entry.isIntersecting) {
         isVisible.value = true;
-        // Bir marta ishlagandan keyin kuzatishni to'xtatish (ixtiyoriy)
         if (sectionRef.value) observer.unobserve(sectionRef.value);
       }
     },
-    { threshold: 0.1 } // 10% qismi ko'rinsa ishga tushadi
+    { threshold: 0.1 },
   );
+  if (sectionRef.value) observer.observe(sectionRef.value);
 
-  if (sectionRef.value) {
-    observer.observe(sectionRef.value);
+  // Kategoriyalarni backenddan olish: GET /categories/
+  try {
+    const data = await apiRequest("/categories/");
+    categories.value = Array.isArray(data) ? data : data.results || [];
+  } catch (e) {
+    console.error("Kategoriyalarni olishda xatolik:", e);
   }
 });
 
@@ -410,45 +698,71 @@ const stepLabels = computed(() => [
   t("applyForm.steps.step4"),
 ]);
 
+// Backenddan keladi: [{ id, name, slug, is_active }, ...]
+const categories = ref([]);
+
 const form = ref({
-  name: "Baraka Restoran",
-  category: "Restoran",
-  type: "YaTT",
-  contact: "Aliyev Valijon",
-  about: "Mazali taomlar va qulay muhit",
-  phone: "+998 90 000 00 00",
-  email: "info@biznes.uz",
-  instagram: "@biznes.uz",
-  telegram: "t.me/biznes.uz",
-  website: "www.biznes.uz",
-  viloyat: "Toshkent shahri",
-  tuman: "Chilonzor tumani",
-  address: "Ko'cha, uy, mo'ljal...",
-  ish_kunlari: "Dushanba - Juma",
-  ish_vaqti: "09:00 - 18:00",
+  name: "",
+  category: "", // Category UUID
+  type: "", // "yatt" | "mchj"
+  contact: "",
+  about: "",
+  phone: "+998",
+  email: "",
+  instagram: "",
+  telegram: "",
+  website: "",
+  viloyat: "", // Region kodi, masalan "tashkent_city"
+  tuman: "",
+  address: "",
+  ish_kunlari: "", // WorkDay kodi
+  ish_vaqti: "", // "HH:MM - HH:MM"
   discount: 15,
   min_sum: 50000,
-  additional_type: "Barcha mahsulotlar",
+  additional_type: "", // "fixed" | "min_purchase"
 });
 
-const viloyatOptions = [
-  "Toshkent shahri",
-  "Toshkent viloyati",
-  "Samarqand viloyati",
-  "Buxoro viloyati",
+const businessTypeOptions = [
+  { value: "yatt", label: "YaTT" },
+  { value: "mchj", label: "MCHJ" },
 ];
+
+const viloyatOptions = [
+  { value: "tashkent_city", label: "Toshkent shahar" },
+  { value: "tashkent_region", label: "Toshkent viloyati" },
+  { value: "andijan", label: "Andijon" },
+  { value: "bukhara", label: "Buxoro" },
+  { value: "fergana", label: "Farg'ona" },
+  { value: "jizzakh", label: "Jizzax" },
+  { value: "kashkadarya", label: "Qashqadaryo" },
+  { value: "navoiy", label: "Navoiy" },
+  { value: "namangan", label: "Namangan" },
+  { value: "samarkand", label: "Samarqand" },
+  { value: "surkhandarya", label: "Surxondaryo" },
+  { value: "sirdaryo", label: "Sirdaryo" },
+  { value: "khorezm", label: "Xorazm" },
+  { value: "karakalpakstan", label: "Qoraqalpog'iston" },
+];
+
+// Backendda alohida model yo'q — erkin matn sifatida yuboriladi
 const tumanOptions = [
   "Chilonzor tumani",
   "Yunusobod tumani",
   "Mirobod tumani",
   "Shayxontohur tumani",
 ];
-const ishKunlariOptions = ["Dushanba - Juma", "Dushanba - Shanba", "Har kuni"];
+
+const ishKunlariOptions = [
+  { value: "mon_fri", label: "Dushanba - Juma" },
+  { value: "mon_sat", label: "Dushanba - Shanba" },
+  { value: "everyday", label: "Har kuni" },
+];
+
 const ishVaqtiOptions = ["09:00 - 18:00", "10:00 - 20:00", "08:00 - 22:00"];
+
 const additionalTypeOptions = [
-  "Barcha mahsulotlar",
-  "Faqat yangi mahsulotlar",
-  "Tanlangan toifalar",
+  { value: "fixed", label: "Barcha mahsulotlar" },
+  { value: "min_purchase", label: "Minimal xarid summasi" },
 ];
 
 const discountOptions = computed(() => {
@@ -457,34 +771,121 @@ const discountOptions = computed(() => {
   return vals.map((val, i) => ({ val, label: labels?.[i] ?? `${val}%` }));
 });
 
-function nextStep() {
-  if (currentStep.value < stepLabels.value.length) {
-    currentStep.value++;
-  } else {
-    submitApplication();
+// ---------------- Yordamchi funksiyalar ----------------
+
+// "09:00 - 18:00" -> ["09:00:00", "18:00:00"]
+function parseWorkHours(range) {
+  if (!range) return [null, null];
+  const [from, to] = range.split("-").map((s) => s.trim());
+  return [from ? `${from}:00` : null, to ? `${to}:00` : null];
+}
+
+// "+998 90 000 00 00" -> "+998900000000"
+function normalizePhone(phone) {
+  const digits = phone.replace(/\D/g, "").replace(/^998/, "");
+  return `+998${digits}`;
+}
+
+// ---------------- Wizard navigatsiyasi ----------------
+
+async function nextStep() {
+  errorMessage.value = "";
+
+  // Step 4 uchun oldindan tekshiruv
+  if (
+    currentStep.value === 4 &&
+    form.value.additional_type === "min_purchase" &&
+    !form.value.min_sum
+  ) {
+    errorMessage.value = "Minimal xarid summasini kiriting.";
+    return;
+  }
+
+  isSubmitting.value = true;
+  try {
+    if (currentStep.value === 1) {
+      const payload = {
+        business_name: form.value.name,
+        category: form.value.category,
+        business_type: form.value.type,
+        responsible_full_name: form.value.contact,
+        short_description: form.value.about,
+      };
+      const created = await apiRequest("/applications/step1/", "POST", payload);
+      applicationId.value = created.id;
+    } else if (currentStep.value === 2) {
+      const payload = {
+        phone_number: normalizePhone(form.value.phone),
+        email: form.value.email,
+        instagram: form.value.instagram,
+        telegram: form.value.telegram,
+        website: form.value.website,
+      };
+      await apiRequest(
+        `/applications/${applicationId.value}/step/2/`,
+        "PATCH",
+        payload,
+      );
+    } else if (currentStep.value === 3) {
+      const [from, to] = parseWorkHours(form.value.ish_vaqti);
+      const payload = {
+        region: form.value.viloyat,
+        city_district: form.value.tuman,
+        full_address: form.value.address,
+        work_days: form.value.ish_kunlari,
+        work_hours_from: from,
+        work_hours_to: to,
+      };
+      await apiRequest(
+        `/applications/${applicationId.value}/step/3/`,
+        "PATCH",
+        payload,
+      );
+    } else if (currentStep.value === 4) {
+      const payload = {
+        discount_percent: form.value.discount,
+        min_purchase_amount: form.value.min_sum || null,
+        discount_type: form.value.additional_type,
+      };
+      await apiRequest(
+        `/applications/${applicationId.value}/step/4/`,
+        "PATCH",
+        payload,
+      );
+      applicationNumber.value = applicationId.value;
+      submitted.value = true;
+      isSubmitting.value = false;
+      return;
+    }
+
+    if (currentStep.value < stepLabels.value.length) {
+      currentStep.value++;
+    }
+  } catch (e) {
+    errorMessage.value = e.message || "Noma'lum xatolik yuz berdi.";
+  } finally {
+    isSubmitting.value = false;
   }
 }
 
 function prevStep() {
-  if (currentStep.value > 1) {
-    currentStep.value--;
-  }
-}
-
-function submitApplication() {
-  submitted.value = true;
+  if (currentStep.value > 1) currentStep.value--;
+  errorMessage.value = "";
 }
 
 function resetForm() {
   submitted.value = false;
   currentStep.value = 1;
+  applicationId.value = null;
+  applicationNumber.value = "";
+  errorMessage.value = "";
   form.value = {
     name: "",
     category: "",
     type: "",
     contact: "",
     about: "",
-    phone: "+998 ",
+    phone: "+998",
     email: "",
     instagram: "",
     telegram: "",
@@ -574,6 +975,6 @@ function resetForm() {
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(16, 185, 129, 0.5);
+  background: rgba(199, 238, 225, 0.5);
 }
-</style>  
+</style>
