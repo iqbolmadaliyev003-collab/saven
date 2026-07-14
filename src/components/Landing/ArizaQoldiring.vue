@@ -164,8 +164,16 @@
                     v-model="form.name"
                     type="text"
                     placeholder="Masalan: Baraka Restoran"
-                    class="w-full rounded-lg text-slate-800 border border-gray-200 px-3.5 py-2.5 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-emerald-500/40 focus:border-emerald-500 transition-all"
+                    :class="[
+                      'w-full rounded-lg text-slate-800 border px-3.5 py-2.5 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-2 transition-all',
+                      fieldErrors.name
+                        ? 'border-red-500 focus:ring-red-500/40 focus:border-red-500'
+                        : 'border-gray-200 focus:ring-emerald-500/40 focus:border-emerald-500',
+                    ]"
                   />
+                  <p v-if="fieldErrors.name" class="text-xs text-red-500 mt-1">
+                    {{ fieldErrors.name }}
+                  </p>
                 </div>
 
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -177,7 +185,12 @@
                     </label>
                     <select
                       v-model="form.category"
-                      class="w-full rounded-lg border border-gray-200 px-3.5 py-2.5 text-sm text-gray-700 focus:outline-none focus:ring-2 focus:ring-emerald-500/40 focus:border-emerald-500 transition-all"
+                      :class="[
+                        'w-full rounded-lg border px-3.5 py-2.5 text-sm text-gray-700 focus:outline-none focus:ring-2 transition-all',
+                        fieldErrors.category
+                          ? 'border-red-500 focus:ring-red-500/40 focus:border-red-500'
+                          : 'border-gray-200 focus:ring-emerald-500/40 focus:border-emerald-500',
+                      ]"
                     >
                       <option value="">
                         {{ t("applyForm.step1Fields.categoryPlaceholder") }}
@@ -190,6 +203,12 @@
                         {{ cat.name }}
                       </option>
                     </select>
+                    <p
+                      v-if="fieldErrors.category"
+                      class="text-xs text-red-500 mt-1"
+                    >
+                      {{ fieldErrors.category }}
+                    </p>
                   </div>
                   <div>
                     <label
@@ -199,7 +218,12 @@
                     </label>
                     <select
                       v-model="form.type"
-                      class="w-full rounded-lg border border-gray-200 px-3.5 py-2.5 text-sm text-gray-700 focus:outline-none focus:ring-2 focus:ring-emerald-500/40 focus:border-emerald-500 transition-all"
+                      :class="[
+                        'w-full rounded-lg border px-3.5 py-2.5 text-sm text-gray-700 focus:outline-none focus:ring-2 transition-all',
+                        fieldErrors.type
+                          ? 'border-red-500 focus:ring-red-500/40 focus:border-red-500'
+                          : 'border-gray-200 focus:ring-emerald-500/40 focus:border-emerald-500',
+                      ]"
                     >
                       <option value="">
                         {{ t("applyForm.step1Fields.businessTypePlaceholder") }}
@@ -212,6 +236,12 @@
                         {{ tp.label }}
                       </option>
                     </select>
+                    <p
+                      v-if="fieldErrors.type"
+                      class="text-xs text-red-500 mt-1"
+                    >
+                      {{ fieldErrors.type }}
+                    </p>
                   </div>
                 </div>
 
@@ -225,8 +255,19 @@
                     v-model="form.contact"
                     type="text"
                     placeholder="To'liq ism sharif"
-                    class="w-full rounded-lg border text-slate-800 border-gray-200 px-3.5 py-2.5 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-emerald-500/40 focus:border-emerald-500 transition-all"
+                    :class="[
+                      'w-full rounded-lg border text-slate-800 px-3.5 py-2.5 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-2 transition-all',
+                      fieldErrors.contact
+                        ? 'border-red-500 focus:ring-red-500/40 focus:border-red-500'
+                        : 'border-gray-200 focus:ring-emerald-500/40 focus:border-emerald-500',
+                    ]"
                   />
+                  <p
+                    v-if="fieldErrors.contact"
+                    class="text-xs text-red-500 mt-1"
+                  >
+                    {{ fieldErrors.contact }}
+                  </p>
                 </div>
 
                 <div>
@@ -239,8 +280,19 @@
                     v-model="form.about"
                     type="text"
                     placeholder="Faoliyatingiz haqida 1-2 jumla..."
-                    class="w-full rounded-lg text-slate-800 border border-gray-200 px-3.5 py-2.5 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-emerald-500/40 focus:border-emerald-500 transition-all"
+                    :class="[
+                      'w-full rounded-lg text-slate-800 border px-3.5 py-2.5 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-2 transition-all',
+                      fieldErrors.about
+                        ? 'border-red-500 focus:ring-red-500/40 focus:border-red-500'
+                        : 'border-gray-200 focus:ring-emerald-500/40 focus:border-emerald-500',
+                    ]"
                   />
+                  <p
+                    v-if="fieldErrors.about"
+                    class="text-xs text-red-500 mt-1"
+                  >
+                    {{ fieldErrors.about }}
+                  </p>
                 </div>
               </div>
 
@@ -260,8 +312,16 @@
                     v-model="form.phone"
                     type="tel"
                     placeholder="+998 90 000 00 00"
-                    class="w-full rounded-lg text-slate-800 border border-gray-200 px-3.5 py-2.5 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-emerald-500/40 focus:border-emerald-500 transition-all"
+                    :class="[
+                      'w-full rounded-lg text-slate-800 border px-3.5 py-2.5 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-2 transition-all',
+                      fieldErrors.phone
+                        ? 'border-red-500 focus:ring-red-500/40 focus:border-red-500'
+                        : 'border-gray-200 focus:ring-emerald-500/40 focus:border-emerald-500',
+                    ]"
                   />
+                  <p v-if="fieldErrors.phone" class="text-xs text-red-500 mt-1">
+                    {{ fieldErrors.phone }}
+                  </p>
                 </div>
 
                 <div>
@@ -274,8 +334,16 @@
                     v-model="form.email"
                     type="email"
                     placeholder="info@biznes.uz"
-                    class="w-full rounded-lg border text-slate-800 border-gray-200 px-3.5 py-2.5 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-emerald-500/40 focus:border-emerald-500 transition-all"
+                    :class="[
+                      'w-full rounded-lg border text-slate-800 px-3.5 py-2.5 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-2 transition-all',
+                      fieldErrors.email
+                        ? 'border-red-500 focus:ring-red-500/40 focus:border-red-500'
+                        : 'border-gray-200 focus:ring-emerald-500/40 focus:border-emerald-500',
+                    ]"
                   />
+                  <p v-if="fieldErrors.email" class="text-xs text-red-500 mt-1">
+                    {{ fieldErrors.email }}
+                  </p>
                 </div>
 
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -337,7 +405,12 @@
                     </label>
                     <select
                       v-model="form.viloyat"
-                      class="w-full rounded-lg border border-gray-200 px-3.5 py-2.5 text-sm text-gray-700 focus:outline-none focus:ring-2 focus:ring-emerald-500/40 focus:border-emerald-500 transition-all"
+                      :class="[
+                        'w-full rounded-lg border px-3.5 py-2.5 text-sm text-gray-700 focus:outline-none focus:ring-2 transition-all',
+                        fieldErrors.viloyat
+                          ? 'border-red-500 focus:ring-red-500/40 focus:border-red-500'
+                          : 'border-gray-200 focus:ring-emerald-500/40 focus:border-emerald-500',
+                      ]"
                     >
                       <option value="">Tanlang</option>
                       <option
@@ -348,6 +421,12 @@
                         {{ v.label }}
                       </option>
                     </select>
+                    <p
+                      v-if="fieldErrors.viloyat"
+                      class="text-xs text-red-500 mt-1"
+                    >
+                      {{ fieldErrors.viloyat }}
+                    </p>
                   </div>
                   <div>
                     <label
@@ -357,13 +436,24 @@
                     </label>
                     <select
                       v-model="form.tuman"
-                      class="w-full rounded-lg border border-gray-200 px-3.5 py-2.5 text-sm text-gray-700 focus:outline-none focus:ring-2 focus:ring-emerald-500/40 focus:border-emerald-500 transition-all"
+                      :class="[
+                        'w-full rounded-lg border px-3.5 py-2.5 text-sm text-gray-700 focus:outline-none focus:ring-2 transition-all',
+                        fieldErrors.tuman
+                          ? 'border-red-500 focus:ring-red-500/40 focus:border-red-500'
+                          : 'border-gray-200 focus:ring-emerald-500/40 focus:border-emerald-500',
+                      ]"
                     >
                       <option value="">Tanlang</option>
                       <option v-for="tm in tumanOptions" :key="tm" :value="tm">
                         {{ tm }}
                       </option>
                     </select>
+                    <p
+                      v-if="fieldErrors.tuman"
+                      class="text-xs text-red-500 mt-1"
+                    >
+                      {{ fieldErrors.tuman }}
+                    </p>
                   </div>
                 </div>
 
@@ -379,8 +469,19 @@
                     :placeholder="
                       t('applyForm.step3Fields.fullAddressPlaceholder')
                     "
-                    class="w-full rounded-lg border text-slate-800 border-gray-200 px-3.5 py-2.5 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-emerald-500/40 focus:border-emerald-500 transition-all"
+                    :class="[
+                      'w-full rounded-lg border text-slate-800 px-3.5 py-2.5 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-2 transition-all',
+                      fieldErrors.address
+                        ? 'border-red-500 focus:ring-red-500/40 focus:border-red-500'
+                        : 'border-gray-200 focus:ring-emerald-500/40 focus:border-emerald-500',
+                    ]"
                   />
+                  <p
+                    v-if="fieldErrors.address"
+                    class="text-xs text-red-500 mt-1"
+                  >
+                    {{ fieldErrors.address }}
+                  </p>
                 </div>
 
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -392,7 +493,12 @@
                     </label>
                     <select
                       v-model="form.ish_kunlari"
-                      class="w-full rounded-lg border border-gray-200 px-3.5 py-2.5 text-sm text-gray-700 focus:outline-none focus:ring-2 focus:ring-emerald-500/40 focus:border-emerald-500 transition-all"
+                      :class="[
+                        'w-full rounded-lg border px-3.5 py-2.5 text-sm text-gray-700 focus:outline-none focus:ring-2 transition-all',
+                        fieldErrors.ish_kunlari
+                          ? 'border-red-500 focus:ring-red-500/40 focus:border-red-500'
+                          : 'border-gray-200 focus:ring-emerald-500/40 focus:border-emerald-500',
+                      ]"
                     >
                       <option value="">Tanlang</option>
                       <option
@@ -403,6 +509,12 @@
                         {{ k.label }}
                       </option>
                     </select>
+                    <p
+                      v-if="fieldErrors.ish_kunlari"
+                      class="text-xs text-red-500 mt-1"
+                    >
+                      {{ fieldErrors.ish_kunlari }}
+                    </p>
                   </div>
                   <div>
                     <label
@@ -412,13 +524,24 @@
                     </label>
                     <select
                       v-model="form.ish_vaqti"
-                      class="w-full rounded-lg border border-gray-200 px-3.5 py-2.5 text-sm text-gray-700 focus:outline-none focus:ring-2 focus:ring-emerald-500/40 focus:border-emerald-500 transition-all"
+                      :class="[
+                        'w-full rounded-lg border px-3.5 py-2.5 text-sm text-gray-700 focus:outline-none focus:ring-2 transition-all',
+                        fieldErrors.ish_vaqti
+                          ? 'border-red-500 focus:ring-red-500/40 focus:border-red-500'
+                          : 'border-gray-200 focus:ring-emerald-500/40 focus:border-emerald-500',
+                      ]"
                     >
                       <option value="">Tanlang</option>
                       <option v-for="v in ishVaqtiOptions" :key="v" :value="v">
                         {{ v }}
                       </option>
                     </select>
+                    <p
+                      v-if="fieldErrors.ish_vaqti"
+                      class="text-xs text-red-500 mt-1"
+                    >
+                      {{ fieldErrors.ish_vaqti }}
+                    </p>
                   </div>
                 </div>
 
@@ -441,7 +564,12 @@
                   >
                     {{ t("applyForm.step4Fields.discountPercent") }}
                   </label>
-                  <div class="flex flex-wrap gap-2">
+                  <div
+                    :class="[
+                      'flex flex-wrap gap-2 p-1 rounded-lg transition-all',
+                      fieldErrors.discount ? 'ring-1 ring-red-500' : '',
+                    ]"
+                  >
                     <button
                       v-for="opt in discountOptions"
                       :key="opt.val"
@@ -460,6 +588,12 @@
                   <p class="text-xs text-gray-500 mt-1">
                     {{ t("applyForm.step4Fields.discountRecommendation") }}
                   </p>
+                  <p
+                    v-if="fieldErrors.discount"
+                    class="text-xs text-red-500 mt-1"
+                  >
+                    {{ fieldErrors.discount }}
+                  </p>
                 </div>
 
                 <div>
@@ -472,8 +606,19 @@
                     v-model.number="form.min_sum"
                     type="number"
                     placeholder="50 000"
-                    class="w-full rounded-lg border border-gray-200 text-slate-800 px-3.5 py-2.5 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-emerald-500/40 focus:border-emerald-500 transition-all"
+                    :class="[
+                      'w-full rounded-lg border text-slate-800 px-3.5 py-2.5 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-2 transition-all',
+                      fieldErrors.min_sum
+                        ? 'border-red-500 focus:ring-red-500/40 focus:border-red-500'
+                        : 'border-gray-200 focus:ring-emerald-500/40 focus:border-emerald-500',
+                    ]"
                   />
+                  <p
+                    v-if="fieldErrors.min_sum"
+                    class="text-xs text-red-500 mt-1"
+                  >
+                    {{ fieldErrors.min_sum }}
+                  </p>
                 </div>
 
                 <div>
@@ -484,7 +629,12 @@
                   </label>
                   <select
                     v-model="form.additional_type"
-                    class="w-full rounded-lg border border-gray-200 px-3.5 py-2.5 text-sm text-gray-700 focus:outline-none focus:ring-2 focus:ring-emerald-500/40 focus:border-emerald-500 transition-all"
+                    :class="[
+                      'w-full rounded-lg border px-3.5 py-2.5 text-sm text-gray-700 focus:outline-none focus:ring-2 transition-all',
+                      fieldErrors.additional_type
+                        ? 'border-red-500 focus:ring-red-500/40 focus:border-red-500'
+                        : 'border-gray-200 focus:ring-emerald-500/40 focus:border-emerald-500',
+                    ]"
                   >
                     <option value="">Tanlang</option>
                     <option
@@ -495,6 +645,12 @@
                       {{ a.label }}
                     </option>
                   </select>
+                  <p
+                    v-if="fieldErrors.additional_type"
+                    class="text-xs text-red-500 mt-1"
+                  >
+                    {{ fieldErrors.additional_type }}
+                  </p>
                 </div>
 
                 <div
@@ -610,7 +766,7 @@
 </template>
 
 <script setup>
-import { ref, computed, onMounted, onUnmounted } from "vue";
+import { ref, reactive, computed, onMounted, onUnmounted } from "vue";
 import { useLanguage } from "../../i18n/useLanguage";
 
 const { t, lang, setLang } = useLanguage();
@@ -661,6 +817,33 @@ const applicationId = ref(null);
 const applicationNumber = ref("");
 const isSubmitting = ref(false);
 const errorMessage = ref("");
+
+// ✅ YANGI: har bir maydon uchun alohida xato matni saqlanadi.
+// Bo'sh string/undefined bo'lsa — xato yo'q, border yashil holatda qoladi.
+// Qiymat bo'lsa — input border qizil bo'ladi va matn ostida xabar chiqadi.
+const fieldErrors = reactive({
+  name: "",
+  category: "",
+  type: "",
+  contact: "",
+  about: "",
+  phone: "",
+  email: "",
+  viloyat: "",
+  tuman: "",
+  address: "",
+  ish_kunlari: "",
+  ish_vaqti: "",
+  discount: "",
+  min_sum: "",
+  additional_type: "",
+});
+
+function clearFieldErrors(keys) {
+  keys.forEach((k) => {
+    fieldErrors[k] = "";
+  });
+}
 
 const sectionRef = ref(null);
 const isVisible = ref(false);
@@ -786,18 +969,134 @@ function normalizePhone(phone) {
   return `+998${digits}`;
 }
 
+function isValidEmail(email) {
+  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+}
+
+function isValidUzPhone(phone) {
+  const normalized = normalizePhone(phone);
+  return /^\+998\d{9}$/.test(normalized);
+}
+
+// ---------------- Validatsiya (har bir bosqich uchun) ----------------
+// Har bir funksiya fieldErrors ob'ektini to'ldiradi va shu bosqich
+// xatosiz bo'lsa true, xato bo'lsa false qaytaradi.
+
+function validateStep1() {
+  clearFieldErrors(["name", "category", "type", "contact", "about"]);
+  let ok = true;
+
+  if (!form.value.name.trim()) {
+    fieldErrors.name = "Biznes nomini kiriting.";
+    ok = false;
+  }
+  if (!form.value.category) {
+    fieldErrors.category = "Kategoriyani tanlang.";
+    ok = false;
+  }
+  if (!form.value.type) {
+    fieldErrors.type = "Biznes turini tanlang.";
+    ok = false;
+  }
+  if (!form.value.contact.trim()) {
+    fieldErrors.contact = "Mas'ul shaxsning to'liq ismini kiriting.";
+    ok = false;
+  }
+  if (!form.value.about.trim()) {
+    fieldErrors.about = "Faoliyatingiz haqida qisqacha yozing.";
+    ok = false;
+  }
+  return ok;
+}
+
+function validateStep2() {
+  clearFieldErrors(["phone", "email"]);
+  let ok = true;
+
+  if (!form.value.phone.trim() || !isValidUzPhone(form.value.phone)) {
+    fieldErrors.phone =
+      "Telefon raqamini to'g'ri kiriting (+998 XX XXX XX XX).";
+    ok = false;
+  }
+  if (!form.value.email.trim() || !isValidEmail(form.value.email)) {
+    fieldErrors.email = "Email manzilini to'g'ri kiriting.";
+    ok = false;
+  }
+  return ok;
+}
+
+function validateStep3() {
+  clearFieldErrors([
+    "viloyat",
+    "tuman",
+    "address",
+    "ish_kunlari",
+    "ish_vaqti",
+  ]);
+  let ok = true;
+
+  if (!form.value.viloyat) {
+    fieldErrors.viloyat = "Viloyatni tanlang.";
+    ok = false;
+  }
+  if (!form.value.tuman) {
+    fieldErrors.tuman = "Tuman/shaharni tanlang.";
+    ok = false;
+  }
+  if (!form.value.address.trim()) {
+    fieldErrors.address = "To'liq manzilni kiriting.";
+    ok = false;
+  }
+  if (!form.value.ish_kunlari) {
+    fieldErrors.ish_kunlari = "Ish kunlarini tanlang.";
+    ok = false;
+  }
+  if (!form.value.ish_vaqti) {
+    fieldErrors.ish_vaqti = "Ish vaqtini tanlang.";
+    ok = false;
+  }
+  return ok;
+}
+
+function validateStep4() {
+  clearFieldErrors(["discount", "min_sum", "additional_type"]);
+  let ok = true;
+
+  if (!form.value.discount) {
+    fieldErrors.discount = "Chegirma foizini tanlang.";
+    ok = false;
+  }
+  if (!form.value.additional_type) {
+    fieldErrors.additional_type = "Qo'shimcha shartni tanlang.";
+    ok = false;
+  }
+  if (
+    form.value.additional_type === "min_purchase" &&
+    (!form.value.min_sum || form.value.min_sum <= 0)
+  ) {
+    fieldErrors.min_sum = "Minimal xarid summasini kiriting.";
+    ok = false;
+  }
+  return ok;
+}
+
 // ---------------- Wizard navigatsiyasi ----------------
 
 async function nextStep() {
   errorMessage.value = "";
 
-  // Step 4 uchun oldindan tekshiruv
-  if (
-    currentStep.value === 4 &&
-    form.value.additional_type === "min_purchase" &&
-    !form.value.min_sum
-  ) {
-    errorMessage.value = "Minimal xarid summasini kiriting.";
+  // ✅ Har bir bosqichda mos validatsiya ishga tushiriladi.
+  // Xato topilsa — tegishli input(lar) qizil bo'ladi va umumiy alert chiqadi,
+  // so'rov backendga yuborilmaydi.
+  let stepIsValid = true;
+  if (currentStep.value === 1) stepIsValid = validateStep1();
+  else if (currentStep.value === 2) stepIsValid = validateStep2();
+  else if (currentStep.value === 3) stepIsValid = validateStep3();
+  else if (currentStep.value === 4) stepIsValid = validateStep4();
+
+  if (!stepIsValid) {
+    errorMessage.value =
+      "Iltimos, qizil rangda belgilangan maydonlarni to'g'ri to'ldiring.";
     return;
   }
 
@@ -862,6 +1161,7 @@ async function nextStep() {
       currentStep.value++;
     }
   } catch (e) {
+    // Backend xatoligi bo'lsa ham umumiy alert sifatida ko'rsatiladi
     errorMessage.value = e.message || "Noma'lum xatolik yuz berdi.";
   } finally {
     isSubmitting.value = false;
@@ -879,6 +1179,7 @@ function resetForm() {
   applicationId.value = null;
   applicationNumber.value = "";
   errorMessage.value = "";
+  Object.keys(fieldErrors).forEach((k) => (fieldErrors[k] = ""));
   form.value = {
     name: "",
     category: "",
