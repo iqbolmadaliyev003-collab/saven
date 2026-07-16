@@ -149,7 +149,7 @@
 
       "title2": "Arizangiz qabul qilindi!",
       "status": "Kutilmoqda",
-      "num":"Ariza raqami: ",
+      "num": "Ariza raqami: ",
 
       "contact": "Savollar bo'lsa: @saven_biznes",
 
@@ -220,6 +220,7 @@
       "telegram": "@saven_biznes"
     }
   },
+
   "ru": {
     "nav": {
       "howItWorks": "Как это работает",
@@ -370,7 +371,7 @@
 
       "title2": "Ваша заявка принята!",
       "status": "В ожидании",
-      "num":"Номер заявки: ",
+      "num": "Номер заявки: ",
       "contact": "По вопросам обращайтесь: ",
 
       "contacts": {
