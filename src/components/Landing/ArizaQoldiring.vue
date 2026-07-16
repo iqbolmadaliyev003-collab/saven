@@ -1,196 +1,244 @@
 <template>
-  <!-- Asosiy sektsiya kirishda paydo bo'lish effekti bilan -->
+  <!-- ============ ASOSIY SEKTSIYA ============ -->
   <section
     ref="sectionRef"
     :class="[
-      'w-full bg-[#123524] min-h-screen transition-all duration-1000 ease-out transform',
+      'relative w-full min-h-screen overflow-hidden bg-[#123524] transition-all duration-1000 ease-out transform',
       isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8',
     ]"
   >
-    <div class="max-w-5xl mx-auto px-4 py-2 flex flex-col">
-      <!-- Til tanlash va Back buton -->
+    <!-- Dekorativ fon elementlari -->
+    <div class="pointer-events-none absolute inset-0" aria-hidden="true">
       <div
-        class="mb-2 flex justify-between w-full sm:w-96 items-center flex-shrink-0"
-      >
+        class="absolute -top-32 -right-32 w-96 h-96 rounded-full bg-emerald-500/10 blur-3xl"
+      />
+      <div
+        class="absolute top-1/2 -left-40 w-80 h-80 rounded-full bg-emerald-400/10 blur-3xl"
+      />
+      <div
+        class="absolute bottom-0 right-1/4 w-72 h-72 rounded-full bg-teal-500/10 blur-3xl"
+      />
+    </div>
+
+    <div
+      class="relative max-w-6xl mx-auto px-4 sm:px-6 py-4 sm:py-6 lg:py-8 flex flex-col min-h-screen"
+    >
+      <!-- ============ YUQORI PANEL: Back + Til ============ -->
+      <div class="mb-4 sm:mb-6 flex justify-between items-center gap-3">
         <a
           href="/"
-          class="inline-flex items-center gap-2 rounded-full bg-emerald-600/20 hover:bg-emerald-700 text-white text-sm font-semibold px-5 py-2.5 transition-colors"
+          class="group inline-flex items-center gap-2 rounded-full bg-white/10 backdrop-blur-sm hover:bg-emerald-600 text-white text-xs sm:text-sm font-semibold px-4 sm:px-5 py-2 sm:py-2.5 transition-all duration-300 border border-white/10"
         >
-          ← {{ t("applyForm.back") }}
+          <span class="transition-transform duration-300 group-hover:-translate-x-0.5"
+            >←</span
+          >
+          {{ t("applyForm.back") }}
         </a>
-        <div class="flex justify-end gap-2">
+
+        <div
+          class="flex items-center gap-1 bg-white/10 backdrop-blur-sm border border-white/10 rounded-full p-1"
+        >
           <button
-            @click="setLang('uz')"
+            v-for="l in availableLangs"
+            :key="l"
+            @click="setLang(l)"
             :class="[
-              'px-3 py-1 rounded-full text-xs font-medium transition-all duration-300 transform active:scale-95',
-              lang === 'uz'
-                ? 'bg-emerald-500 text-white scale-105 shadow-md'
-                : 'bg-white/10 text-white/60 hover:text-white',
+              'px-3 sm:px-3.5 py-1 sm:py-1.5 rounded-full text-xs sm:text-sm font-semibold transition-all duration-300',
+              lang === l
+                ? 'bg-white text-emerald-900 shadow-md'
+                : 'text-white/60 hover:text-white',
             ]"
           >
-            UZ
-          </button>
-          <button
-            @click="setLang('ru')"
-            :class="[
-              'px-3 py-1 rounded-full text-xs font-medium transition-all duration-300 transform active:scale-95',
-              lang === 'ru'
-                ? 'bg-emerald-500 text-white scale-105 shadow-md'
-                : 'bg-white/10 text-white/60 hover:text-white',
-            ]"
-          >
-            RU
+            {{ l.toUpperCase() }}
           </button>
         </div>
       </div>
 
-      <!-- Asosiy kontent: promo + forma yoki muvaffaqiyat -->
+      <!-- ============ ASOSIY KONTENT ============ -->
       <div
         v-if="!submitted"
-        class="flex-1 grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-12 items-center overflow-hidden"
+        class="flex-1 grid grid-cols-1 lg:grid-cols-[1fr_1.15fr] gap-8 lg:gap-14 items-start lg:items-center"
       >
-        <!-- Chap taraf: matn -->
+        <!-- ======= CHAP TARAF: Promo matn ======= -->
         <div
           :class="[
-            'text-white transition-all duration-700 delay-200 transform flex-shrink-0',
+            'text-white transition-all duration-700 delay-200 transform',
             isVisible
               ? 'opacity-100 translate-x-0'
               : 'opacity-0 -translate-x-10',
           ]"
         >
-          <h2 class="text-2xl sm:text-3xl font-bold mb-4">
+          <div
+            class="inline-flex items-center gap-2 bg-emerald-500/15 border border-emerald-400/20 text-emerald-300 text-[11px] sm:text-xs font-semibold uppercase tracking-wider px-3.5 py-1.5 rounded-full mb-4 sm:mb-5"
+          >
+            <span class="relative flex h-2 w-2">
+              <span
+                class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"
+              />
+              <span
+                class="relative inline-flex rounded-full h-2 w-2 bg-emerald-400"
+              />
+            </span>
+            {{ tt("applyForm.badge", "Hamkorlik uchun ariza") }}
+          </div>
+
+          <h2
+            class="text-2xl sm:text-3xl lg:text-4xl font-bold leading-tight mb-3 sm:mb-4"
+          >
             {{ t("applyForm.title1") }}
           </h2>
           <p
-            class="text-sm sm:text-base text-white/70 leading-relaxed mb-8 max-w-md"
+            class="text-sm sm:text-base text-white/60 leading-relaxed mb-6 sm:mb-8 max-w-md"
           >
             {{ t("applyForm.subtitle") }}
           </p>
 
-          <div class="flex flex-col gap-3 text-sm sm:text-base">
+          <!-- Kontaktlar: mobil'da gorizontal chiplar, desktopda vertikal ro'yxat -->
+          <div
+            class="flex flex-row lg:flex-col flex-wrap gap-2.5 lg:gap-3 text-sm"
+          >
             <a
               :href="`tel:${t('applyForm.contacts.phone')}`"
-              class="flex items-center gap-3 text-white/90 hover:text-white hover:translate-x-1 transition-all duration-300"
+              class="group flex items-center gap-3 bg-white/5 hover:bg-white/10 border border-white/10 rounded-xl lg:rounded-2xl px-3.5 py-2.5 lg:px-4 lg:py-3 transition-all duration-300 hover:translate-x-0 lg:hover:translate-x-1"
             >
-              <span class="text-white/50">📞</span>
-              {{ t("applyForm.contacts.phone") }}
+              <span
+                class="flex items-center justify-center w-8 h-8 lg:w-9 lg:h-9 rounded-lg lg:rounded-xl bg-emerald-500/15 text-base shrink-0"
+                >📞</span
+              >
+              <span class="text-white/80 group-hover:text-white transition-colors">
+                {{ t("applyForm.contacts.phone") }}
+              </span>
             </a>
             <a
               href="#"
-              class="flex items-center gap-3 text-white/90 hover:text-white hover:translate-x-1 transition-all duration-300"
+              class="group flex items-center gap-3 bg-white/5 hover:bg-white/10 border border-white/10 rounded-xl lg:rounded-2xl px-3.5 py-2.5 lg:px-4 lg:py-3 transition-all duration-300 hover:translate-x-0 lg:hover:translate-x-1"
             >
-              <span class="text-white/50">✈️</span>
-              {{ t("applyForm.contacts.telegram") }}
+              <span
+                class="flex items-center justify-center w-8 h-8 lg:w-9 lg:h-9 rounded-lg lg:rounded-xl bg-emerald-500/15 text-base shrink-0"
+                >✈️</span
+              >
+              <span class="text-white/80 group-hover:text-white transition-colors">
+                {{ t("applyForm.contacts.telegram") }}
+              </span>
             </a>
             <a
               :href="`mailto:${t('applyForm.contacts.email')}`"
-              class="flex items-center gap-3 text-white/90 hover:text-white hover:translate-x-1 transition-all duration-300"
+              class="group flex items-center gap-3 bg-white/5 hover:bg-white/10 border border-white/10 rounded-xl lg:rounded-2xl px-3.5 py-2.5 lg:px-4 lg:py-3 transition-all duration-300 hover:translate-x-0 lg:hover:translate-x-1"
             >
-              <span class="text-white/50">✉️</span>
-              {{ t("applyForm.contacts.email") }}
+              <span
+                class="flex items-center justify-center w-8 h-8 lg:w-9 lg:h-9 rounded-lg lg:rounded-xl bg-emerald-500/15 text-base shrink-0"
+                >✉️</span
+              >
+              <span class="text-white/80 group-hover:text-white transition-colors">
+                {{ t("applyForm.contacts.email") }}
+              </span>
             </a>
           </div>
         </div>
 
-        <!-- O'ng taraf: ko'p bosqichli forma -->
+        <!-- ======= O'NG TARAF: Ko'p bosqichli forma ======= -->
         <div
           :class="[
-            'bg-white rounded-2xl shadow-xl p-5 sm:p-7 transition-all duration-700 delay-400 transform flex flex-col h-full overflow-hidden',
+            'bg-white rounded-2xl sm:rounded-3xl shadow-2xl shadow-black/20 p-4 sm:p-6 lg:p-8 transition-all duration-700 delay-400 transform flex flex-col',
             isVisible
               ? 'opacity-100 translate-x-0'
               : 'opacity-0 translate-x-10',
           ]"
         >
-          <!-- Stepper -->
-          <div class="flex items-center mb-6 flex-shrink-0 overflow-hidden">
-            <div class="flex items-center w-full">
-              <template v-for="(step, i) in stepLabels" :key="step">
-                <div class="flex flex-col items-center shrink-0 p-2">
-                  <div
-                    class="w-7 h-7 sm:w-8 sm:h-8 rounded-full flex items-center justify-center text-xs sm:text-sm font-semibold shrink-0 transition-all duration-500"
-                    :class="{
-                      'bg-emerald-500 text-white scale-105':
-                        i + 1 < currentStep,
-                      'bg-emerald-600 text-white ring-4 ring-emerald-100 scale-110':
-                        i + 1 === currentStep,
-                      'bg-gray-100 text-gray-400': i + 1 > currentStep,
-                    }"
-                  >
-                    <span v-if="i + 1 < currentStep">✓</span>
-                    <span v-else>{{ i + 1 }}</span>
-                  </div>
-                  <span
-                    class="mt-1.5 text-[10px] sm:text-xs whitespace-nowrap transition-all duration-300"
-                    :class="{
-                      'text-gray-900 font-medium scale-105':
-                        i + 1 === currentStep,
-                      'text-gray-400': i + 1 !== currentStep,
-                    }"
-                  >
-                    {{ step }}
-                  </span>
-                </div>
-                <div
-                  v-if="i < stepLabels.length - 1"
-                  class="flex-1 h-px mx-1.5 sm:mx-2 mb-4 transition-all duration-500 shrink-0"
-                  :class="
-                    i + 1 < currentStep ? 'bg-emerald-300' : 'bg-gray-200'
-                  "
-                />
-              </template>
+          <!-- ---- Stepper: mobil (progress bar) ---- -->
+          <div class="sm:hidden mb-5">
+            <div class="flex items-center justify-between mb-2">
+              <span class="text-sm font-semibold text-gray-900">
+                {{ stepLabels[currentStep - 1] }}
+              </span>
+              <span class="text-xs font-medium text-gray-400">
+                {{ currentStep }}/{{ stepLabels.length }}
+              </span>
+            </div>
+            <div class="h-1.5 w-full bg-gray-100 rounded-full overflow-hidden">
+              <div
+                class="h-full bg-gradient-to-r from-emerald-500 to-emerald-600 rounded-full transition-all duration-500 ease-out"
+                :style="{ width: progressPercent + '%' }"
+              />
             </div>
           </div>
 
-          <p class="text-xs text-gray-400 mb-5 flex-shrink-0">
+          <!-- ---- Stepper: desktop (doirachalar) ---- -->
+          <div class="hidden sm:flex items-center mb-6 lg:mb-7">
+            <template v-for="(step, i) in stepLabels" :key="step">
+              <div class="flex flex-col items-center shrink-0">
+                <div
+                  class="w-9 h-9 lg:w-10 lg:h-10 rounded-full flex items-center justify-center text-sm font-bold transition-all duration-500"
+                  :class="{
+                    'bg-emerald-500 text-white shadow-md shadow-emerald-500/30':
+                      i + 1 < currentStep,
+                    'bg-emerald-600 text-white ring-4 ring-emerald-100 scale-110 shadow-lg shadow-emerald-600/30':
+                      i + 1 === currentStep,
+                    'bg-gray-100 text-gray-400': i + 1 > currentStep,
+                  }"
+                >
+                  <span v-if="i + 1 < currentStep">✓</span>
+                  <span v-else>{{ i + 1 }}</span>
+                </div>
+                <span
+                  class="mt-2 text-[11px] lg:text-xs whitespace-nowrap transition-all duration-300"
+                  :class="
+                    i + 1 === currentStep
+                      ? 'text-gray-900 font-semibold'
+                      : 'text-gray-400'
+                  "
+                >
+                  {{ step }}
+                </span>
+              </div>
+              <div
+                v-if="i < stepLabels.length - 1"
+                class="flex-1 h-0.5 mx-2 lg:mx-3 mb-5 rounded-full transition-all duration-500"
+                :class="
+                  i + 1 < currentStep
+                    ? 'bg-gradient-to-r from-emerald-500 to-emerald-400'
+                    : 'bg-gray-200'
+                "
+              />
+            </template>
+          </div>
+
+          <p class="text-[11px] sm:text-xs text-gray-400 mb-4 sm:mb-5">
             {{ t("applyForm.requiredNote") }}
           </p>
 
-          <!-- Maydonlar -->
-          <div class="relative overflow-hidden flex-1 min-h-0">
+          <!-- ---- Bosqich maydonlari ---- -->
+          <div class="relative flex-1 min-h-0">
             <Transition name="fade-slide" mode="out-in">
-              <!-- 1-BOSQICH: Biznes -->
+              <!-- ======== 1-BOSQICH: Biznes ======== -->
               <div
                 v-if="currentStep === 1"
                 key="step1"
-                class="flex flex-col gap-4 h-full overflow-y-auto pr-2"
+                class="flex flex-col gap-4"
               >
                 <div>
-                  <label
-                    class="block text-xs sm:text-sm font-medium text-gray-700 mb-1.5"
-                  >
+                  <label :class="labelClass">
                     {{ t("applyForm.step1Fields.businessName") }}
                   </label>
                   <input
                     v-model="form.name"
                     type="text"
                     placeholder="Masalan: Baraka Restoran"
-                    :class="[
-                      'w-full rounded-lg text-slate-800 border px-3.5 py-2.5 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-2 transition-all',
-                      fieldErrors.name
-                        ? 'border-red-500 focus:ring-red-500/40 focus:border-red-500'
-                        : 'border-gray-200 focus:ring-emerald-500/40 focus:border-emerald-500',
-                    ]"
+                    :class="fieldClass('name')"
                   />
-                  <p v-if="fieldErrors.name" class="text-xs text-red-500 mt-1">
+                  <p v-if="fieldErrors.name" :class="errorClass">
                     {{ fieldErrors.name }}
                   </p>
                 </div>
 
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
-                    <label
-                      class="block text-xs sm:text-sm font-medium text-gray-700 mb-1.5"
-                    >
+                    <label :class="labelClass">
                       {{ t("applyForm.step1Fields.category") }}
                     </label>
                     <select
                       v-model="form.category"
-                      :class="[
-                        'w-full rounded-lg border px-3.5 py-2.5 text-sm text-gray-700 focus:outline-none focus:ring-2 transition-all',
-                        fieldErrors.category
-                          ? 'border-red-500 focus:ring-red-500/40 focus:border-red-500'
-                          : 'border-gray-200 focus:ring-emerald-500/40 focus:border-emerald-500',
-                      ]"
+                      :class="fieldClass('category', true)"
                     >
                       <option value="">
                         {{ t("applyForm.step1Fields.categoryPlaceholder") }}
@@ -203,30 +251,22 @@
                         {{ cat.name }}
                       </option>
                     </select>
-                    <p
-                      v-if="fieldErrors.category"
-                      class="text-xs text-red-500 mt-1"
-                    >
+                    <p v-if="fieldErrors.category" :class="errorClass">
                       {{ fieldErrors.category }}
                     </p>
                   </div>
                   <div>
-                    <label
-                      class="block text-xs sm:text-sm font-medium text-gray-700 mb-1.5"
-                    >
+                    <label :class="labelClass">
                       {{ t("applyForm.step1Fields.businessType") }}
                     </label>
                     <select
                       v-model="form.type"
-                      :class="[
-                        'w-full rounded-lg border px-3.5 py-2.5 text-sm text-gray-700 focus:outline-none focus:ring-2 transition-all',
-                        fieldErrors.type
-                          ? 'border-red-500 focus:ring-red-500/40 focus:border-red-500'
-                          : 'border-gray-200 focus:ring-emerald-500/40 focus:border-emerald-500',
-                      ]"
+                      :class="fieldClass('type', true)"
                     >
                       <option value="">
-                        {{ t("applyForm.step1Fields.businessTypePlaceholder") }}
+                        {{
+                          t("applyForm.step1Fields.businessTypePlaceholder")
+                        }}
                       </option>
                       <option
                         v-for="tp in businessTypeOptions"
@@ -236,181 +276,136 @@
                         {{ tp.label }}
                       </option>
                     </select>
-                    <p
-                      v-if="fieldErrors.type"
-                      class="text-xs text-red-500 mt-1"
-                    >
+                    <p v-if="fieldErrors.type" :class="errorClass">
                       {{ fieldErrors.type }}
                     </p>
                   </div>
                 </div>
 
                 <div>
-                  <label
-                    class="block text-xs sm:text-sm font-medium text-gray-700 mb-1.5"
-                  >
+                  <label :class="labelClass">
                     {{ t("applyForm.step1Fields.responsiblePerson") }}
                   </label>
                   <input
                     v-model="form.contact"
                     type="text"
                     placeholder="To'liq ism sharif"
-                    :class="[
-                      'w-full rounded-lg border text-slate-800 px-3.5 py-2.5 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-2 transition-all',
-                      fieldErrors.contact
-                        ? 'border-red-500 focus:ring-red-500/40 focus:border-red-500'
-                        : 'border-gray-200 focus:ring-emerald-500/40 focus:border-emerald-500',
-                    ]"
+                    :class="fieldClass('contact')"
                   />
-                  <p
-                    v-if="fieldErrors.contact"
-                    class="text-xs text-red-500 mt-1"
-                  >
+                  <p v-if="fieldErrors.contact" :class="errorClass">
                     {{ fieldErrors.contact }}
                   </p>
                 </div>
 
                 <div>
-                  <label
-                    class="block text-xs sm:text-sm font-medium text-gray-700 mb-1.5"
-                  >
+                  <label :class="labelClass">
                     {{ t("applyForm.step1Fields.aboutBusiness") }}
                   </label>
-                  <input
+                  <textarea
                     v-model="form.about"
-                    type="text"
+                    rows="2"
                     placeholder="Faoliyatingiz haqida 1-2 jumla..."
-                    :class="[
-                      'w-full rounded-lg text-slate-800 border px-3.5 py-2.5 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-2 transition-all',
-                      fieldErrors.about
-                        ? 'border-red-500 focus:ring-red-500/40 focus:border-red-500'
-                        : 'border-gray-200 focus:ring-emerald-500/40 focus:border-emerald-500',
-                    ]"
+                    :class="fieldClass('about') + ' resize-none'"
                   />
-                  <p
-                    v-if="fieldErrors.about"
-                    class="text-xs text-red-500 mt-1"
-                  >
+                  <p v-if="fieldErrors.about" :class="errorClass">
                     {{ fieldErrors.about }}
                   </p>
                 </div>
               </div>
 
-              <!-- 2-BOSQICH: Kontakt -->
+              <!-- ======== 2-BOSQICH: Kontakt ======== -->
               <div
                 v-else-if="currentStep === 2"
                 key="step2"
-                class="flex flex-col gap-4 h-full overflow-y-auto pr-2"
+                class="flex flex-col gap-4"
               >
-                <div>
-                  <label
-                    class="block text-xs sm:text-sm font-medium text-gray-700 mb-1.5"
-                  >
-                    {{ t("applyForm.step2Fields.phone") }}
-                  </label>
-                  <input
-                    v-model="form.phone"
-                    type="tel"
-                    placeholder="+998 90 000 00 00"
-                    :class="[
-                      'w-full rounded-lg text-slate-800 border px-3.5 py-2.5 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-2 transition-all',
-                      fieldErrors.phone
-                        ? 'border-red-500 focus:ring-red-500/40 focus:border-red-500'
-                        : 'border-gray-200 focus:ring-emerald-500/40 focus:border-emerald-500',
-                    ]"
-                  />
-                  <p v-if="fieldErrors.phone" class="text-xs text-red-500 mt-1">
-                    {{ fieldErrors.phone }}
-                  </p>
-                </div>
-
-                <div>
-                  <label
-                    class="block text-xs sm:text-sm font-medium text-gray-700 mb-1.5"
-                  >
-                    {{ t("applyForm.step2Fields.email") }}
-                  </label>
-                  <input
-                    v-model="form.email"
-                    type="email"
-                    placeholder="info@biznes.uz"
-                    :class="[
-                      'w-full rounded-lg border text-slate-800 px-3.5 py-2.5 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-2 transition-all',
-                      fieldErrors.email
-                        ? 'border-red-500 focus:ring-red-500/40 focus:border-red-500'
-                        : 'border-gray-200 focus:ring-emerald-500/40 focus:border-emerald-500',
-                    ]"
-                  />
-                  <p v-if="fieldErrors.email" class="text-xs text-red-500 mt-1">
-                    {{ fieldErrors.email }}
-                  </p>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div>
+                    <label :class="labelClass">
+                      {{ t("applyForm.step2Fields.phone") }}
+                    </label>
+                    <input
+                      v-model="form.phone"
+                      type="tel"
+                      inputmode="tel"
+                      placeholder="+998 90 000 00 00"
+                      :class="fieldClass('phone')"
+                    />
+                    <p v-if="fieldErrors.phone" :class="errorClass">
+                      {{ fieldErrors.phone }}
+                    </p>
+                  </div>
+                  <div>
+                    <label :class="labelClass">
+                      {{ t("applyForm.step2Fields.email") }}
+                    </label>
+                    <input
+                      v-model="form.email"
+                      type="email"
+                      inputmode="email"
+                      placeholder="info@biznes.uz"
+                      :class="fieldClass('email')"
+                    />
+                    <p v-if="fieldErrors.email" :class="errorClass">
+                      {{ fieldErrors.email }}
+                    </p>
+                  </div>
                 </div>
 
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
-                    <label
-                      class="block text-xs sm:text-sm font-medium text-gray-700 mb-1.5"
-                    >
+                    <label :class="labelClass">
                       {{ t("applyForm.step2Fields.instagram") }}
                     </label>
                     <input
                       v-model="form.instagram"
                       type="text"
                       placeholder="@biznes.uz"
-                      class="w-full rounded-lg text-slate-800 border border-gray-200 px-3.5 py-2.5 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-emerald-500/40 focus:border-emerald-500 transition-all"
+                      :class="fieldClass()"
                     />
                   </div>
                   <div>
-                    <label
-                      class="block text-xs sm:text-sm font-medium text-gray-700 mb-1.5"
-                    >
+                    <label :class="labelClass">
                       {{ t("applyForm.step2Fields.telegramChannel") }}
                     </label>
                     <input
                       v-model="form.telegram"
                       type="text"
                       placeholder="t.me/biznes.uz"
-                      class="w-full rounded-lg border text-slate-800 border-gray-200 px-3.5 py-2.5 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-emerald-500/40 focus:border-emerald-500 transition-all"
+                      :class="fieldClass()"
                     />
                   </div>
                 </div>
 
                 <div>
-                  <label
-                    class="block text-xs sm:text-sm font-medium text-gray-700 mb-1.5"
-                  >
+                  <label :class="labelClass">
                     {{ t("applyForm.step2Fields.website") }}
                   </label>
                   <input
                     v-model="form.website"
                     type="text"
+                    inputmode="url"
                     placeholder="www.biznes.uz"
-                    class="w-full rounded-lg border border-gray-200 text-slate-800 px-3.5 py-2.5 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-emerald-500/40 focus:border-emerald-500 transition-all"
+                    :class="fieldClass()"
                   />
                 </div>
               </div>
 
-              <!-- 3-BOSQICH: Joylashuv -->
+              <!-- ======== 3-BOSQICH: Joylashuv ======== -->
               <div
                 v-else-if="currentStep === 3"
                 key="step3"
-                class="flex flex-col gap-4 h-full overflow-y-auto pr-2"
+                class="flex flex-col gap-4"
               >
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <!-- Viloyat -->
                   <div>
-                    <label
-                      class="block text-xs sm:text-sm font-medium text-gray-700 mb-1.5"
-                    >
+                    <label :class="labelClass">
                       {{ t("applyForm.step3Fields.region") }}
                     </label>
                     <select
                       v-model="form.viloyat"
-                      :class="[
-                        'w-full rounded-lg border px-3.5 py-2.5 text-sm text-gray-700 focus:outline-none focus:ring-2 transition-all',
-                        fieldErrors.viloyat
-                          ? 'border-red-500 focus:ring-red-500/40 focus:border-red-500'
-                          : 'border-gray-200 focus:ring-emerald-500/40 focus:border-emerald-500',
-                      ]"
+                      :class="fieldClass('viloyat', true)"
                     >
                       <option value="">Tanlang</option>
                       <option
@@ -421,84 +416,139 @@
                         {{ v.label }}
                       </option>
                     </select>
-                    <p
-                      v-if="fieldErrors.viloyat"
-                      class="text-xs text-red-500 mt-1"
-                    >
+                    <p v-if="fieldErrors.viloyat" :class="errorClass">
                       {{ fieldErrors.viloyat }}
                     </p>
                   </div>
+
+                  <!-- Tuman: viloyatga qarab dinamik -->
                   <div>
-                    <label
-                      class="block text-xs sm:text-sm font-medium text-gray-700 mb-1.5"
-                    >
+                    <label :class="labelClass">
                       {{ t("applyForm.step3Fields.cityDistrict") }}
                     </label>
                     <select
                       v-model="form.tuman"
-                      :class="[
-                        'w-full rounded-lg border px-3.5 py-2.5 text-sm text-gray-700 focus:outline-none focus:ring-2 transition-all',
-                        fieldErrors.tuman
-                          ? 'border-red-500 focus:ring-red-500/40 focus:border-red-500'
-                          : 'border-gray-200 focus:ring-emerald-500/40 focus:border-emerald-500',
-                      ]"
+                      :disabled="!form.viloyat"
+                      :class="
+                        fieldClass('tuman', true) +
+                        ' disabled:bg-gray-50 disabled:text-gray-400 disabled:cursor-not-allowed'
+                      "
                     >
-                      <option value="">Tanlang</option>
+                      <option value="">
+                        {{
+                          form.viloyat ? "Tanlang" : "Avval viloyatni tanlang"
+                        }}
+                      </option>
                       <option v-for="tm in tumanOptions" :key="tm" :value="tm">
                         {{ tm }}
                       </option>
                     </select>
-                    <p
-                      v-if="fieldErrors.tuman"
-                      class="text-xs text-red-500 mt-1"
-                    >
+                    <p v-if="fieldErrors.tuman" :class="errorClass">
                       {{ fieldErrors.tuman }}
                     </p>
                   </div>
                 </div>
 
+                <!-- To'liq manzil + qidiruv -->
                 <div>
-                  <label
-                    class="block text-xs sm:text-sm font-medium text-gray-700 mb-1.5"
-                  >
+                  <label :class="labelClass">
                     {{ t("applyForm.step3Fields.fullAddress") }}
                   </label>
-                  <input
-                    v-model="form.address"
-                    type="text"
-                    :placeholder="
-                      t('applyForm.step3Fields.fullAddressPlaceholder')
-                    "
-                    :class="[
-                      'w-full rounded-lg border text-slate-800 px-3.5 py-2.5 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-2 transition-all',
-                      fieldErrors.address
-                        ? 'border-red-500 focus:ring-red-500/40 focus:border-red-500'
-                        : 'border-gray-200 focus:ring-emerald-500/40 focus:border-emerald-500',
-                    ]"
-                  />
-                  <p
-                    v-if="fieldErrors.address"
-                    class="text-xs text-red-500 mt-1"
-                  >
+                  <div class="flex gap-2">
+                    <input
+                      v-model="form.address"
+                      type="text"
+                      :placeholder="
+                        t('applyForm.step3Fields.fullAddressPlaceholder')
+                      "
+                      @keydown.enter.prevent="searchAddressOnMap"
+                      :class="fieldClass('address')"
+                    />
+                    <button
+                      type="button"
+                      @click="searchAddressOnMap"
+                      :disabled="isSearchingAddress"
+                      class="shrink-0 inline-flex items-center justify-center w-11 sm:w-12 rounded-xl bg-gradient-to-b from-emerald-500 to-emerald-600 hover:from-emerald-600 hover:to-emerald-700 text-white text-base transition-all duration-300 active:scale-95 shadow-md shadow-emerald-600/25 disabled:opacity-60"
+                      :title="tt('applyForm.step3Fields.searchOnMap', 'Xaritadan qidirish')"
+                    >
+                      <span
+                        v-if="isSearchingAddress"
+                        class="animate-spin text-sm"
+                        >⏳</span
+                      >
+                      <span v-else>🔍</span>
+                    </button>
+                  </div>
+                  <p v-if="fieldErrors.address" :class="errorClass">
                     {{ fieldErrors.address }}
                   </p>
                 </div>
 
+                <!-- Xarita -->
+                <div>
+                  <label :class="labelClass">
+                    {{
+                      tt(
+                        "applyForm.step3Fields.mapLabel",
+                        "Xaritada aniq joylashuvni belgilang *",
+                      )
+                    }}
+                  </label>
+                  <div
+                    :class="[
+                      'relative w-full h-48 sm:h-56 lg:h-64 rounded-xl sm:rounded-2xl border overflow-hidden bg-gray-50 transition-all duration-300',
+                      fieldErrors.location
+                        ? 'border-red-400 ring-2 ring-red-400/20'
+                        : 'border-gray-200',
+                    ]"
+                  >
+                    <div ref="mapRef" class="absolute inset-0" />
+                    <!-- Xarita yuklanayotganda skeleton -->
+                    <div
+                      v-if="!mapReady"
+                      class="absolute inset-0 flex flex-col items-center justify-center gap-2 bg-gray-50"
+                    >
+                      <span class="text-2xl animate-pulse">🗺️</span>
+                      <span class="text-xs text-gray-400">
+                        {{
+                          tt(
+                            "applyForm.step3Fields.mapLoading",
+                            "Xarita yuklanmoqda...",
+                          )
+                        }}
+                      </span>
+                    </div>
+                  </div>
+
+                  <p
+                    v-if="foundAddress"
+                    class="text-xs text-emerald-700 bg-emerald-50 border border-emerald-100 rounded-lg px-3 py-2 mt-2 flex items-start gap-1.5"
+                  >
+                    <span class="shrink-0">📍</span>
+                    <span>{{ foundAddress }}</span>
+                  </p>
+                  <p class="text-[11px] sm:text-xs text-gray-400 mt-1.5">
+                    {{
+                      tt(
+                        "applyForm.step3Fields.mapHint",
+                        "Markerni surib yoki xaritaga bosib binoyingizning aniq joyini belgilang.",
+                      )
+                    }}
+                  </p>
+                  <p v-if="fieldErrors.location" :class="errorClass">
+                    {{ fieldErrors.location }}
+                  </p>
+                </div>
+
+                <!-- Ish kunlari va ish vaqti -->
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
-                    <label
-                      class="block text-xs sm:text-sm font-medium text-gray-700 mb-1.5"
-                    >
+                    <label :class="labelClass">
                       {{ t("applyForm.step3Fields.workingDays") }}
                     </label>
                     <select
                       v-model="form.ish_kunlari"
-                      :class="[
-                        'w-full rounded-lg border px-3.5 py-2.5 text-sm text-gray-700 focus:outline-none focus:ring-2 transition-all',
-                        fieldErrors.ish_kunlari
-                          ? 'border-red-500 focus:ring-red-500/40 focus:border-red-500'
-                          : 'border-gray-200 focus:ring-emerald-500/40 focus:border-emerald-500',
-                      ]"
+                      :class="fieldClass('ish_kunlari', true)"
                     >
                       <option value="">Tanlang</option>
                       <option
@@ -509,65 +559,59 @@
                         {{ k.label }}
                       </option>
                     </select>
-                    <p
-                      v-if="fieldErrors.ish_kunlari"
-                      class="text-xs text-red-500 mt-1"
-                    >
+                    <p v-if="fieldErrors.ish_kunlari" :class="errorClass">
                       {{ fieldErrors.ish_kunlari }}
                     </p>
                   </div>
+
+                  <!-- User o'zi kiritadigan ish vaqti -->
                   <div>
-                    <label
-                      class="block text-xs sm:text-sm font-medium text-gray-700 mb-1.5"
-                    >
+                    <label :class="labelClass">
                       {{ t("applyForm.step3Fields.workingHours") }}
                     </label>
-                    <select
-                      v-model="form.ish_vaqti"
-                      :class="[
-                        'w-full rounded-lg border px-3.5 py-2.5 text-sm text-gray-700 focus:outline-none focus:ring-2 transition-all',
-                        fieldErrors.ish_vaqti
-                          ? 'border-red-500 focus:ring-red-500/40 focus:border-red-500'
-                          : 'border-gray-200 focus:ring-emerald-500/40 focus:border-emerald-500',
-                      ]"
-                    >
-                      <option value="">Tanlang</option>
-                      <option v-for="v in ishVaqtiOptions" :key="v" :value="v">
-                        {{ v }}
-                      </option>
-                    </select>
-                    <p
-                      v-if="fieldErrors.ish_vaqti"
-                      class="text-xs text-red-500 mt-1"
-                    >
+                    <div class="flex items-center gap-2">
+                      <input
+                        v-model="form.ish_vaqti_from"
+                        type="time"
+                        :class="fieldClass('ish_vaqti') + ' text-center'"
+                      />
+                      <span class="text-gray-300 font-medium shrink-0">—</span>
+                      <input
+                        v-model="form.ish_vaqti_to"
+                        type="time"
+                        :class="fieldClass('ish_vaqti') + ' text-center'"
+                      />
+                    </div>
+                    <p v-if="fieldErrors.ish_vaqti" :class="errorClass">
                       {{ fieldErrors.ish_vaqti }}
                     </p>
                   </div>
                 </div>
 
                 <div
-                  class="bg-emerald-50 border border-emerald-100 text-emerald-700 text-xs p-3 rounded-lg animate-pulse shrink-0"
+                  class="bg-emerald-50 border border-emerald-100 text-emerald-700 text-[11px] sm:text-xs px-3.5 py-3 rounded-xl flex items-start gap-2"
                 >
-                  {{ t("applyForm.step3Fields.locationNote") }}
+                  <span class="shrink-0">💡</span>
+                  <span>{{ t("applyForm.step3Fields.locationNote") }}</span>
                 </div>
               </div>
 
-              <!-- 4-BOSQICH: Chegirma -->
+              <!-- ======== 4-BOSQICH: Chegirma ======== -->
               <div
                 v-else-if="currentStep === 4"
                 key="step4"
-                class="flex flex-col gap-4 h-full overflow-y-auto pr-2"
+                class="flex flex-col gap-4"
               >
                 <div>
-                  <label
-                    class="block text-xs sm:text-sm font-medium text-gray-700 mb-2"
-                  >
+                  <label :class="labelClass + ' mb-2'">
                     {{ t("applyForm.step4Fields.discountPercent") }}
                   </label>
                   <div
                     :class="[
-                      'flex flex-wrap gap-2 p-1 rounded-lg transition-all',
-                      fieldErrors.discount ? 'ring-1 ring-red-500' : '',
+                      'flex flex-wrap gap-2 rounded-xl transition-all',
+                      fieldErrors.discount
+                        ? 'ring-2 ring-red-400/30 p-1.5'
+                        : '',
                     ]"
                   >
                     <button
@@ -576,187 +620,194 @@
                       type="button"
                       @click="form.discount = opt.val"
                       :class="[
-                        'px-4 py-1.5 text-sm font-medium rounded-full transition-all duration-300 border transform active:scale-95 shrink-0',
+                        'px-4 sm:px-5 py-2 text-sm font-semibold rounded-full transition-all duration-300 border transform active:scale-95',
                         form.discount === opt.val
-                          ? 'bg-emerald-600 text-white border-emerald-600 scale-105 shadow-sm'
-                          : 'bg-white text-gray-700 border-gray-200 hover:border-gray-300',
+                          ? 'bg-gradient-to-b from-emerald-500 to-emerald-600 text-white border-emerald-600 scale-105 shadow-md shadow-emerald-600/25'
+                          : 'bg-white text-gray-600 border-gray-200 hover:border-emerald-300 hover:text-emerald-700',
                       ]"
                     >
                       {{ opt.label }}
                     </button>
                   </div>
-                  <p class="text-xs text-gray-500 mt-1">
+                  <p class="text-[11px] sm:text-xs text-gray-400 mt-1.5">
                     {{ t("applyForm.step4Fields.discountRecommendation") }}
                   </p>
-                  <p
-                    v-if="fieldErrors.discount"
-                    class="text-xs text-red-500 mt-1"
-                  >
+                  <p v-if="fieldErrors.discount" :class="errorClass">
                     {{ fieldErrors.discount }}
                   </p>
                 </div>
 
-                <div>
-                  <label
-                    class="block text-xs sm:text-sm font-medium text-gray-700 mb-1.5"
-                  >
-                    {{ t("applyForm.step4Fields.minPurchaseAmount") }}
-                  </label>
-                  <input
-                    v-model.number="form.min_sum"
-                    type="number"
-                    placeholder="50 000"
-                    :class="[
-                      'w-full rounded-lg border text-slate-800 px-3.5 py-2.5 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-2 transition-all',
-                      fieldErrors.min_sum
-                        ? 'border-red-500 focus:ring-red-500/40 focus:border-red-500'
-                        : 'border-gray-200 focus:ring-emerald-500/40 focus:border-emerald-500',
-                    ]"
-                  />
-                  <p
-                    v-if="fieldErrors.min_sum"
-                    class="text-xs text-red-500 mt-1"
-                  >
-                    {{ fieldErrors.min_sum }}
-                  </p>
-                </div>
-
-                <div>
-                  <label
-                    class="block text-xs sm:text-sm font-medium text-gray-700 mb-1.5"
-                  >
-                    {{ t("applyForm.step4Fields.additionalType") }}
-                  </label>
-                  <select
-                    v-model="form.additional_type"
-                    :class="[
-                      'w-full rounded-lg border px-3.5 py-2.5 text-sm text-gray-700 focus:outline-none focus:ring-2 transition-all',
-                      fieldErrors.additional_type
-                        ? 'border-red-500 focus:ring-red-500/40 focus:border-red-500'
-                        : 'border-gray-200 focus:ring-emerald-500/40 focus:border-emerald-500',
-                    ]"
-                  >
-                    <option value="">Tanlang</option>
-                    <option
-                      v-for="a in additionalTypeOptions"
-                      :key="a.value"
-                      :value="a.value"
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div>
+                    <label :class="labelClass">
+                      {{ t("applyForm.step4Fields.minPurchaseAmount") }}
+                    </label>
+                    <div class="relative">
+                      <input
+                        v-model.number="form.min_sum"
+                        type="number"
+                        inputmode="numeric"
+                        placeholder="50 000"
+                        :class="fieldClass('min_sum') + ' pr-14'"
+                      />
+                      <span
+                        class="absolute right-4 top-1/2 -translate-y-1/2 text-xs text-gray-400 font-medium pointer-events-none"
+                        >so'm</span
+                      >
+                    </div>
+                    <p v-if="fieldErrors.min_sum" :class="errorClass">
+                      {{ fieldErrors.min_sum }}
+                    </p>
+                  </div>
+                  <div>
+                    <label :class="labelClass">
+                      {{ t("applyForm.step4Fields.additionalType") }}
+                    </label>
+                    <select
+                      v-model="form.additional_type"
+                      :class="fieldClass('additional_type', true)"
                     >
-                      {{ a.label }}
-                    </option>
-                  </select>
-                  <p
-                    v-if="fieldErrors.additional_type"
-                    class="text-xs text-red-500 mt-1"
-                  >
-                    {{ fieldErrors.additional_type }}
-                  </p>
+                      <option value="">Tanlang</option>
+                      <option
+                        v-for="a in additionalTypeOptions"
+                        :key="a.value"
+                        :value="a.value"
+                      >
+                        {{ a.label }}
+                      </option>
+                    </select>
+                    <p v-if="fieldErrors.additional_type" :class="errorClass">
+                      {{ fieldErrors.additional_type }}
+                    </p>
+                  </div>
                 </div>
 
                 <div
-                  class="bg-emerald-50 border border-emerald-100 text-emerald-700 text-xs p-3 rounded-lg shrink-0"
+                  class="bg-emerald-50 border border-emerald-100 text-emerald-700 text-[11px] sm:text-xs px-3.5 py-3 rounded-xl flex items-start gap-2"
                 >
-                  {{ t("applyForm.submitNote") }}
+                  <span class="shrink-0">✅</span>
+                  <span>{{ t("applyForm.submitNote") }}</span>
                 </div>
               </div>
             </Transition>
           </div>
 
-          <!-- Xatolik xabari -->
-          <p
-            v-if="errorMessage"
-            class="text-xs text-red-500 mt-3 flex-shrink-0"
-          >
-            {{ errorMessage }}
-          </p>
+          <!-- ---- Umumiy xatolik xabari ---- -->
+          <Transition name="fade-slide">
+            <p
+              v-if="errorMessage"
+              class="text-xs text-red-600 bg-red-50 border border-red-100 rounded-xl px-3.5 py-2.5 mt-4 flex items-start gap-2"
+            >
+              <span class="shrink-0">⚠️</span>
+              <span>{{ errorMessage }}</span>
+            </p>
+          </Transition>
 
-          <!-- Pastki navigatsiya -->
+          <!-- ---- Pastki navigatsiya ---- -->
           <div
-            class="flex items-center justify-between mt-6 flex-shrink-0 pt-4 border-t border-gray-100"
+            class="flex items-center justify-between gap-3 mt-5 sm:mt-6 pt-4 sm:pt-5 border-t border-gray-100"
           >
             <button
               v-if="currentStep > 1"
               type="button"
               @click="prevStep"
               :disabled="isSubmitting"
-              class="flex items-center gap-1 text-sm text-gray-500 hover:text-emerald-600 transition-all duration-200 transform hover:-translate-x-1 disabled:opacity-50"
+              class="inline-flex items-center gap-1.5 text-sm font-medium text-gray-500 hover:text-emerald-700 hover:bg-emerald-50 rounded-full px-4 py-2.5 transition-all duration-200 disabled:opacity-50"
             >
               ← {{ t("applyForm.back") }}
             </button>
             <span v-else />
-            <span class="text-xs text-gray-400"
-              >{{ currentStep }}/{{ stepLabels.length }}
+
+            <span class="hidden sm:inline text-xs text-gray-400">
+              {{ currentStep }}/{{ stepLabels.length }}
               {{ t("applyForm.step") }}
             </span>
+
             <button
               type="button"
               @click="nextStep"
               :disabled="isSubmitting"
-              class="inline-flex items-center gap-2 rounded-full bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold px-5 py-1 transition-all duration-300 transform active:scale-95 shadow-md hover:shadow-lg disabled:opacity-60 disabled:cursor-not-allowed"
+              class="group inline-flex items-center gap-2 rounded-full bg-gradient-to-b from-emerald-500 to-emerald-600 hover:from-emerald-600 hover:to-emerald-700 text-white text-sm font-semibold px-6 sm:px-7 py-2.5 sm:py-3 transition-all duration-300 transform active:scale-95 shadow-lg shadow-emerald-600/30 hover:shadow-emerald-600/40 disabled:opacity-60 disabled:cursor-not-allowed"
             >
-              {{
-                isSubmitting
-                  ? "..."
-                  : currentStep < stepLabels.length
+              <span
+                v-if="isSubmitting"
+                class="inline-block w-4 h-4 border-2 border-white/40 border-t-white rounded-full animate-spin"
+              />
+              <template v-else>
+                {{
+                  currentStep < stepLabels.length
                     ? t("applyForm.nextButton")
                     : t("applyForm.done")
-              }}
-              <span aria-hidden="true" class="transition-transform duration-300"
-                >→</span
-              >
+                }}
+                <span
+                  aria-hidden="true"
+                  class="transition-transform duration-300 group-hover:translate-x-0.5"
+                  >→</span
+                >
+              </template>
             </button>
           </div>
         </div>
       </div>
 
-      <!-- Muvaffaqiyat ekrani -->
-      <div
-        v-else
-        class="flex items-center justify-center min-h-96 overflow-hidden"
-      >
-        <div class="animate-bounce-in">
+      <!-- ============ MUVAFFAQIYAT EKRANI ============ -->
+      <div v-else class="flex-1 flex items-center justify-center py-10">
+        <div class="animate-bounce-in w-full max-w-md">
           <div
-            class="bg-white rounded-2xl shadow-xl p-8 text-center w-full max-w-sm"
+            class="relative bg-white rounded-2xl sm:rounded-3xl shadow-2xl shadow-black/20 p-6 sm:p-10 text-center overflow-hidden"
           >
+            <!-- Yuqori dekorativ chiziq -->
             <div
-              class="mx-auto w-14 h-14 bg-emerald-500 rounded-full flex items-center justify-center mb-4 animate-scale-up"
+              class="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-emerald-400 via-emerald-500 to-teal-400"
+            />
+
+            <div
+              class="mx-auto w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-gradient-to-b from-emerald-400 to-emerald-600 flex items-center justify-center mb-5 animate-scale-up shadow-xl shadow-emerald-500/30 ring-8 ring-emerald-50"
             >
-              <span class="text-white text-3xl">✓</span>
+              <span class="text-white text-3xl sm:text-4xl">✓</span>
             </div>
-            <h3 class="text-xl text-slate-800 font-semibold mb-2">
+
+            <h3
+              class="text-xl sm:text-2xl text-slate-800 font-bold mb-2"
+            >
               {{ t("applyForm.title2") }}
             </h3>
-            <p class="text-sm text-gray-600 mb-4">
+            <p class="text-sm text-gray-500 leading-relaxed mb-5">
               {{ t("applyForm.subtitle") }}
             </p>
 
             <div
-              class="flex items-center justify-center text-slate-800 gap-2 text-sm mb-5"
+              class="flex flex-wrap items-center justify-center gap-2.5 mb-6"
             >
               <span
-                >{{ t("applyForm.num") }}
-                <span class="font-mono font-semibold"
+                class="inline-flex items-center gap-1.5 bg-gray-50 border border-gray-100 text-slate-700 text-sm px-3.5 py-1.5 rounded-full"
+              >
+                {{ t("applyForm.num") }}
+                <span class="font-mono font-bold text-emerald-700"
                   >#{{ applicationNumber }}</span
-                ></span
-              >
+                >
+              </span>
               <span
-                class="bg-amber-100 text-amber-600 text-xs px-2.5 py-0.5 rounded-full animate-pulse"
-                >{{ t("applyForm.status") }}</span
+                class="bg-amber-50 border border-amber-100 text-amber-600 text-xs font-semibold px-3 py-1.5 rounded-full animate-pulse"
               >
+                {{ t("applyForm.status") }}
+              </span>
             </div>
 
-            <p class="text-xs text-gray-500 mb-6">
+            <p class="text-xs text-gray-400 mb-6 leading-relaxed">
               {{ t("applyForm.contact") }}
-              <a href="#" class="text-emerald-600 hover:underline">{{
-                t("applyForm.contacts.telegram")
-              }}</a>
+              <a
+                href="#"
+                class="text-emerald-600 font-medium hover:underline"
+                >{{ t("applyForm.contacts.telegram") }}</a
+              >
             </p>
 
             <button
               @click="resetForm"
-              class="w-full border border-gray-200 hover:bg-gray-50 text-gray-700 text-sm font-medium py-2.5 rounded-lg transition-all duration-300 transform active:scale-95"
+              class="w-full bg-gray-50 hover:bg-gray-100 border border-gray-200 text-gray-700 text-sm font-semibold py-3 rounded-xl transition-all duration-300 transform active:scale-[0.98]"
             >
-              {{ t("applyForm.back") }}
+              ← {{ t("applyForm.back") }}
             </button>
           </div>
         </div>
@@ -766,10 +817,66 @@
 </template>
 
 <script setup>
-import { ref, reactive, computed, onMounted, onUnmounted } from "vue";
+import {
+  ref,
+  reactive,
+  computed,
+  watch,
+  nextTick,
+  onMounted,
+  onUnmounted,
+} from "vue";
 import { useLanguage } from "../../i18n/useLanguage";
+import {
+  REGION_OPTIONS,
+  getDistricts,
+  getRegionLabel,
+  getRegionCenter,
+} from "../../data/uzRegions";
+import L from "leaflet";
+import "leaflet/dist/leaflet.css";
+import markerIcon2x from "leaflet/dist/images/marker-icon-2x.png";
+import markerIcon from "leaflet/dist/images/marker-icon.png";
+import markerShadow from "leaflet/dist/images/marker-shadow.png";
 
-const { t, lang, setLang } = useLanguage();
+// Vite bilan Leaflet default marker rasm yo'llari to'g'ri build bo'lishi uchun
+delete L.Icon.Default.prototype._getIconUrl;
+L.Icon.Default.mergeOptions({
+  iconRetinaUrl: markerIcon2x,
+  iconUrl: markerIcon,
+  shadowUrl: markerShadow,
+});
+
+const { t, lang, setLang, availableLangs } = useLanguage();
+
+// i18n kaliti mavjud bo'lmasa fallback matn qaytaradigan yordamchi
+function tt(key, fallback) {
+  const v = t(key);
+  return v && v !== key ? v : fallback;
+}
+
+// ---------------- Umumiy stil klasslari ----------------
+
+const labelClass =
+  "block text-xs sm:text-sm font-semibold text-gray-700 mb-1.5";
+
+const errorClass = "text-xs text-red-500 mt-1.5";
+
+/**
+ * Input/select uchun yagona stil generatori.
+ * @param {string} [errorKey] - fieldErrors dagi kalit (xato holatini bo'yash uchun)
+ * @param {boolean} [isSelect] - select bo'lsa matn rangi boshqacha
+ */
+function fieldClass(errorKey = "", isSelect = false) {
+  const base =
+    "w-full rounded-xl border bg-white px-3.5 sm:px-4 py-2.5 sm:py-3 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-2 transition-all duration-200 " +
+    (isSelect ? "text-gray-700 appearance-none " : "text-slate-800 ");
+  const state =
+    errorKey && fieldErrors[errorKey]
+      ? "border-red-400 focus:ring-red-400/30 focus:border-red-400"
+      : "border-gray-200 hover:border-gray-300 focus:ring-emerald-500/30 focus:border-emerald-500";
+  return base + state;
+}
 
 // ---------------- API sozlamalari ----------------
 
@@ -783,7 +890,12 @@ function authHeaders(json = true, includeAuth = true) {
   return headers;
 }
 
-async function apiRequest(path, method = "GET", body = null, includeAuth = true) {
+async function apiRequest(
+  path,
+  method = "GET",
+  body = null,
+  includeAuth = true,
+) {
   const res = await fetch(`${API_BASE}${path}`, {
     method,
     headers: authHeaders(true, includeAuth),
@@ -818,9 +930,6 @@ const applicationNumber = ref("");
 const isSubmitting = ref(false);
 const errorMessage = ref("");
 
-// ✅ YANGI: har bir maydon uchun alohida xato matni saqlanadi.
-// Bo'sh string/undefined bo'lsa — xato yo'q, border yashil holatda qoladi.
-// Qiymat bo'lsa — input border qizil bo'ladi va matn ostida xabar chiqadi.
 const fieldErrors = reactive({
   name: "",
   category: "",
@@ -832,6 +941,7 @@ const fieldErrors = reactive({
   viloyat: "",
   tuman: "",
   address: "",
+  location: "",
   ish_kunlari: "",
   ish_vaqti: "",
   discount: "",
@@ -861,7 +971,6 @@ onMounted(async () => {
   );
   if (sectionRef.value) observer.observe(sectionRef.value);
 
-  // Kategoriyalarni backenddan olish: GET /categories/
   try {
     const data = await apiRequest("/categories/");
     categories.value = Array.isArray(data) ? data : data.results || [];
@@ -872,6 +981,8 @@ onMounted(async () => {
 
 onUnmounted(() => {
   if (observer) observer.disconnect();
+  clearTimeout(addressDebounce);
+  destroyMap();
 });
 
 const stepLabels = computed(() => [
@@ -881,13 +992,17 @@ const stepLabels = computed(() => [
   t("applyForm.steps.step4"),
 ]);
 
-// Backenddan keladi: [{ id, name, slug, is_active }, ...]
+// Mobil progress bar uchun foiz
+const progressPercent = computed(
+  () => (currentStep.value / stepLabels.value.length) * 100,
+);
+
 const categories = ref([]);
 
 const form = ref({
   name: "",
-  category: "", // Category UUID
-  type: "", // "yatt" | "mchj"
+  category: "",
+  type: "",
   contact: "",
   about: "",
   phone: "+998",
@@ -895,14 +1010,17 @@ const form = ref({
   instagram: "",
   telegram: "",
   website: "",
-  viloyat: "", // Region kodi, masalan "tashkent_city"
+  viloyat: "",
   tuman: "",
   address: "",
-  ish_kunlari: "", // WorkDay kodi
-  ish_vaqti: "", // "HH:MM - HH:MM"
+  latitude: null,
+  longitude: null,
+  ish_kunlari: "",
+  ish_vaqti_from: "09:00",
+  ish_vaqti_to: "18:00",
   discount: 15,
   min_sum: 50000,
-  additional_type: "", // "fixed" | "min_purchase"
+  additional_type: "",
 });
 
 const businessTypeOptions = [
@@ -910,38 +1028,30 @@ const businessTypeOptions = [
   { value: "mchj", label: "MCHJ" },
 ];
 
-const viloyatOptions = [
-  { value: "tashkent_city", label: "Toshkent shahar" },
-  { value: "tashkent_region", label: "Toshkent viloyati" },
-  { value: "andijan", label: "Andijon" },
-  { value: "bukhara", label: "Buxoro" },
-  { value: "fergana", label: "Farg'ona" },
-  { value: "jizzakh", label: "Jizzax" },
-  { value: "kashkadarya", label: "Qashqadaryo" },
-  { value: "navoiy", label: "Navoiy" },
-  { value: "namangan", label: "Namangan" },
-  { value: "samarkand", label: "Samarqand" },
-  { value: "surkhandarya", label: "Surxondaryo" },
-  { value: "sirdaryo", label: "Sirdaryo" },
-  { value: "khorezm", label: "Xorazm" },
-  { value: "karakalpakstan", label: "Qoraqalpog'iston" },
-];
+// Viloyatlar umumiy modul (uzRegions.js) dan olinadi —
+// bu ma'lumotni boshqa sahifalarda ham import qilib ishlatish mumkin.
+const viloyatOptions = REGION_OPTIONS;
 
-// Backendda alohida model yo'q — erkin matn sifatida yuboriladi
-const tumanOptions = [
-  "Chilonzor tumani",
-  "Yunusobod tumani",
-  "Mirobod tumani",
-  "Shayxontohur tumani",
-];
+// Tumanlar tanlangan viloyatga qarab dinamik hisoblanadi
+const tumanOptions = computed(() => getDistricts(form.value.viloyat));
+
+// Viloyat o'zgarsa — tanlangan tuman tozalanadi, xarita yangi markazga o'tadi
+watch(
+  () => form.value.viloyat,
+  (val, old) => {
+    if (val === old) return;
+    form.value.tuman = "";
+    if (mapInstance && form.value.latitude == null) {
+      mapInstance.setView(getRegionCenter(val), 11);
+    }
+  },
+);
 
 const ishKunlariOptions = [
   { value: "mon_fri", label: "Dushanba - Juma" },
   { value: "mon_sat", label: "Dushanba - Shanba" },
   { value: "everyday", label: "Har kuni" },
 ];
-
-const ishVaqtiOptions = ["09:00 - 18:00", "10:00 - 20:00", "08:00 - 22:00"];
 
 const additionalTypeOptions = [
   { value: "fixed", label: "Barcha mahsulotlar" },
@@ -954,16 +1064,237 @@ const discountOptions = computed(() => {
   return vals.map((val, i) => ({ val, label: labels?.[i] ?? `${val}%` }));
 });
 
-// ---------------- Yordamchi funksiyalar ----------------
+// ---------------- Xarita (OpenStreetMap + Leaflet, API key kerak emas) ----------------
+// Avval Yandex Maps ishlatilgan edi, lekin API key olish muammo bo'lgani uchun
+// bepul va keysiz OpenStreetMap (Leaflet) + Nominatim (geokodlash) ga o'tkazildi.
+// Quyidagi funksiyalar (initMap/setLocation/reverseGeocode/searchAddressOnMap/
+// destroyMap) atayin avvalgi Yandex versiyasi bilan bir xil nom va xatti-harakatni
+// saqlaydi — shablon (template) va boshqa kod o'zgarishsiz ishlayveradi.
 
-// "09:00 - 18:00" -> ["09:00:00", "18:00:00"]
-function parseWorkHours(range) {
-  if (!range) return [null, null];
-  const [from, to] = range.split("-").map((s) => s.trim());
-  return [from ? `${from}:00` : null, to ? `${to}:00` : null];
+const NOMINATIM_BASE = "https://nominatim.openstreetmap.org";
+
+const mapRef = ref(null);
+const mapReady = ref(false);
+const foundAddress = ref("");
+const isSearchingAddress = ref(false);
+
+let mapInstance = null;
+let placemark = null;
+let addressDebounce = null;
+
+/** Foydalanuvchi joriy joylashuvini aniqlaydigan tugma (Yandex geolocationControl o'rniga) */
+const LocateControl = L.Control.extend({
+  options: { position: "topleft" },
+  onAdd() {
+    const container = L.DomUtil.create(
+      "div",
+      "leaflet-bar leaflet-control",
+    );
+    const button = L.DomUtil.create("a", "", container);
+    button.href = "#";
+    button.title = "Joriy joylashuvim";
+    button.innerHTML = "📍";
+    button.style.display = "flex";
+    button.style.alignItems = "center";
+    button.style.justifyContent = "center";
+    button.style.fontSize = "16px";
+    L.DomEvent.on(button, "click", (e) => {
+      L.DomEvent.stop(e);
+      if (!navigator.geolocation) return;
+      navigator.geolocation.getCurrentPosition(
+        (pos) => {
+          const coords = [pos.coords.latitude, pos.coords.longitude];
+          setLocation(coords, { pan: true });
+          if (mapInstance) mapInstance.setZoom(16);
+        },
+        () => {},
+        { enableHighAccuracy: true, timeout: 8000 },
+      );
+    });
+    return container;
+  },
+});
+
+/**
+ * mapRef konteyneri DOM'ga qo'shilishini kutadi. <Transition mode="out-in">
+ * ichida bo'lgani uchun bitta nextTick() yetarli bo'lmasligi mumkin (avvalgi
+ * bosqichning chiqish animatsiyasi tugashini kutish kerak) — shu sabab bir
+ * necha marta urinib ko'radi.
+ */
+async function waitForMapRef(maxAttempts = 30) {
+  for (let i = 0; i < maxAttempts; i++) {
+    if (mapRef.value) return true;
+    await nextTick();
+    await new Promise((resolve) => setTimeout(resolve, 30));
+  }
+  return false;
 }
 
-// "+998 90 000 00 00" -> "+998900000000"
+/** 3-bosqich ochilganda xaritani yaratadi */
+async function initMap() {
+  try {
+    const found = await waitForMapRef();
+    if (!found || !mapRef.value || mapInstance) return;
+
+    const hasCoords = form.value.latitude != null;
+    const center = hasCoords
+      ? [form.value.latitude, form.value.longitude]
+      : getRegionCenter(form.value.viloyat);
+
+    mapInstance = L.map(mapRef.value, {
+      center,
+      zoom: hasCoords ? 16 : 11,
+      zoomControl: false,
+    });
+
+    L.control.zoom({ position: "bottomleft" }).addTo(mapInstance);
+    new LocateControl().addTo(mapInstance);
+
+    L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+      attribution: "&copy; OpenStreetMap contributors",
+      maxZoom: 19,
+    }).addTo(mapInstance);
+
+    mapReady.value = true;
+
+    if (hasCoords) addPlacemark(center);
+
+    // Xaritaga bosilganda marker o'sha joyga qo'yiladi
+    mapInstance.on("click", (e) => {
+      setLocation([e.latlng.lat, e.latlng.lng]);
+    });
+
+    setTimeout(() => mapInstance && mapInstance.invalidateSize(), 200);
+  } catch (e) {
+    console.error("Xaritani yaratishda xatolik:", e);
+    errorMessage.value = e.message || "Xaritani yuklashda xatolik yuz berdi.";
+  }
+}
+
+/** Markerni yaratadi yoki mavjudini yangi koordinataga ko'chiradi */
+function addPlacemark(coords) {
+  if (!mapInstance) return;
+  if (placemark) {
+    placemark.setLatLng(coords);
+    return;
+  }
+  placemark = L.marker(coords, { draggable: true }).addTo(mapInstance);
+  // Marker qo'lda surilgach — yangi koordinata saqlanadi
+  placemark.on("dragend", () => {
+    const { lat, lng } = placemark.getLatLng();
+    setLocation([lat, lng], { pan: false });
+  });
+}
+
+/** Koordinatani formaga saqlaydi va markerni joylaydi */
+function setLocation(coords, { pan = true } = {}) {
+  form.value.latitude = Number(coords[0].toFixed(6));
+  form.value.longitude = Number(coords[1].toFixed(6));
+  fieldErrors.location = "";
+  addPlacemark(coords);
+  if (pan && mapInstance) mapInstance.setView(coords, 16);
+  reverseGeocode(coords);
+}
+
+/** Koordinatadan o'qilishi mumkin bo'lgan manzilni topadi */
+async function reverseGeocode(coords) {
+  try {
+    const url = `${NOMINATIM_BASE}/reverse?format=json&lat=${coords[0]}&lon=${coords[1]}`;
+    const res = await fetch(url);
+    if (!res.ok) return;
+    const data = await res.json();
+    foundAddress.value = data.display_name || "";
+  } catch (e) {
+    /* reverse geokodlash muvaffaqiyatsiz bo'lsa jim o'tamiz */
+  }
+}
+
+async function nominatimSearch(query) {
+  const url = `${NOMINATIM_BASE}/search?format=json&limit=1&countrycodes=uz&q=${encodeURIComponent(query)}`;
+  const res = await fetch(url);
+  const results = res.ok ? await res.json() : [];
+  return results[0] || null;
+}
+
+/**
+ * Kiritilgan manzilni xaritadan qidiradi (geokodlash).
+ * Nominatim (bepul OSM geokoder) juda uzun/aniq so'rovlarda ko'pincha 0 natija
+ * qaytaradi — shu sabab eng to'liq so'rovdan boshlab, natija topilmasa
+ * bosqichma-bosqich soddalashtirib qayta so'raladi.
+ */
+async function searchAddressOnMap() {
+  errorMessage.value = "";
+  if (!form.value.address.trim()) {
+    fieldErrors.address = "Avval manzilni kiriting.";
+    return;
+  }
+  isSearchingAddress.value = true;
+  try {
+    const regionLabel = getRegionLabel(form.value.viloyat);
+    const queries = [
+      ["O'zbekiston", regionLabel, form.value.tuman, form.value.address],
+      ["O'zbekiston", regionLabel, form.value.address],
+      [regionLabel, form.value.address],
+      [form.value.address],
+    ]
+      .map((parts) => parts.filter(Boolean).join(", "))
+      .filter((q, i, arr) => q && arr.indexOf(q) === i);
+
+    let first = null;
+    for (const query of queries) {
+      first = await nominatimSearch(query);
+      if (first) break;
+    }
+
+    if (first) {
+      const coords = [parseFloat(first.lat), parseFloat(first.lon)];
+      setLocation(coords, { pan: true });
+      foundAddress.value = first.display_name;
+    } else {
+      foundAddress.value = "";
+      fieldErrors.location =
+        "Manzil topilmadi. Xaritaga bosib joyni qo'lda belgilang.";
+    }
+  } catch (e) {
+    errorMessage.value = e.message || "Manzilni qidirishda xatolik yuz berdi.";
+  } finally {
+    isSearchingAddress.value = false;
+  }
+}
+
+/** Xaritani o'chirib tashlaydi (bosqichdan chiqilganda) */
+function destroyMap() {
+  if (mapInstance) {
+    mapInstance.remove();
+    mapInstance = null;
+    placemark = null;
+  }
+  mapReady.value = false;
+}
+
+// 3-bosqichga kirilganda xarita yaratiladi, chiqilganda tozalanadi
+// (v-if DOM'ni olib tashlagani uchun har safar qayta yaratish shart)
+watch(currentStep, async (step) => {
+  if (step === 3) {
+    await nextTick();
+    initMap();
+  } else {
+    destroyMap();
+  }
+});
+
+// Manzil yozilayotganda avtomatik qidirish (1.2 soniya to'xtagach)
+watch(
+  () => form.value.address,
+  (val) => {
+    clearTimeout(addressDebounce);
+    if (currentStep.value !== 3 || !val || val.trim().length < 5) return;
+    addressDebounce = setTimeout(searchAddressOnMap, 1200);
+  },
+);
+
+// ---------------- Yordamchi funksiyalar ----------------
+
 function normalizePhone(phone) {
   const digits = phone.replace(/\D/g, "").replace(/^998/, "");
   return `+998${digits}`;
@@ -978,9 +1309,7 @@ function isValidUzPhone(phone) {
   return /^\+998\d{9}$/.test(normalized);
 }
 
-// ---------------- Validatsiya (har bir bosqich uchun) ----------------
-// Har bir funksiya fieldErrors ob'ektini to'ldiradi va shu bosqich
-// xatosiz bo'lsa true, xato bo'lsa false qaytaradi.
+// ---------------- Validatsiya ----------------
 
 function validateStep1() {
   clearFieldErrors(["name", "category", "type", "contact", "about"]);
@@ -1030,6 +1359,7 @@ function validateStep3() {
     "viloyat",
     "tuman",
     "address",
+    "location",
     "ish_kunlari",
     "ish_vaqti",
   ]);
@@ -1047,12 +1377,21 @@ function validateStep3() {
     fieldErrors.address = "To'liq manzilni kiriting.";
     ok = false;
   }
+  if (form.value.latitude == null || form.value.longitude == null) {
+    fieldErrors.location =
+      "Xaritada binoyingizning aniq joyini belgilang (qidiring yoki xaritaga bosing).";
+    ok = false;
+  }
   if (!form.value.ish_kunlari) {
     fieldErrors.ish_kunlari = "Ish kunlarini tanlang.";
     ok = false;
   }
-  if (!form.value.ish_vaqti) {
-    fieldErrors.ish_vaqti = "Ish vaqtini tanlang.";
+  if (!form.value.ish_vaqti_from || !form.value.ish_vaqti_to) {
+    fieldErrors.ish_vaqti = "Ish vaqtini kiriting (dan / gacha).";
+    ok = false;
+  } else if (form.value.ish_vaqti_from >= form.value.ish_vaqti_to) {
+    fieldErrors.ish_vaqti =
+      "Tugash vaqti boshlanish vaqtidan keyin bo'lishi kerak.";
     ok = false;
   }
   return ok;
@@ -1085,9 +1424,6 @@ function validateStep4() {
 async function nextStep() {
   errorMessage.value = "";
 
-  // ✅ Har bir bosqichda mos validatsiya ishga tushiriladi.
-  // Xato topilsa — tegishli input(lar) qizil bo'ladi va umumiy alert chiqadi,
-  // so'rov backendga yuborilmaydi.
   let stepIsValid = true;
   if (currentStep.value === 1) stepIsValid = validateStep1();
   else if (currentStep.value === 2) stepIsValid = validateStep2();
@@ -1126,14 +1462,15 @@ async function nextStep() {
         payload,
       );
     } else if (currentStep.value === 3) {
-      const [from, to] = parseWorkHours(form.value.ish_vaqti);
       const payload = {
         region: form.value.viloyat,
         city_district: form.value.tuman,
         full_address: form.value.address,
+        latitude: form.value.latitude,
+        longitude: form.value.longitude,
         work_days: form.value.ish_kunlari,
-        work_hours_from: from,
-        work_hours_to: to,
+        work_hours_from: `${form.value.ish_vaqti_from}:00`,
+        work_hours_to: `${form.value.ish_vaqti_to}:00`,
       };
       await apiRequest(
         `/applications/${applicationId.value}/step/3/`,
@@ -1161,7 +1498,6 @@ async function nextStep() {
       currentStep.value++;
     }
   } catch (e) {
-    // Backend xatoligi bo'lsa ham umumiy alert sifatida ko'rsatiladi
     errorMessage.value = e.message || "Noma'lum xatolik yuz berdi.";
   } finally {
     isSubmitting.value = false;
@@ -1179,6 +1515,8 @@ function resetForm() {
   applicationId.value = null;
   applicationNumber.value = "";
   errorMessage.value = "";
+  foundAddress.value = "";
+  destroyMap();
   Object.keys(fieldErrors).forEach((k) => (fieldErrors[k] = ""));
   form.value = {
     name: "",
@@ -1194,8 +1532,11 @@ function resetForm() {
     viloyat: "",
     tuman: "",
     address: "",
+    latitude: null,
+    longitude: null,
     ish_kunlari: "",
-    ish_vaqti: "",
+    ish_vaqti_from: "09:00",
+    ish_vaqti_to: "18:00",
     discount: 15,
     min_sum: 50000,
     additional_type: "",
@@ -1260,7 +1601,38 @@ function resetForm() {
   animation: scaleUp 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) 0.2s both;
 }
 
-/* Scrollbar yo'q qilish */
+/* 3. Select uchun maxsus strelka (appearance-none bilan birga) */
+select {
+  background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' fill='none'%3E%3Cpath d='M1 1.5 6 6.5 11 1.5' stroke='%239ca3af' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 1rem center;
+  padding-right: 2.5rem;
+}
+
+/* 4. Raqam inputidagi strelkalarni yashirish */
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type="number"] {
+  -moz-appearance: textfield;
+  appearance: textfield;
+}
+
+/* 5. Time input ixchamligi (iOS Safari uchun ham) */
+input[type="time"] {
+  -webkit-appearance: none;
+  appearance: none;
+  min-width: 0;
+}
+
+input[type="time"]::-webkit-calendar-picker-indicator {
+  opacity: 0.4;
+}
+
+/* 6. Scrollbar bezagi */
 ::-webkit-scrollbar {
   width: 6px;
   height: 6px;
@@ -1277,5 +1649,10 @@ function resetForm() {
 
 ::-webkit-scrollbar-thumb:hover {
   background: rgba(199, 238, 225, 0.5);
+}
+
+/* 7. OpenStreetMap atribution matni forma ichida ixchamroq ko'rinishi uchun */
+:deep(.leaflet-control-attribution) {
+  font-size: 9px;
 }
 </style>

@@ -1,4 +1,222 @@
 {
+  "en": {
+    "nav": {
+      "howItWorks": "How it works",
+      "benefits": "Benefits",
+      "faq": "FAQ",
+      "applyButton": "Apply Now"
+    },
+    "hero": {
+      "badge": "For Businesses",
+      "title": "Connect a new flow of customers to your store",
+      "description": "Saven members are thousands of active shoppers looking for discounts. Apply now, and we'll start the partnership within 24 hours.",
+      "applyButton": "Apply Now",
+      "howItWorksButton": "How it works",
+      "stats": {
+        "partners": "400+ partners",
+        "members": "50,000+ active members",
+        "free": "Free to join"
+      }
+    },
+    "phoneMock": {
+      "time": "9:41",
+      "category": "Barber",
+      "filterNearby": "Nearby",
+      "filterTopRated": "Top Rated",
+      "resultsCount": "24 businesses found",
+      "businesses": [
+        {
+          "name": "Fresh Cut Barber",
+          "location": "Chilonzor",
+          "distance": "0.4 km",
+          "rating": "4.9",
+          "time": "1 hour ago"
+        },
+        {
+          "name": "Premium Style",
+          "location": "Buyuk Bozor",
+          "distance": "1.2 km",
+          "rating": "4.8",
+          "time": "1 hour ago"
+        },
+        {
+          "name": "Barbershop №7",
+          "location": "Mirabad",
+          "distance": "1.8 km",
+          "rating": "4.6",
+          "time": "2 hours ago"
+        }
+      ],
+      "navBar": {
+        "main": "Home",
+        "catalog": "Catalog",
+        "chat": "Chat",
+        "profile": "Profile"
+      }
+    },
+    "statsBar": {
+      "partners": { "value": "400+", "label": "partner businesses" },
+      "members": { "value": "50K+", "label": "active members" },
+      "growth": { "value": "+27%", "label": "customer flow growth" },
+      "connectionTime": { "value": "24 hours", "label": "connection time" }
+    },
+    "howItWorks": {
+      "title": "How it works?",
+      "subtitle": "3 simple steps — fast and transparent process",
+      "steps": [
+        {
+          "number": "1",
+          "title": "You submit an application",
+          "description": "Fill out the form — it only takes 2 minutes. Our operators will contact you within 24 hours."
+        },
+        {
+          "number": "2",
+          "title": "Discount and QR are set up",
+          "description": "We agree on the discount percentage together, install the QR code at your checkout, and train your staff."
+        },
+        {
+          "number": "3",
+          "title": "Customers start arriving",
+          "description": "Saven members will see you in the app. Track results in real time in your Business Panel."
+        }
+      ]
+    },
+    "benefits": {
+      "title": "Why Saven?",
+      "subtitle": "A partnership that delivers direct results for your business",
+      "items": [
+        {
+          "icon": "👥",
+          "title": "New customer flow",
+          "description": "50,000+ active members choose new places through Saven — now they'll see you too."
+        },
+        {
+          "icon": "📣",
+          "title": "Zero-cost marketing",
+          "description": "No advertising budget needed: your discount is your most powerful ad. You only give a discount to customers who actually show up."
+        },
+        {
+          "icon": "📊",
+          "title": "Business Panel statistics",
+          "description": "Visits, average check, returning customers — all in real time, in your own dashboard."
+        },
+        {
+          "icon": "🏢",
+          "title": "Branch management",
+          "description": "Manage all branches and cashiers from one dashboard — each with its own QR code."
+        }
+      ]
+    },
+    "categories": {
+      "title": "Who is it for?",
+      "list": [
+        { "icon": "🍽️", "name": "Restaurant" },
+        { "icon": "☕", "name": "Cafe" },
+        { "icon": "💈", "name": "Barber" },
+        { "icon": "💇", "name": "Salon" },
+        { "icon": "🏋️", "name": "Fitness" },
+        { "icon": "🛒", "name": "Supermarket" },
+        { "icon": "⚕️", "name": "Medicine" },
+        { "icon": "🎓", "name": "Education" },
+        { "icon": "🚕", "name": "Taxi" },
+        { "icon": "✈️", "name": "Travel" }
+      ]
+    },
+    "faq": {
+      "title": "Frequently Asked Questions",
+      "items": [
+        {
+          "question": "How much does it cost to join?",
+          "answer": "Joining and using the Business Panel is completely free. You only set the discount percentage given to customers."
+        },
+        {
+          "question": "Who sets the discount percentage?",
+          "answer": "You do. Based on our experience, we recommend the most effective percentage for your category (usually 10–30%)."
+        },
+        {
+          "question": "How does the QR code work?",
+          "answer": "The customer shows their personal QR code in the app to the cashier. The cashier scans it and applies the discount — the process takes 5 seconds."
+        },
+        {
+          "question": "How do I track results?",
+          "answer": "The Business Panel shows real-time statistics on visit count, average check, and returning customers."
+        }
+      ]
+    },
+    "applyForm": {
+      "title1": "Submit an application",
+      "subtitle": "Fill out the form — our operators will contact you within 24 hours to agree on partnership terms.",
+      "title2": "Your application has been received!",
+      "status": "Pending",
+      "num": "Application number: ",
+      "contact": "Questions? Contact: @saven_biznes",
+      "contacts": {
+        "phone": "+998 71 200 00 00",
+        "telegram": "@saven_biznes",
+        "email": "biznes@saven.uz"
+      },
+      "steps": {
+        "step1": "Business",
+        "step2": "Contact",
+        "step3": "Location",
+        "step4": "Discount"
+      },
+      "requiredNote": "* Fields marked with an asterisk are required",
+      "step1Fields": {
+        "businessName": "Business name *",
+        "category": "Category *",
+        "categoryPlaceholder": "Select",
+        "categoryOptions": ["Restaurant", "Cafe", "Salon", "Store"],
+        "businessType": "Business type *",
+        "businessTypePlaceholder": "Select",
+        "businessTypeOptions": ["Sole Proprietor", "LLC"],
+        "responsiblePerson": "Full name of responsible person *",
+        "aboutBusiness": "Brief description of business"
+      },
+      "stepIndicator1": "Step 1/4",
+      "nextButton": "Next",
+      "done": "Submit application",
+      "step": "step",
+      "back": "Back",
+      "brandName": "saven",
+      "step2Fields": {
+        "phone": "Phone number *",
+        "email": "Email address",
+        "instagram": "Instagram",
+        "telegramChannel": "Telegram channel",
+        "website": "Website"
+      },
+      "step3Fields": {
+        "region": "Region *",
+        "regionDefault": "Tashkent city",
+        "cityDistrict": "City / District *",
+        "cityDistrictDefault": "Chilonzor district",
+        "fullAddress": "Full address *",
+        "fullAddressPlaceholder": "Street, building, landmark...",
+        "workingDays": "Working days",
+        "workingDaysDefault": "Monday - Friday",
+        "workingHours": "Working hours",
+        "workingHoursDefault": "09:00 - 18:00",
+        "locationNote": "The exact location will be set together with the operator"
+      },
+      "step4Fields": {
+        "discountPercent": "Discount percentage *",
+        "discountOptions": ["5%", "10%", "15%", "20%", "25%+"],
+        "discountRecommendation": "Recommendation: 10-20% is on average most effective for your category",
+        "minPurchaseAmount": "Min. purchase amount (UZS)",
+        "minPurchaseDefault": "50000",
+        "additionalType": "Additional type",
+        "additionalTypeDefault": "All products"
+      },
+      "submitNote": "Once submitted, your application will reach an operator — we'll contact you within 24 hours regarding the contract and QR setup"
+    },
+    "footer": {
+      "copyright": "© 2026 Saven. All rights reserved.",
+      "offer": "Offer",
+      "privacyPolicy": "Privacy Policy",
+      "telegram": "@saven_biznes"
+    }
+  },
   "uz": {
     "nav": {
       "howItWorks": "Qanday ishlaydi",
@@ -146,13 +364,10 @@
     "applyForm": {
       "title1": "Ariza qoldiring",
       "subtitle": "Formani to'ldiring — operatorlarimiz 24 soat ichida bog'lanadi va hamkorlik shartlarini kelishib olamiz.",
-
       "title2": "Arizangiz qabul qilindi!",
       "status": "Kutilmoqda",
-      "num":"Ariza raqami: ",
-
+      "num": "Ariza raqami: ",
       "contact": "Savollar bo'lsa: @saven_biznes",
-
       "contacts": {
         "phone": "+998 71 200 00 00",
         "telegram": "@saven_biznes",
@@ -367,12 +582,10 @@
     "applyForm": {
       "title1": "Оставьте заявку",
       "subtitle": "Заполните форму — наши операторы свяжутся с вами в течение 24 часов и согласуют условия сотрудничества.",
-
       "title2": "Ваша заявка принята!",
       "status": "В ожидании",
-      "num":"Номер заявки: ",
+      "num": "Номер заявки: ",
       "contact": "По вопросам обращайтесь: ",
-
       "contacts": {
         "phone": "+998 71 200 00 00",
         "telegram": "@saven_biznes",

@@ -20,12 +20,14 @@
                 class="text-gray-700 hover:text-gray-900 text-sm font-medium"
                 >{{ t("nav.howItWorks") }}</a
               >
+
               <a
                 href="#Afzalliklar"
                 @click.prevent="scrollToSection('Afzalliklar')"
                 class="text-gray-700 hover:text-gray-900 text-sm font-medium"
                 >{{ t("nav.benefits") }}</a
               >
+
               <a
                 href="#KopSoraladiganSavollar"
                 @click.prevent="scrollToSection('KopSoraladiganSavollar')"
@@ -35,36 +37,27 @@
             </nav>
 
             <div class="flex items-center gap-2 sm:gap-4">
+              <!-- Til tanlash: desktop -->
               <div
-                class="hidden sm:flex relative items-center bg-gray-100 rounded-full p-1 w-[76px]"
+                class="hidden sm:flex relative items-center bg-gray-100 rounded-full p-1"
               >
                 <span
-                  class="absolute top-1 bottom-1 left-1 w-[34px] bg-white rounded-full shadow-sm transition-transform duration-300 ease-out"
-                  :class="
-                    lang === 'ru' ? 'translate-x-[34px]' : 'translate-x-0'
-                  "
+                  class="absolute top-1 bottom-1 rounded-full bg-white shadow-sm transition-all duration-300 ease-out"
+                  :style="langIndicatorStyle"
                 ></span>
                 <button
-                  @click="setLang('uz')"
-                  class="relative z-10 flex-1 text-xs font-semibold py-1 rounded-full transition-colors duration-300"
-                  :class="
-                    lang === 'uz'
+                  v-for="l in availableLangs"
+                  :key="l"
+                  ref="langBtnRefs"
+                  @click="setLang(l)"
+                  :class="[
+                    'relative z-10 px-3 py-1 rounded-full text-xs sm:text-sm font-semibold transition-colors duration-300 whitespace-nowrap',
+                    lang === l
                       ? 'text-gray-900'
-                      : 'text-gray-400 hover:text-gray-600'
-                  "
+                      : 'text-gray-400 hover:text-gray-600',
+                  ]"
                 >
-                  UZ
-                </button>
-                <button
-                  @click="setLang('ru')"
-                  class="relative z-10 flex-1 text-xs font-semibold py-1 rounded-full transition-colors duration-300"
-                  :class="
-                    lang === 'ru'
-                      ? 'text-gray-900'
-                      : 'text-gray-400 hover:text-gray-600'
-                  "
-                >
-                  RU
+                  {{ l.toUpperCase() }}
                 </button>
               </div>
 
@@ -108,40 +101,40 @@
                 class="text-gray-700 hover:text-gray-900 text-sm font-medium"
                 >{{ t("nav.howItWorks") }}</a
               >
+
               <a
                 href="#Afzalliklar"
                 @click.prevent="scrollToSection('Afzalliklar')"
                 class="text-gray-700 hover:text-gray-900 text-sm font-medium"
                 >{{ t("nav.benefits") }}</a
               >
+
               <a
                 href="#KopSoraladiganSavollar"
                 @click.prevent="scrollToSection('KopSoraladiganSavollar')"
                 class="text-gray-700 hover:text-gray-900 text-sm font-medium"
                 >{{ t("nav.faq") }}</a
               >
+
+              <!-- Til tanlash: mobil -->
               <div
-                class="relative flex items-center bg-gray-100 rounded-full p-1 w-[76px] mt-2"
+                class="relative flex items-center bg-gray-100 rounded-full p-1 mt-2 self-start"
               >
                 <span
-                  class="absolute top-1 bottom-1 left-1 w-[34px] bg-white rounded-full shadow-sm transition-transform duration-300 ease-out"
-                  :class="
-                    lang === 'ru' ? 'translate-x-[34px]' : 'translate-x-0'
-                  "
+                  class="absolute top-1 bottom-1 rounded-full bg-white shadow-sm transition-all duration-300 ease-out"
+                  :style="mobileLangIndicatorStyle"
                 ></span>
                 <button
-                  @click="setLang('uz')"
-                  class="relative z-10 flex-1 text-xs font-semibold py-1 rounded-full transition-colors duration-300"
-                  :class="lang === 'uz' ? 'text-gray-900' : 'text-gray-400'"
+                  v-for="l in availableLangs"
+                  :key="l"
+                  ref="mobileLangBtnRefs"
+                  @click="setLang(l)"
+                  :class="[
+                    'relative z-10 px-3 py-1 rounded-full text-xs font-semibold transition-colors duration-300 whitespace-nowrap',
+                    lang === l ? 'text-gray-900' : 'text-gray-400',
+                  ]"
                 >
-                  UZ
-                </button>
-                <button
-                  @click="setLang('ru')"
-                  class="relative z-10 flex-1 text-xs font-semibold py-1 rounded-full transition-colors duration-300"
-                  :class="lang === 'ru' ? 'text-gray-900' : 'text-gray-400'"
-                >
-                  RU
+                  {{ l.toUpperCase() }}
                 </button>
               </div>
             </nav>
@@ -442,6 +435,7 @@
               <a href="#" class="text-sm text-gray-600 hover:text-gray-900">{{
                 t("footer.privacyPolicy")
               }}</a>
+
               <a
                 href="#"
                 class="text-sm text-lime-600 hover:text-lime-700 font-medium"
@@ -456,7 +450,7 @@
 </template>
 
 <script setup>
-import { ref, watch, onMounted } from "vue";
+import { ref, watch, onMounted, nextTick } from "vue";
 import { useLanguage } from "../../i18n/useLanguage";
 import StatsBar from "../../components/Landing/Statsbar.vue";
 import HowItworks from "../../components/Landing/Howitworks.vue";
@@ -465,7 +459,7 @@ import NegaSaven from "../../components/Landing/NegaSaven.vue";
 import KopSoraladiganSavollar from "../../components/Landing/KopSoraladiganSavollar.vue";
 import ArizaQoldiring from "../../components/Landing/ArizaQoldiring.vue";
 
-const { t, lang, setLang } = useLanguage();
+const { t, lang, setLang, availableLangs } = useLanguage();
 const mobileMenuOpen = ref(false);
 
 const scrollToSection = (id) => {
@@ -483,6 +477,34 @@ const scrollToSection = (id) => {
   }
   mobileMenuOpen.value = false;
 };
+
+// ---------------- Til toggle indikatori (dinamik, n ta til uchun) ----------------
+const langBtnRefs = ref([]);
+const mobileLangBtnRefs = ref([]);
+const langIndicatorStyle = ref({});
+const mobileLangIndicatorStyle = ref({});
+
+function updateIndicator(refsArr, styleRef) {
+  const idx = availableLangs.indexOf(lang.value);
+  const btn = refsArr.value?.[idx];
+  if (!btn) return;
+  styleRef.value = {
+    left: btn.offsetLeft + "px",
+    width: btn.offsetWidth + "px",
+  };
+}
+
+async function updateIndicators() {
+  await nextTick();
+  updateIndicator(langBtnRefs, langIndicatorStyle);
+  updateIndicator(mobileLangBtnRefs, mobileLangIndicatorStyle);
+}
+
+onMounted(updateIndicators);
+watch(lang, updateIndicators);
+watch(mobileMenuOpen, (open) => {
+  if (open) updateIndicators();
+});
 
 const typedTitle = ref("");
 const typedDescription = ref("");
