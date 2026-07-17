@@ -9,7 +9,7 @@
     "hero": {
       "badge": "For Businesses",
       "title": "Connect a new flow of customers to your store",
-      "description": "Saven members are thousands of active shoppers looking for discounts. Apply now, and we'll start the partnership within 24 hours.",
+      "description": "Savin members are thousands of active shoppers looking for discounts. Apply now, and we'll start the partnership within 24 hours.",
       "applyButton": "Apply Now",
       "howItWorksButton": "How it works",
       "stats": {
@@ -20,27 +20,27 @@
     },
     "phoneMock": {
       "time": "9:41",
-      "category": "Barber",
+      "category": "Savin",
       "filterNearby": "Nearby",
       "filterTopRated": "Top Rated",
       "resultsCount": "24 businesses found",
       "businesses": [
         {
-          "name": "Fresh Cut Barber",
+          "name": "Fast Food",
           "location": "Chilonzor",
           "distance": "0.4 km",
           "rating": "4.9",
           "time": "1 hour ago"
         },
         {
-          "name": "Premium Style",
+          "name": "Big Market",
           "location": "Buyuk Bozor",
           "distance": "1.2 km",
           "rating": "4.8",
           "time": "1 hour ago"
         },
         {
-          "name": "Barbershop №7",
+          "name": "Avto Salon",
           "location": "Mirabad",
           "distance": "1.8 km",
           "rating": "4.6",
@@ -55,10 +55,22 @@
       }
     },
     "statsBar": {
-      "partners": { "value": "400+", "label": "partner businesses" },
-      "members": { "value": "50K+", "label": "active members" },
-      "growth": { "value": "+27%", "label": "customer flow growth" },
-      "connectionTime": { "value": "24 hours", "label": "connection time" }
+      "partners": {
+        "value": "400+",
+        "label": "partner businesses"
+      },
+      "members": {
+        "value": "50K+",
+        "label": "active members"
+      },
+      "growth": {
+        "value": "+27%",
+        "label": "customer flow growth"
+      },
+      "connectionTime": {
+        "value": "24 hours",
+        "label": "connection time"
+      }
     },
     "howItWorks": {
       "title": "How it works?",
@@ -77,31 +89,31 @@
         {
           "number": "3",
           "title": "Customers start arriving",
-          "description": "Saven members will see you in the app. Track results in real time in your Business Panel."
+          "description": "Savin members will see you in the app. Track results in real time in your Business Panel."
         }
       ]
     },
     "benefits": {
-      "title": "Why Saven?",
+      "title": "Why Savin?",
       "subtitle": "A partnership that delivers direct results for your business",
       "items": [
         {
-          "icon": "👥",
+          "icon": "<svg xmlns='http://www.w3.org/2000/svg' width='1em' height='1em' viewBox='0 0 24 24'><path d='M0 0h24v24H0z' fill='none'/><path fill='currentColor' d='M16 17v2H2v-2s0-4 7-4s7 4 7 4m-3.5-9.5A3.5 3.5 0 1 0 9 11a3.5 3.5 0 0 0 3.5-3.5m3.44 5.5A5.32 5.32 0 0 1 18 17v2h4v-2s0-3.63-6.06-4M15 4a3.4 3.4 0 0 0-1.93.59a5 5 0 0 1 0 5.82A3.4 3.4 0 0 0 15 11a3.5 3.5 0 0 0 0-7'/></svg>",
           "title": "New customer flow",
-          "description": "50,000+ active members choose new places through Saven — now they'll see you too."
+          "description": "50,000+ active members choose new places through Savin — now they'll see you too."
         },
         {
-          "icon": "📣",
+          "icon": "<svg xmlns='http://www.w3.org/2000/svg' width='1em' height='1em' viewBox='0 0 64 64'> <path d='M0 0h64v64H0z' fill='none' /><path fill='currentColor' d='M54.014 32.004c-.035 5.582-.273 11.222.164 16.798c2.234-5.416 2.826-11.154 2.895-16.783c-.102-5.642-.662-11.371-2.895-16.802c-.401 5.577-.199 11.206-.164 16.787M62 32.02c-.131-8.449-.871-16.953-3.578-25.197c.045 8.553.551 17.099.514 25.654c-.035 8.242-.494 16.482-.514 24.72C61.139 48.963 61.869 40.463 62 32.02m-11.792-4.875l-.138-.03C49.552 13.98 46.978 4 43.883 4c-.596 0-1.171.377-1.718 1.067c-1.188 1.322-16.44 18.026-29.503 19.641c-1.529.189-2.99.346-4.346.459c-1.578.133-3.014.207-4.252.207c0 0-2.064 3.212-2.064 6.648c0 3.441 2.068 6.648 2.068 6.648c1.238 0 2.676.074 4.254.205c.575.049 1.177.109 1.787.172v13.402h8.082l7.938-7.416c8.864 5.846 16.087 13.992 16.087 13.992v-.027c.531.648 1.09 1.002 1.667 1.002c3.095 0 5.669-9.98 6.188-23.115l.138-.029c.843 0 1.528-2.176 1.528-4.855c-.001-2.682-.686-4.856-1.529-4.856M43.883 6.098c1.429 1.257 3.646 8.565 4.171 20.574l-8.242-1.809c.656-10.926 2.715-17.574 4.071-18.765M14.15 34.566c-.912 0-1.654-.883-1.654-1.968c0-1.088.742-1.97 1.654-1.97c.914 0 1.652.882 1.652 1.97c.001 1.086-.738 1.968-1.652 1.968m4.041 10.33v-4.092c.989.387 1.979.832 2.961 1.326zm0-6.222V28.241h-4.664c.17-.617.362-1.201.561-1.729c9.87-1.811 20.355-10.882 25.833-16.244c-1.417 5.133-2.323 12.959-2.323 21.732c0 8.798.911 16.644 2.337 21.777c-4.709-4.609-13.163-11.994-21.744-15.103m25.692 19.228c-1.355-1.191-3.415-7.84-4.071-18.766l8.242-1.809c-.525 12.009-2.742 19.318-4.171 20.575' /></svg>",
           "title": "Zero-cost marketing",
           "description": "No advertising budget needed: your discount is your most powerful ad. You only give a discount to customers who actually show up."
         },
         {
-          "icon": "📊",
+          "icon": "<svg xmlns='http://www.w3.org/2000/svg' width='1em' height='1em' viewBox='0 0 24 24'><path d='M0 0h24v24H0z' fill='none' /><path fill='currentColor' d='M17 20q-.425 0-.712-.288T16 19v-5q0-.425.288-.712T17 13h2q.425 0 .713.288T20 14v5q0 .425-.288.713T19 20zm-6 0q-.425 0-.712-.288T10 19V5q0-.425.288-.712T11 4h2q.425 0 .713.288T14 5v14q0 .425-.288.713T13 20zm-6 0q-.425 0-.712-.288T4 19v-9q0-.425.288-.712T5 9h2q.425 0 .713.288T8 10v9q0 .425-.288.713T7 20z' /></svg>",
           "title": "Business Panel statistics",
           "description": "Visits, average check, returning customers — all in real time, in your own dashboard."
         },
         {
-          "icon": "🏢",
+          "icon": "<svg xmlns='http://www.w3.org/2000/svg' width='1em' height='1em' viewBox='0 0 15 15'><path d='M0 0h15v15H0z' fill='none' /><path fill='currentColor' d='M12.64 4H11V2.36c0-.2-.16-.36-.36-.36h-.28c-.2 0-.36.16-.36.36V4H8.36c-.2 0-.36.16-.36.36V10H4.36c-.2 0-.36.16-.36.36v2.28c0 .2.16.36.36.36h8.28c.2 0 .36-.16.36-.36V4.36c0-.2-.16-.36-.36-.36M6 12H5v-1h1zm2 0H7v-1h1zm2 0H9v-1h1zm0-2H9V9h1zm0-2H9V7h1zm0-2H9V5h1zm2 6h-1v-1h1zm0-2h-1V9h1zm0-2h-1V7h1zm0-2h-1V5h1zM7 2.36c0-.2-.16-.36-.36-.36H4.36c-.2 0-.36.16-.36.36V4H2.36c-.2 0-.36.16-.36.36v8.29c0 .19.16.35.35.35H3V9h4zM4 8H3V7h1zm0-2H3V5h1zm2 2H5V7h1zm0-2H5V5h1zm0-2H5V3h1z' /</svg>",
           "title": "Branch management",
           "description": "Manage all branches and cashiers from one dashboard — each with its own QR code."
         }
@@ -110,16 +122,46 @@
     "categories": {
       "title": "Who is it for?",
       "list": [
-        { "icon": "🍽️", "name": "Restaurant" },
-        { "icon": "☕", "name": "Cafe" },
-        { "icon": "💈", "name": "Barber" },
-        { "icon": "💇", "name": "Salon" },
-        { "icon": "🏋️", "name": "Fitness" },
-        { "icon": "🛒", "name": "Supermarket" },
-        { "icon": "⚕️", "name": "Medicine" },
-        { "icon": "🎓", "name": "Education" },
-        { "icon": "🚕", "name": "Taxi" },
-        { "icon": "✈️", "name": "Travel" }
+        {
+          "icon": "",
+          "name": "Restaurant"
+        },
+        {
+          "icon": "",
+          "name": "Cafe"
+        },
+        {
+          "icon": "",
+          "name": "Barber"
+        },
+        {
+          "icon": "",
+          "name": "Salon"
+        },
+        {
+          "icon": "",
+          "name": "Fitness"
+        },
+        {
+          "icon": "",
+          "name": "Supermarket"
+        },
+        {
+          "icon": "",
+          "name": "Medicine"
+        },
+        {
+          "icon": "",
+          "name": "Education"
+        },
+        {
+          "icon": "",
+          "name": "Taxi"
+        },
+        {
+          "icon": "",
+          "name": "Travel"
+        }
       ]
     },
     "faq": {
@@ -149,11 +191,11 @@
       "title2": "Your application has been received!",
       "status": "Pending",
       "num": "Application number: ",
-      "contact": "Questions? Contact: @saven_biznes",
+      "contact": "Questions? Contact: @savin_biznes",
       "contacts": {
         "phone": "+998 71 200 00 00",
-        "telegram": "@saven_biznes",
-        "email": "biznes@saven.uz"
+        "telegram": "@savin_biznes",
+        "email": "biznes@savin.uz"
       },
       "steps": {
         "step1": "Business",
@@ -178,7 +220,7 @@
       "done": "Submit application",
       "step": "step",
       "back": "Back",
-      "brandName": "saven",
+      "brandName": "savin",
       "step2Fields": {
         "phone": "Phone number *",
         "email": "Email address",
@@ -211,10 +253,10 @@
       "submitNote": "Once submitted, your application will reach an operator — we'll contact you within 24 hours regarding the contract and QR setup"
     },
     "footer": {
-      "copyright": "© 2026 Saven. All rights reserved.",
+      "copyright": "© 2026 Savin. All rights reserved.",
       "offer": "Offer",
       "privacyPolicy": "Privacy Policy",
-      "telegram": "@saven_biznes"
+      "telegram": "@savin_biznes"
     }
   },
   "uz": {
@@ -227,7 +269,7 @@
     "hero": {
       "badge": "Bizneslar uchun",
       "title": "Do'koningizga yangi mijozlar oqimini ulang",
-      "description": "Saven a'zolari — chegirma qidirayotgan minglab faol xaridorlar. Ariza qoldiring, 24 soat ichida hamkorlikni boshlaymiz.",
+      "description": "Savin a'zolari — chegirma qidirayotgan minglab faol xaridorlar. Ariza qoldiring, 24 soat ichida hamkorlikni boshlaymiz.",
       "applyButton": "Ariza qoldirish",
       "howItWorksButton": "Qanday ishlaydi",
       "stats": {
@@ -238,27 +280,27 @@
     },
     "phoneMock": {
       "time": "9:41",
-      "category": "Barber",
+      "category": "Savin",
       "filterNearby": "Yaqin atrof",
       "filterTopRated": "Yuqori reyting",
       "resultsCount": "24 ta biznes topildi",
       "businesses": [
         {
-          "name": "Fresh Cut Barber",
+          "name": "Fast Food",
           "location": "Chilonzor",
           "distance": "0.4 km",
           "rating": "4.9",
           "time": "1 soat avval"
         },
         {
-          "name": "Premium Style",
+          "name": "Big Market",
           "location": "Buyuk bozor",
           "distance": "1.2 km",
           "rating": "4.8",
           "time": "1 soat avval"
         },
         {
-          "name": "Barbershop №7",
+          "name": "Avto Salon",
           "location": "Mirabad",
           "distance": "1.8 km",
           "rating": "4.6",
@@ -273,10 +315,22 @@
       }
     },
     "statsBar": {
-      "partners": { "value": "400+", "label": "hamkor biznes" },
-      "members": { "value": "50K+", "label": "faol a'zo" },
-      "growth": { "value": "+27%", "label": "mijozlar oqimi o'sishi" },
-      "connectionTime": { "value": "24 soat", "label": "ulanish vaqti" }
+      "partners": {
+        "value": "400+",
+        "label": "hamkor biznes"
+      },
+      "members": {
+        "value": "50K+",
+        "label": "faol a'zo"
+      },
+      "growth": {
+        "value": "+27%",
+        "label": "mijozlar oqimi o'sishi"
+      },
+      "connectionTime": {
+        "value": "24 soat",
+        "label": "ulanish vaqti"
+      }
     },
     "howItWorks": {
       "title": "Qanday ishlaydi?",
@@ -295,18 +349,18 @@
         {
           "number": "3",
           "title": "Mijozlar kela boshlaydi",
-          "description": "Saven a'zolari sizni ilovada ko'radi. Natijani Biznes panelda real vaqtda kuzatib borasiz."
+          "description": "Savin a'zolari sizni ilovada ko'radi. Natijani Biznes panelda real vaqtda kuzatib borasiz."
         }
       ]
     },
     "benefits": {
-      "title": "Nega Saven?",
+      "title": "Nega Savin?",
       "subtitle": "Biznesingiz uchun to'g'ridan-to'g'ri natija beradigan hamkorlik",
       "items": [
         {
-          "icon": "👥",
+          "icon": "<svg xmlns='http://www.w3.org/2000/svg' width='1em' height='1em' viewBox='0 0 24 24'><path d='M0 0h24v24H0z' fill='none'/><path fill='currentColor' d='M16 17v2H2v-2s0-4 7-4s7 4 7 4m-3.5-9.5A3.5 3.5 0 1 0 9 11a3.5 3.5 0 0 0 3.5-3.5m3.44 5.5A5.32 5.32 0 0 1 18 17v2h4v-2s0-3.63-6.06-4M15 4a3.4 3.4 0 0 0-1.93.59a5 5 0 0 1 0 5.82A3.4 3.4 0 0 0 15 11a3.5 3.5 0 0 0 0-7'/></svg>",
           "title": "Yangi mijozlar oqimi",
-          "description": "50 000+ faol a'zo yangi joylarni aynan Saven orqali tanlaydi — endi ular sizni ham ko'radi."
+          "description": "50 000+ faol a'zo yangi joylarni aynan Savin orqali tanlaydi — endi ular sizni ham ko'radi."
         },
         {
           "icon": "📣",
@@ -328,16 +382,46 @@
     "categories": {
       "title": "Kimlar uchun?",
       "list": [
-        { "icon": "🍽️", "name": "Restoran" },
-        { "icon": "☕", "name": "Kafe" },
-        { "icon": "💈", "name": "Barber" },
-        { "icon": "💇", "name": "Salon" },
-        { "icon": "🏋️", "name": "Fitness" },
-        { "icon": "🛒", "name": "Supermarket" },
-        { "icon": "⚕️", "name": "Tibbiyot" },
-        { "icon": "🎓", "name": "Ta'lim" },
-        { "icon": "🚕", "name": "Taxi" },
-        { "icon": "✈️", "name": "Sayohat" }
+        {
+          "icon": "🍽️",
+          "name": "Restoran"
+        },
+        {
+          "icon": "☕",
+          "name": "Kafe"
+        },
+        {
+          "icon": "💈",
+          "name": "Barber"
+        },
+        {
+          "icon": "💇",
+          "name": "Salon"
+        },
+        {
+          "icon": "🏋️",
+          "name": "Fitness"
+        },
+        {
+          "icon": "🛒",
+          "name": "Supermarket"
+        },
+        {
+          "icon": "⚕️",
+          "name": "Tibbiyot"
+        },
+        {
+          "icon": "🎓",
+          "name": "Ta'lim"
+        },
+        {
+          "icon": "🚕",
+          "name": "Taxi"
+        },
+        {
+          "icon": "✈️",
+          "name": "Sayohat"
+        }
       ]
     },
     "faq": {
@@ -367,11 +451,11 @@
       "title2": "Arizangiz qabul qilindi!",
       "status": "Kutilmoqda",
       "num": "Ariza raqami: ",
-      "contact": "Savollar bo'lsa: @saven_biznes",
+      "contact": "Savollar bo'lsa: @savin_biznes",
       "contacts": {
         "phone": "+998 71 200 00 00",
-        "telegram": "@saven_biznes",
-        "email": "biznes@saven.uz"
+        "telegram": "@savin_biznes",
+        "email": "biznes@savin.uz"
       },
       "steps": {
         "step1": "Biznes",
@@ -396,7 +480,7 @@
       "done": "Ariza yuborish",
       "step": "qadam",
       "back": "ortga",
-      "brandName": "saven",
+      "brandName": "savin",
       "step2Fields": {
         "phone": "Telefon raqami *",
         "email": "Email manzili",
@@ -429,10 +513,10 @@
       "submitNote": "Yuborilgach arizangiz operatorga tushadi — 24 soat ichida shartnoma va QR o'rnatish bo'yicha bog'lanamiz"
     },
     "footer": {
-      "copyright": "© 2026 Saven. Barcha huquqlar himoyalangan.",
+      "copyright": "© 2026 Savin. Barcha huquqlar himoyalangan.",
       "offer": "Oferta",
       "privacyPolicy": "Maxfiylik siyosati",
-      "telegram": "@saven_biznes"
+      "telegram": "@savin_biznes"
     }
   },
   "ru": {
@@ -445,7 +529,7 @@
     "hero": {
       "badge": "Для бизнеса",
       "title": "Подключите к своему магазину поток новых клиентов",
-      "description": "Участники Saven — тысячи активных покупателей, ищущих скидки. Оставьте заявку, и мы начнём сотрудничество в течение 24 часов.",
+      "description": "Участники Savin — тысячи активных покупателей, ищущих скидки. Оставьте заявку, и мы начнём сотрудничество в течение 24 часов.",
       "applyButton": "Оставить заявку",
       "howItWorksButton": "Как это работает",
       "stats": {
@@ -456,27 +540,27 @@
     },
     "phoneMock": {
       "time": "9:41",
-      "category": "Барбершоп",
+      "category": "Savin",
       "filterNearby": "Рядом",
       "filterTopRated": "Высокий рейтинг",
       "resultsCount": "Найдено 24 заведения",
       "businesses": [
         {
-          "name": "Fresh Cut Barber",
+          "name": "Fast Food",
           "location": "Чиланзар",
           "distance": "0.4 км",
           "rating": "4.9",
           "time": "1 час назад"
         },
         {
-          "name": "Premium Style",
+          "name": "Big Market",
           "location": "Большой базар",
           "distance": "1.2 км",
           "rating": "4.8",
           "time": "1 час назад"
         },
         {
-          "name": "Barbershop №7",
+          "name": "Avto Salon",
           "location": "Мирабад",
           "distance": "1.8 км",
           "rating": "4.6",
@@ -491,10 +575,22 @@
       }
     },
     "statsBar": {
-      "partners": { "value": "400+", "label": "бизнес-партнёров" },
-      "members": { "value": "50K+", "label": "активных участников" },
-      "growth": { "value": "+27%", "label": "рост потока клиентов" },
-      "connectionTime": { "value": "24 часа", "label": "время подключения" }
+      "partners": {
+        "value": "400+",
+        "label": "бизнес-партнёров"
+      },
+      "members": {
+        "value": "50K+",
+        "label": "активных участников"
+      },
+      "growth": {
+        "value": "+27%",
+        "label": "рост потока клиентов"
+      },
+      "connectionTime": {
+        "value": "24 часа",
+        "label": "время подключения"
+      }
     },
     "howItWorks": {
       "title": "Как это работает?",
@@ -513,18 +609,18 @@
         {
           "number": "3",
           "title": "Начинают приходить клиенты",
-          "description": "Участники Saven видят вас в приложении. Результаты отслеживаете в режиме реального времени в Бизнес-панели."
+          "description": "Участники Savin видят вас в приложении. Результаты отслеживаете в режиме реального времени в Бизнес-панели."
         }
       ]
     },
     "benefits": {
-      "title": "Почему Saven?",
+      "title": "Почему Savin?",
       "subtitle": "Сотрудничество, которое приносит прямую пользу вашему бизнесу",
       "items": [
         {
-          "icon": "👥",
+          "icon": "<svg xmlns='http://www.w3.org/2000/svg' width='1em' height='1em' viewBox='0 0 24 24'><path d='M0 0h24v24H0z' fill='none'/><path fill='currentColor' d='M16 17v2H2v-2s0-4 7-4s7 4 7 4m-3.5-9.5A3.5 3.5 0 1 0 9 11a3.5 3.5 0 0 0 3.5-3.5m3.44 5.5A5.32 5.32 0 0 1 18 17v2h4v-2s0-3.63-6.06-4M15 4a3.4 3.4 0 0 0-1.93.59a5 5 0 0 1 0 5.82A3.4 3.4 0 0 0 15 11a3.5 3.5 0 0 0 0-7'/></svg>",
           "title": "Поток новых клиентов",
-          "description": "50 000+ активных участников выбирают новые места именно через Saven — теперь они увидят и вас."
+          "description": "50 000+ активных участников выбирают новые места именно через Savin — теперь они увидят и вас."
         },
         {
           "icon": "📣",
@@ -546,16 +642,46 @@
     "categories": {
       "title": "Для кого?",
       "list": [
-        { "icon": "🍽️", "name": "Ресторан" },
-        { "icon": "☕", "name": "Кафе" },
-        { "icon": "💈", "name": "Барбершоп" },
-        { "icon": "💇", "name": "Салон" },
-        { "icon": "🏋️", "name": "Фитнес" },
-        { "icon": "🛒", "name": "Супермаркет" },
-        { "icon": "⚕️", "name": "Медицина" },
-        { "icon": "🎓", "name": "Образование" },
-        { "icon": "🚕", "name": "Такси" },
-        { "icon": "✈️", "name": "Путешествия" }
+        {
+          "icon": "🍽️",
+          "name": "Ресторан"
+        },
+        {
+          "icon": "☕",
+          "name": "Кафе"
+        },
+        {
+          "icon": "💈",
+          "name": "Барбершоп"
+        },
+        {
+          "icon": "💇",
+          "name": "Салон"
+        },
+        {
+          "icon": "🏋️",
+          "name": "Фитнес"
+        },
+        {
+          "icon": "🛒",
+          "name": "Супермаркет"
+        },
+        {
+          "icon": "⚕️",
+          "name": "Медицина"
+        },
+        {
+          "icon": "🎓",
+          "name": "Образование"
+        },
+        {
+          "icon": "🚕",
+          "name": "Такси"
+        },
+        {
+          "icon": "✈️",
+          "name": "Путешествия"
+        }
       ]
     },
     "faq": {
@@ -588,8 +714,8 @@
       "contact": "По вопросам обращайтесь: ",
       "contacts": {
         "phone": "+998 71 200 00 00",
-        "telegram": "@saven_biznes",
-        "email": "biznes@saven.uz"
+        "telegram": "@savin_biznes",
+        "email": "biznes@savin.uz"
       },
       "steps": {
         "step1": "Бизнес",
@@ -614,7 +740,7 @@
       "done": "Подача заявки",
       "step": "шаг",
       "back": "Назад",
-      "brandName": "saven",
+      "brandName": "savin",
       "step2Fields": {
         "phone": "Номер телефона *",
         "email": "Адрес электронной почты",
@@ -647,10 +773,10 @@
       "submitNote": "После отправки ваша заявка попадёт к оператору — в течение 24 часов свяжемся с вами по договору и установке QR"
     },
     "footer": {
-      "copyright": "© 2026 Saven. Все права защищены.",
+      "copyright": "© 2026 Savin. Все права защищены.",
       "offer": "Оферта",
       "privacyPolicy": "Политика конфиденциальности",
-      "telegram": "@saven_biznes"
+      "telegram": "@savin_biznes"
     }
   }
 }

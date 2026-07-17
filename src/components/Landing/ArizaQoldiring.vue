@@ -3,7 +3,7 @@
   <section
     ref="sectionRef"
     :class="[
-      'relative w-full min-h-screen overflow-hidden bg-[#123524] transition-all duration-1000 ease-out transform',
+      'relative w-full min-h-screen overflow-hidden bg-gradient-to-r from-green-900 to-green-600   transition-all duration-1000 ease-out transform',
       isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8',
     ]"
   >
@@ -29,7 +29,8 @@
           href="/"
           class="group inline-flex items-center gap-2 rounded-full bg-white/10 backdrop-blur-sm hover:bg-emerald-600 text-white text-xs sm:text-sm font-semibold px-4 sm:px-5 py-2 sm:py-2.5 transition-all duration-300 border border-white/10"
         >
-          <span class="transition-transform duration-300 group-hover:-translate-x-0.5"
+          <span
+            class="transition-transform duration-300 group-hover:-translate-x-0.5"
             >←</span
           >
           {{ t("applyForm.back") }}
@@ -103,9 +104,22 @@
             >
               <span
                 class="flex items-center justify-center w-8 h-8 lg:w-9 lg:h-9 rounded-lg lg:rounded-xl bg-emerald-500/15 text-base shrink-0"
-                >📞</span
+                ><svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="1em"
+                  height="1em"
+                  viewBox="0 0 512 512"
+                >
+                  <path d="M0 0h512v512H0z" fill="none" />
+                  <path
+                    fill="currentColor"
+                    d="M391 480c-19.52 0-46.94-7.06-88-30c-49.93-28-88.55-53.85-138.21-103.38C116.91 298.77 93.61 267.79 61 208.45c-36.84-67-30.56-102.12-23.54-117.13C45.82 73.38 58.16 62.65 74.11 52a176.3 176.3 0 0 1 28.64-15.2c1-.43 1.93-.84 2.76-1.21c4.95-2.23 12.45-5.6 21.95-2c6.34 2.38 12 7.25 20.86 16c18.17 17.92 43 57.83 52.16 77.43c6.15 13.21 10.22 21.93 10.23 31.71c0 11.45-5.76 20.28-12.75 29.81c-1.31 1.79-2.61 3.5-3.87 5.16c-7.61 10-9.28 12.89-8.18 18.05c2.23 10.37 18.86 41.24 46.19 68.51s57.31 42.85 67.72 45.07c5.38 1.15 8.33-.59 18.65-8.47c1.48-1.13 3-2.3 4.59-3.47c10.66-7.93 19.08-13.54 30.26-13.54h.06c9.73 0 18.06 4.22 31.86 11.18c18 9.08 59.11 33.59 77.14 51.78c8.77 8.84 13.66 14.48 16.05 20.81c3.6 9.53.21 17-2 22c-.37.83-.78 1.74-1.21 2.75a176.5 176.5 0 0 1-15.29 28.58c-10.63 15.9-21.4 28.21-39.38 36.58A67.4 67.4 0 0 1 391 480"
+                  />
+                </svg>
+              </span>
+              <span
+                class="text-white/80 group-hover:text-white transition-colors"
               >
-              <span class="text-white/80 group-hover:text-white transition-colors">
                 {{ t("applyForm.contacts.phone") }}
               </span>
             </a>
@@ -115,9 +129,22 @@
             >
               <span
                 class="flex items-center justify-center w-8 h-8 lg:w-9 lg:h-9 rounded-lg lg:rounded-xl bg-emerald-500/15 text-base shrink-0"
-                >✈️</span
+                ><svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="1em"
+                  height="1em"
+                  viewBox="0 0 24 24"
+                >
+                  <path d="M0 0h24v24H0z" fill="none" />
+                  <path
+                    fill="currentColor"
+                    d="M20.56 3.91c.59.59.59 1.54 0 2.12l-3.89 3.89l2.12 9.19l-1.41 1.42l-3.88-7.43L9.6 17l.36 2.47l-1.07 1.06l-1.76-3.18l-3.19-1.77L5 14.5l2.5.37L11.37 11L3.94 7.09l1.42-1.41l9.19 2.12l3.89-3.89c.56-.58 1.56-.58 2.12 0"
+                  />
+                </svg>
+              </span>
+              <span
+                class="text-white/80 group-hover:text-white transition-colors"
               >
-              <span class="text-white/80 group-hover:text-white transition-colors">
                 {{ t("applyForm.contacts.telegram") }}
               </span>
             </a>
@@ -127,9 +154,15 @@
             >
               <span
                 class="flex items-center justify-center w-8 h-8 lg:w-9 lg:h-9 rounded-lg lg:rounded-xl bg-emerald-500/15 text-base shrink-0"
-                >✉️</span
+                ><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24">
+	<path d="M0 0h24v24H0z" fill="none" />
+	<path fill="currentColor" fill-rule="evenodd" d="M3.172 5.172C2 6.343 2 8.229 2 12s0 5.657 1.172 6.828S6.229 20 10 20h4c3.771 0 5.657 0 6.828-1.172S22 15.771 22 12s0-5.657-1.172-6.828S17.771 4 14 4h-4C6.229 4 4.343 4 3.172 5.172M18.576 7.52a.75.75 0 0 1-.096 1.056l-2.196 1.83c-.887.74-1.605 1.338-2.24 1.746c-.66.425-1.303.693-2.044.693s-1.384-.269-2.045-.693c-.634-.408-1.352-1.007-2.239-1.745L5.52 8.577a.75.75 0 0 1 .96-1.153l2.16 1.799c.933.777 1.58 1.315 2.128 1.667c.529.34.888.455 1.233.455s.704-.114 1.233-.455c.547-.352 1.195-.89 2.128-1.667l2.159-1.8a.75.75 0 0 1 1.056.097" clip-rule="evenodd" />
+</svg>
+</span
               >
-              <span class="text-white/80 group-hover:text-white transition-colors">
+              <span
+                class="text-white/80 group-hover:text-white transition-colors"
+              >
                 {{ t("applyForm.contacts.email") }}
               </span>
             </a>
@@ -264,9 +297,7 @@
                       :class="fieldClass('type', true)"
                     >
                       <option value="">
-                        {{
-                          t("applyForm.step1Fields.businessTypePlaceholder")
-                        }}
+                        {{ t("applyForm.step1Fields.businessTypePlaceholder") }}
                       </option>
                       <option
                         v-for="tp in businessTypeOptions"
@@ -469,7 +500,12 @@
                       @click="searchAddressOnMap"
                       :disabled="isSearchingAddress"
                       class="shrink-0 inline-flex items-center justify-center w-11 sm:w-12 rounded-xl bg-gradient-to-b from-emerald-500 to-emerald-600 hover:from-emerald-600 hover:to-emerald-700 text-white text-base transition-all duration-300 active:scale-95 shadow-md shadow-emerald-600/25 disabled:opacity-60"
-                      :title="tt('applyForm.step3Fields.searchOnMap', 'Xaritadan qidirish')"
+                      :title="
+                        tt(
+                          'applyForm.step3Fields.searchOnMap',
+                          'Xaritadan qidirish',
+                        )
+                      "
                     >
                       <span
                         v-if="isSearchingAddress"
@@ -767,9 +803,7 @@
               <span class="text-white text-3xl sm:text-4xl">✓</span>
             </div>
 
-            <h3
-              class="text-xl sm:text-2xl text-slate-800 font-bold mb-2"
-            >
+            <h3 class="text-xl sm:text-2xl text-slate-800 font-bold mb-2">
               {{ t("applyForm.title2") }}
             </h3>
             <p class="text-sm text-gray-500 leading-relaxed mb-5">
@@ -1086,10 +1120,7 @@ let addressDebounce = null;
 const LocateControl = L.Control.extend({
   options: { position: "topleft" },
   onAdd() {
-    const container = L.DomUtil.create(
-      "div",
-      "leaflet-bar leaflet-control",
-    );
+    const container = L.DomUtil.create("div", "leaflet-bar leaflet-control");
     const button = L.DomUtil.create("a", "", container);
     button.href = "#";
     button.title = "Joriy joylashuvim";

@@ -30,7 +30,12 @@
           <div class="flex-row items-start gap-4 p-5 sm:p-6 flex">
             <!-- Ikonka foni -->
             <div class="flex items-center justify-center w-11 h-11 sm:w-12 sm:h-12 rounded-xl shrink-0 bg-[#DFF3E3] group-hover:scale-110 transition-transform duration-300 ease-out">
-              <span class="text-xl sm:text-2xl">{{ item.icon }}</span>
+              <!-- v-html: ikonka emoji ham, inline SVG ham bo'lishi mumkin
+                   (SVG currentColor orqali matn rangini oladi) -->
+              <span
+                class="text-xl sm:text-2xl text-emerald-700 inline-flex items-center justify-center"
+                v-html="item.icon"
+              ></span>
             </div>
             <div>
               <h3 class="font-semibold text-base sm:text-lg text-[#1A1A1A] mb-1">
